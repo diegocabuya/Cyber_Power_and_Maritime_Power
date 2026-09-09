@@ -7,8 +7,8 @@
 **CF Diego Edison Cabuya Padilla, PhD**
 Naval Academy for Strategic Studies (ANEES) · Bogota, Colombia
 
-[![Simulator](https://img.shields.io/badge/▶_Simulator-interactive-185FA5?style=for-the-badge)](https://diegocabuya.github.io/Cyber-Power-and-Maritime-Power/simulator/simulator.html)
-[![Site](https://img.shields.io/badge/🌐_Project-site-0D2A42?style=for-the-badge)](https://diegocabuya.github.io/Cyber-Power-and-Maritime-Power/)
+[![Simulator](https://img.shields.io/badge/▶_Simulator-interactive-185FA5?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)
+[![Site](https://img.shields.io/badge/🌐_Project-site-0D2A42?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)
 [![ANEES](https://img.shields.io/badge/ANEES-Bogota-993C1D?style=for-the-badge)](https://github.com/diegocabuya/Cyber-Power-and-Maritime-Power)
 
 </div>
