@@ -64,6 +64,8 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
   Reference output: [`verification/verification_output.txt`](verification/verification_output.txt).
 - **[🔎 Documented literature search](search/README.md)** — query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026) and the screening log of the 812 unique records.
 - **[🌐 Project site](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)** — equation plates, model architecture, bibliographic synthesis, and revision notes.
+- **[🎞️ Presentation](presentation/presentation.pdf)**, **[simulator guide](presentation/simulator_guide.pdf)** and **[infographic](infographic/Infographic.pdf)** — regenerated in October 2026 from the revised manuscript.
+- **Español** — the site and the simulator are bilingual (EN/ES); the Spanish view uses the notation of the Spanish version of the article (PM, IM, PN, VE, SM, CP). The Spanish article, its figures and the Spanish presentation and infographic are in [Ciberpoder-y-Poder-Maritimo](https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo).
 
 ## Repository contents
 
@@ -84,8 +86,13 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 ├── figures/
 │   ├── equations/                       ← The 8 equation plates (PDF + PNG)
 │   └── schemes/                         ← Two-level architecture (Fig. 1) + bibliographic synthesis (Table 8)
+├── presentation/
+│   ├── presentation.pdf                 ← 18 slides on the revised model
+│   └── simulator_guide.pdf              ← 3 slides: simulator architecture, its 31 controls, and use
+├── infographic/
+│   └── Infographic.{pdf,png}            ← The revised model on one page
 ├── docs/                                ← Manuscript PDF (posted when the editorial process allows it)
-├── archive/2026-08_pre-revision/        ← Presentation, infographic and submitted version (superseded)
+├── archive/2026-08_pre-revision/        ← Earlier presentation, infographic and submitted version (superseded)
 ├── LICENSE
 └── README.md
 ```
