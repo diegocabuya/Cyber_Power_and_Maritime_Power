@@ -113,12 +113,12 @@ input[type=range]:disabled{opacity:.35;cursor:not-allowed}
   <div class="fgrid">
     <div class="fblock">
       <div class="flbl" data-i18n="f1l"></div>
-      <div class="feq">MP = (MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup></div>
+      <div class="feq" data-i18n="feq1">MP = (MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup></div>
       <div class="vpills" data-i18n="f1p"></div>
     </div>
     <div class="fblock b2">
       <div class="flbl" data-i18n="f2l"></div>
-      <div class="feq">MP<sub>norm</sub> = [ MP ]<sup>1/n<sub>eff</sub></sup> &nbsp;·&nbsp; n<sub>eff</sub> = 3 + γ + α</div>
+      <div class="feq" data-i18n="feq2">MP<sub>norm</sub> = [ MP ]<sup>1/n<sub>eff</sub></sup> &nbsp;·&nbsp; n<sub>eff</sub> = 3 + γ + α</div>
       <div class="fnote" data-i18n="f2n"></div>
       <div class="vpills" data-i18n="f2p"></div>
     </div>
@@ -224,6 +224,7 @@ input[type=range]:disabled{opacity:.35;cursor:not-allowed}
 // ---------------------------------------------------------------- i18n
 const I18N={
 en:{
+ feq1:'MP = (MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup>', feq2:'MP<sub>norm</sub> = [ MP ]<sup>1/n<sub>eff</sub></sup> &nbsp;·&nbsp; n<sub>eff</sub> = 3 + γ + α',
  title:'<span>Cyber power</span> as a structural variable of maritime power:<br>a normalized multiplicative model for multidomain assessment of maritime power',
  loc:'Manuscript under review (IEEE Access, revised version, October 2026) · Interactive simulator · <a href="../index.html?lang=en">project site</a> · <a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power">repository</a>',
  f1l:'General expression — Level 1 (Eq. 1)',
@@ -269,48 +270,49 @@ en:{
  sg:{NPf:'Factors',NPp:'Parameter',SWd:'Dimensions',SWw:'Weights (normalized)',MSd:'Threat dimensions (incidence, inverted: higher = more secure)',MSw:'Weights (normalized)',CPs:'Sub-components',CPw:'Weights (normalized) and δ'}
 },
 es:{
+ feq1:'PM = (IM × PN) × VE × SM<sup>γ</sup> × CP<sup>α</sup>', feq2:'PM<sub>norm</sub> = [ PM ]<sup>1/n<sub>eff</sub></sup> &nbsp;·&nbsp; n<sub>eff</sub> = 3 + γ + α',
  title:'<span>El ciberpoder</span> como variable estructural del poder marítimo:<br>un modelo multiplicativo normalizado para la evaluación multidominio del poder marítimo',
  loc:'Manuscrito en revisión (IEEE Access, versión revisada, octubre de 2026) · Simulador interactivo · <a href="../index.html?lang=es">sitio del proyecto</a> · <a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power">repositorio</a>',
  f1l:'Expresión general — Nivel 1 (Ec. 1)',
- f1p:'<span class="vp vi">MI — Intereses Marítimos (IM)</span><span class="vp vp2">NP — Poder Naval (PN)</span><span class="vp vv">SW — Voluntad Estratégica (VE)</span><span class="vp vs">MS — Seguridad Marítima (SM)</span><span class="vp vc">CP — Ciberpoder</span><span class="vp vx">γ — peso del entorno de seguridad · α — peso de la dependencia cibernética</span>',
- f2l:'Fórmula normalizada — Ecs. (2)–(3)',
- f2n:'media geométrica ponderada: ω<sub>MI</sub> = ω<sub>NP</sub> = ω<sub>SW</sub> = 1/n<sub>eff</sub>, ω<sub>MS</sub> = γ/n<sub>eff</sub>, ω<sub>CP</sub> = α/n<sub>eff</sub> · MP<sub>norm</sub> ∈ (0, 1]',
- f2p:'<span class="vp vx">Proposición 1: MP_norm = G^(1−w) · CP^w, con G la media geométrica del resto del sistema y w = α/n_eff</span><span class="vp vx">PNUD (2010); OCDE–JRC (2008)</span>',
+ f1p:'<span class="vp vi">IM — Intereses Marítimos</span><span class="vp vp2">PN — Poder Naval</span><span class="vp vv">VE — Voluntad Estratégica</span><span class="vp vs">SM — Seguridad Marítima</span><span class="vp vc">CP — Ciberpoder</span><span class="vp vx">γ — peso del entorno de seguridad · α — peso de la dependencia cibernética</span>',
+ f2l:'Fórmula normalizada — Ecs. (1b)–(1c)',
+ f2n:'media geométrica ponderada: ω<sub>IM</sub> = ω<sub>PN</sub> = ω<sub>VE</sub> = 1/n<sub>eff</sub>, ω<sub>SM</sub> = γ/n<sub>eff</sub>, ω<sub>CP</sub> = α/n<sub>eff</sub> · PM<sub>norm</sub> ∈ (0, 1]',
+ f2p:'<span class="vp vx">Proposición 1: PM_norm = G^(1−w) · CP^w, con G la media geométrica del resto del sistema y w = α/n_eff</span><span class="vp vx">PNUD (2010); OCDE–JRC (2008)</span>',
  scen_t:'Escenarios — caso de referencia y perfiles construidos',
  b_col:'🇨🇴 Colombia — caso de referencia (Tabla 4)', b_pes:'🔴 Perfil crítico', b_ref:'🟡 Perfil de referencia', b_opt:'🟢 Perfil consolidado', b_reset:'↺ Reiniciar',
- scen_n:'<b>Colombia:</b> solo MS procede de una fuente externa — el puesto 75 entre 99 Estados en el índice de seguridad marítima de Vargas-Suárez et al. (2021), convertido en percentil de posición, (99 − 75)/98 ≈ 0,24; los demás valores y los parámetros α = 0,55 y γ = 0,70 son elecciones ilustrativas de los autores, fijadas directamente en el Nivel 1. <b>Perfiles:</b> escenarios construidos por los autores para recorrer la escala de cinco niveles (Tabla 6); son una comprobación de consistencia, no casos de validación. El modelo está verificado, pero no calibrado ni validado externamente.',
- hero_l:'Poder marítimo normalizado — MP<sub>norm</sub>',
+ scen_n:'<b>Colombia:</b> solo SM procede de una fuente externa — el puesto 75 entre 99 Estados en el índice de seguridad marítima de Vargas-Suárez et al. (2021), convertido en percentil de posición, (99 − 75)/98 ≈ 0,24; los demás valores y los parámetros α = 0,55 y γ = 0,70 son elecciones ilustrativas de los autores, fijadas directamente en el Nivel 1. <b>Perfiles:</b> escenarios construidos por los autores para recorrer la escala de cinco niveles (Tabla 6); son una comprobación de consistencia, no casos de validación. El modelo está verificado, pero no calibrado ni validado externamente.',
+ hero_l:'Poder marítimo normalizado — PM<sub>norm</sub>',
  in_t:'Entradas — componentes y parámetros de Nivel 1 (todos ∈ (0, 1])',
- in_n:'Cada componente puede fijarse directamente (como en el artículo, Tabla 4) o, marcando <b>desde subcomponentes</b>, calcularse a partir de su desagregación de Nivel 2 (Ecs. 5–8). Los valores y pesos de Nivel 2 son valores por defecto ilustrativos para explorar; los pesos internos de cada componente se normalizan para sumar uno, incluidos β<sub>1</sub>–β<sub>3</sub>.',
+ in_n:'Cada componente puede fijarse directamente (como en el artículo, Tabla 4) o, marcando <b>desde subcomponentes</b>, calcularse a partir de su desagregación de Nivel 2 (Ecs. 3–6). Los valores y pesos de Nivel 2 son valores por defecto ilustrativos para explorar; los pesos internos de cada componente se normalizan para sumar uno, incluidos β<sub>1</sub>–β<sub>3</sub>.',
  radar_t:'Radar de componentes — estado actual',
  an_t:'Sensibilidad, retorno marginal y condición de coste (Tabla 5 · Corolario 1)',
- an_h:'<th>Componente</th><th>Valor</th><th>Elasticidad ω<sub>k</sub></th><th>ΔMP<sub>norm</sub> a +20 %</th><th>∂MP<sub>norm</sub>/∂X<sub>k</sub></th><th>Umbral c<sub>k</sub>/c<sub>CP</sub></th>',
- an_n:'Con la normalización, la elasticidad de MP<sub>norm</sub> respecto a cada componente es igual a su peso normalizado ω<sub>k</sub>, así que un aumento del 20 % cambia el índice en 1,2<sup>ω<sub>k</sub></sup> − 1. <b>La sensibilidad mide capacidad de respuesta, no eficiencia de la inversión.</b> El umbral es el coste unitario relativo c<sub>k</sub>/c<sub>CP</sub> por encima del cual elevar el ciberpoder es más eficiente que elevar el componente k (Corolario 1, válido para inversiones pequeñas); el modelo no contiene datos de coste, así que es una condición comprobable, no un resultado.',
+ an_h:'<th>Componente</th><th>Valor</th><th>Elasticidad ω<sub>k</sub></th><th>ΔMP<sub>norm</sub> a +20 %</th><th>∂PM<sub>norm</sub>/∂X<sub>k</sub></th><th>Umbral c<sub>k</sub>/c<sub>CP</sub></th>',
+ an_n:'Con la normalización, la elasticidad de PM<sub>norm</sub> respecto a cada componente es igual a su peso normalizado ω<sub>k</sub>, así que un aumento del 20 % cambia el índice en 1,2<sup>ω<sub>k</sub></sup> − 1. <b>La sensibilidad mide capacidad de respuesta, no eficiencia de la inversión.</b> El umbral es el coste unitario relativo c<sub>k</sub>/c<sub>CP</sub> por encima del cual elevar el ciberpoder es más eficiente que elevar el componente k (Corolario 1, válido para inversiones pequeñas); el modelo no contiene datos de coste, así que es una condición comprobable, no un resultado.',
  mc_t:'Incertidumbre y robustez — Monte Carlo sobre los valores actuales',
  mc_10:'componentes ± 0,10', mc_20:'componentes ± 0,20', mc_run:'▶ Ejecutar 20.000 sorteos',
- mc_n:'Los cinco componentes varían uniformemente en ± d alrededor de sus valores actuales (acotados por abajo en 0,01) y α y γ en [0,10; 1]; estos rangos son supuestos, no estimaciones. Se reporta: mediana y banda del percentil 5 al 95 de MP<sub>norm</sub>, proporción de sorteos por nivel, con qué frecuencia cada componente es el más bajo y con qué frecuencia tiene el mayor retorno marginal. El análisis completo basado en varianza con índices de Sobol\' (Tabla 7) lo regenera <code>verification/verify_model.py</code>. La media aritmética con pesos iguales y la media geométrica sin pesos de los valores actuales se muestran como comprobación de agregación.',
+ mc_n:'Los cinco componentes varían uniformemente en ± d alrededor de sus valores actuales (acotados por abajo en 0,01) y α y γ en [0,10; 1]; estos rangos son supuestos, no estimaciones. Se reporta: mediana y banda del percentil 5 al 95 de PM<sub>norm</sub>, proporción de sorteos por nivel, con qué frecuencia cada componente es el más bajo y con qué frecuencia tiene el mayor retorno marginal. El análisis completo basado en varianza con índices de Sobol\' (Tabla 7) lo regenera <code>verification/verify_model.py</code>. La media aritmética con pesos iguales y la media geométrica sin pesos de los valores actuales se muestran como comprobación de agregación.',
  cmp_t:'Comparación — selecciona los escenarios que quieres graficar',
  cmp_a:'Caso de referencia y perfiles construidos (artículo):',
  cmp_b:'Escenarios ilustrativos — no forman parte del artículo; valores fijados por los autores, no mediciones (ver descargo abajo):',
  cmp_disc:'<b class="t">Descargo.</b> Los diez escenarios ilustrativos <b>no forman parte del artículo</b> y <b>no resultan de una investigación completa</b>: sus valores fueron fijados por los autores solo para ejercitar las gráficas de comparación, no tienen fuente externa y no han sido calibrados ni validados. No deben leerse como mediciones ni como un ranking del poder marítimo de esos Estados. Todos usan los parámetros del caso de referencia (α = 0,55, γ = 0,70) para que la comparación refleje los componentes y no los pesos. Al pulsar un escenario se añade a las gráficas; el estado actual de los controles se grafica siempre como <b>Actual</b>.',
- ch1:'MP<sub>norm</sub> — índice final · escala (0, 1]', ch2:'Componentes — MI · NP · SW · MS · CP', ch3:'Radar — perfil de los cinco componentes',
- sc_t:'Escala de interpretación · MP<sub>norm</sub> ∈ (0, 1] (Tabla 1)',
- sc_h:'<th>MP<sub>norm</sub></th><th>Nivel</th><th>Descripción estratégica</th>',
- sc_n:'La escala divide el rango de la fórmula normalizada en cinco intervalos iguales; sus límites son convenciones del artículo, no umbrales estimados con datos. <b>La madurez cibernética se lee en el propio CP</b>, en cinco tramos: incipiente (0,00–0,20), básico (0,21–0,40), en consolidación (0,41–0,60), avanzado (0,61–0,80) y consolidado (0,81–1,00). <b>α es un peso, no un índice de madurez:</b> subir CP siempre sube MP<sub>norm</sub>, mientras que subir α solo lo sube si CP supera a G, la media geométrica del resto del sistema, y lo baja en caso contrario (Proposición 1). MP<sub>norm</sub> = [(MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup>]<sup>1/n<sub>eff</sub></sup>, n<sub>eff</sub> = 3 + γ + α.',
+ ch1:'PM<sub>norm</sub> — índice final · escala (0, 1]', ch2:'Componentes — IM · PN · VE · SM · CP', ch3:'Radar — perfil de los cinco componentes',
+ sc_t:'Escala de interpretación · PM<sub>norm</sub> ∈ (0, 1] (Tabla 1)',
+ sc_h:'<th>PM<sub>norm</sub></th><th>Nivel</th><th>Descripción estratégica</th>',
+ sc_n:'La escala divide el rango de la fórmula normalizada en cinco intervalos iguales; sus límites son convenciones del artículo, no umbrales estimados con datos. <b>La madurez cibernética se lee en el propio CP</b>, en cinco tramos: incipiente (0,00–0,20), básico (0,21–0,40), en consolidación (0,41–0,60), avanzado (0,61–0,80) y consolidado (0,81–1,00). <b>α es un peso, no un índice de madurez:</b> subir CP siempre sube PM<sub>norm</sub>, mientras que subir α solo lo sube si CP supera a G, la media geométrica del resto del sistema, y lo baja en caso contrario (Proposición 1). PM<sub>norm</sub> = [(IM × PN) × VE × SM<sup>γ</sup> × CP<sup>α</sup>]<sup>1/n<sub>eff</sub></sup>, n<sub>eff</sub> = 3 + γ + α.',
  lv:['Alto','Significativo','Moderado','Bajo','Crítico'],
  lvd:['Proyección multidominio consolidada','Potencia regional, capacidades desarrolladas','Potencia en desarrollo, brechas identificables','Capacidad incipiente, vulnerabilidades estructurales','Vulnerabilidad marítima estructural'],
  bands:['consolidado','avanzado','en consolidación','básico','incipiente'],
  band_w:'tramo', direct:'fijado directamente', fromL2:'desde Nivel 2', current:'Actual',
  neff:'n_eff = 3 + {g} + {a} = {n} · G (resto del sistema) = {G} · w = α/n_eff = {w} · {sgn} (Proposición 1)<br>componentes: {comp} · tramo de madurez de CP: <b>{band}</b>',
- sgn_eq:'CP = G → MP_norm no depende de α', sgn_up:'CP > G → subir α sube MP_norm', sgn_dn:'CP < G → subir α baja MP_norm',
+ sgn_eq:'CP = G → PM_norm no depende de α', sgn_up:'CP > G → subir α sube PM_norm', sgn_dn:'CP < G → subir α baja PM_norm',
  capped:'acotado en 1', mc_wait:'sin ejecutar',
- mc_med:'Mediana de MP<sub>norm</sub>', mc_cur:'valor actual', mc_band:'Banda P5 – P95', mc_draws:'sorteos', mc_lvl:'Proporción por nivel', mc_low:'Componente más bajo', mc_top:'Mayor retorno marginal', mc_agg:'Comprobación de agregación (valores actuales)', mc_ar:'aritmética', mc_geo:'geométrica',
+ mc_med:'Mediana de PM<sub>norm</sub>', mc_cur:'valor actual', mc_band:'Banda P5 – P95', mc_draws:'sorteos', mc_lvl:'Proporción por nivel', mc_low:'Componente más bajo', mc_top:'Mayor retorno marginal', mc_agg:'Comprobación de agregación (valores actuales)', mc_ar:'aritmética', mc_geo:'geométrica',
  sub:'desde subcomponentes (Nivel 2, ilustrativo)',
  sc_col:'🇨🇴 Colombia (caso de referencia)', sc_pes:'🔴 Perfil crítico', sc_ref:'🟡 Perfil de referencia', sc_opt:'🟢 Perfil consolidado',
  il:{bra:'🇧🇷 Brasil',arg:'🇦🇷 Argentina',usa:'🇺🇸 Estados Unidos',can:'🇨🇦 Canadá',mex:'🇲🇽 México',chl:'🇨🇱 Chile',per:'🇵🇪 Perú',ecu:'🇪🇨 Ecuador',uru:'🇺🇾 Uruguay',ven:'🇻🇪 Venezuela'},
- gr:{MI:['Intereses Marítimos','MI = Σ wᵢ · MIᵢ  (Ec. 4) ; Σ wᵢ = 1'],NP:['Poder Naval','NP = F × P × MDA^μ  (Ec. 5)'],SW:['Voluntad Estratégica','SW = (PW^w₁ · IW^w₂ · SocW^w₃)^(1/Σw)  (Ec. 6)'],MS:['Seguridad Marítima','MS = (IC^a₁ · TE^a₂ · BC^a₃)^(1/Σa)  (Ec. 7)'],CP:['Ciberpoder','CP = min{1, (β₁·CS_m + β₂·CD_m + β₃·RC_m)(1 + δ·CDip)}  (Ec. 8) ; Σβ = 1'],PAR:['Parámetros del modelo','n_eff = 3 + γ + α ; MP_norm = [MP]^(1/n_eff)']},
- sl:{MI:'Subíndice ponderado de intereses marítimos',NP:'Directo, o desde F, P, MDA',SW:'Directo, o desde PW, IW, SocW',MS:'Directo, o desde IC, TE, BC',CP:'Directo, o desde sus subcomponentes',alpha:'Peso de la dependencia cibernética',gamma:'Peso del entorno de seguridad',
-     F:'Fuerza (incl. ciberdefensa táctico-operacional)',P:'Posición',MDA:'Conciencia situacional marítima (MDA)',mu:'Exponente de calibración de MDA',PW:'Voluntad política',IW:'Voluntad institucional',SocW:'Voluntad social (conciencia marítima)',w1:'Peso de PW',w2:'Peso de IW',w3:'Peso de SocW',IC:'Conflictos interestatales y zona gris',TE:'Terrorismo y extremismo',BC:'Crimen azul',a1:'Peso de IC',a2:'Peso de TE',a3:'Peso de BC',CS:'Ciberseguridad marítima',CD:'Ciberdefensa marítima estratégica',RC:'Capacidad de recuperación marítima, min{1, t_ref/t}',CDip:'Ciberdiplomacia (solo amplificador)',b1:'Peso de CS_m',b2:'Peso de CD_m',b3:'Peso de RC_m',dl:'Ganancia de CP con CDip = 1'},
+ gr:{MI:['Intereses Marítimos','IM = Σ wᵢ · IMᵢ  (Ec. 2) ; Σ wᵢ = 1'],NP:['Poder Naval','PN = F × P × MDA^μ  (Ec. 3)'],SW:['Voluntad Estratégica','VE = (VP^w₁ · VI^w₂ · VS^w₃)^(1/Σw)  (Ec. 4)'],MS:['Seguridad Marítima','SM = (CI^a₁ · TE^a₂ · BC^a₃)^(1/Σa)  (Ec. 5)'],CP:['Ciberpoder','CP = mín{1, (β₁·CS_m + β₂·CD_m + β₃·CR_m)(1 + δ·CDb)}  (Ec. 6) ; Σβ = 1'],PAR:['Parámetros del modelo','n_eff = 3 + γ + α ; PM_norm = [PM]^(1/n_eff)']},
+ sl:{MI:'Subíndice ponderado de intereses marítimos',NP:'Directo, o desde F, P, MDA',SW:'Directo, o desde VP, VI, VS',MS:'Directo, o desde CI, TE, BC',CP:'Directo, o desde sus subcomponentes',alpha:'Peso de la dependencia cibernética',gamma:'Peso del entorno de seguridad',
+     F:'Fuerza (incl. ciberdefensa táctico-operacional)',P:'Posición',MDA:'Conciencia situacional marítima (MDA)',mu:'Exponente de calibración de MDA',PW:'Voluntad política',IW:'Voluntad institucional',SocW:'Voluntad social (conciencia marítima)',w1:'Peso de VP',w2:'Peso de VI',w3:'Peso de VS',IC:'Conflictos interestatales y zona gris',TE:'Terrorismo y extremismo',BC:'Crimen azul',a1:'Peso de CI',a2:'Peso de TE',a3:'Peso de BC',CS:'Ciberseguridad marítima',CD:'Ciberdefensa marítima estratégica',RC:'Capacidad de recuperación marítima, mín{1, t_ref/t}',CDip:'Ciberdiplomacia (solo amplificador)',b1:'Peso de CS_m',b2:'Peso de CD_m',b3:'Peso de CR_m',dl:'Ganancia de CP con CDb = 1'},
  sg:{NPf:'Factores',NPp:'Parámetro',SWd:'Dimensiones',SWw:'Pesos (normalizados)',MSd:'Dimensiones de amenaza (incidencia, invertida: mayor = más seguro)',MSw:'Pesos (normalizados)',CPs:'Subcomponentes',CPw:'Pesos (normalizados) y δ'}
 }};
 let LANG='en';
@@ -322,11 +324,10 @@ const fmt=(s,o)=>s.replace(/\{(\w+)\}/g,(m,k)=>o[k]);
 const KEYS=['MI','NP','SW','MS','CP'];
 const VC={MI:'#4a8ff5',NP:'#9b7ff5',SW:'#2dd4a0',MS:'#f0b429',CP:'#e8504a'};
 const LVC=['#2dd4a0','#4a8ff5','#f0b429','#e8504a','#ff7875'];
-const LVMIN=[.81,.61,.41,.21,0];
-const BMIN=[.81,.61,.41,.21,0];
-function lvIdx(v){const x=Math.round(v*100)/100;for(let i=0;i<5;i++)if(x>=LVMIN[i])return i;return 4;}
+// Same cut-offs as verification/verify_model.py: Critical <= .20 < Low <= .40 < Moderate <= .60 < Significant <= .80 < High
+function lvIdx(v){return v>.80?0:v>.60?1:v>.40?2:v>.20?3:4;}
 function getLv(v){const i=lvIdx(v);return{l:T('lv')[i],d:T('lvd')[i],c:LVC[i]};}
-function band(v){const x=Math.round(v*100)/100;for(let i=0;i<5;i++)if(x>=BMIN[i])return T('bands')[i];return T('bands')[4];}
+function band(v){return T('bands')[lvIdx(v)];}
 function pm(X,a,g){const n=3+g+a;const s=Math.log(X.MI)+Math.log(X.NP)+Math.log(X.SW)+g*Math.log(X.MS)+a*Math.log(X.CP);return Math.exp(s/n);}
 function restG(X,g){return Math.pow(X.MI*X.NP*X.SW*Math.pow(X.MS,g),1/(3+g));}
 function omegas(a,g){const n=3+g+a;return{MI:1/n,NP:1/n,SW:1/n,MS:g/n,CP:a/n};}
@@ -383,13 +384,15 @@ const GR=[
   {k:'CP',c:VC.CP,top:['CP'],sub:[['CPs',['CS','CD','RC','CDip']],['CPw',['b1','b2','b3','dl']]]},
   {k:'PAR',c:'#8891a8',top:['alpha','gamma']}
 ];
+const SYM_ES={MI:'IM',NP:'PN',SW:'VE',MS:'SM',PW:'VP',IW:'VI',SocW:'VS',IC:'CI',RC:'CR_m',CDip:'CDb'};
+const SY=k=>LANG==='es'&&SYM_ES[k]?SYM_ES[k]:(SLBL[k]||k);  // símbolo visible según idioma
 const SLBL={MI:'MI',NP:'NP',SW:'SW',MS:'MS',CP:'CP',alpha:'α',gamma:'γ',F:'F',P:'P',MDA:'MDA',mu:'μ',PW:'PW',IW:'IW',SocW:'SocW',w1:'w₁',w2:'w₂',w3:'w₃',IC:'IC',TE:'TE',BC:'BC',a1:'a₁',a2:'a₂',a3:'a₃',CS:'CS_m',CD:'CD_m',RC:'RC_m',CDip:'CDip',b1:'β₁',b2:'β₂',b3:'β₃',dl:'δ'};
 let CMP=new Set(['col']);
 let rC,bC,rCC,pmC;let MCD=.10;
 
 function slider(k,c,val,dis,grp){
   const d=T('sl')[k];
-  return `<div class="sr"><span class="sk" style="color:${c}">${SLBL[k]}</span><span class="sd" title="${d}">${d}</span>
+  return `<div class="sr"><span class="sk" style="color:${c}">${SY(k)}</span><span class="sd" title="${d}">${d}</span>
     <input type="range" min=".01" max="1" step=".01" value="${val.toFixed(2)}" id="sl-${k}" ${dis?'disabled':''} oninput="onSl('${k}',this.value,${grp?`'${grp}'`:'null'})" style="accent-color:${c};--thumb:${c}">
     <span class="sv" id="sv-${k}">${val.toFixed(2)}</span></div>`;
 }
@@ -432,7 +435,7 @@ function loadS(id){
 }
 
 function buildGauges(){
-  document.getElementById('gauges').innerHTML=KEYS.map(v=>`<div class="gw"><canvas id="g-${v}" width="96" height="58"></canvas><div class="gl" style="color:${VC[v]}">${v}</div><div class="gs" id="gv-${v}">—</div></div>`).join('');
+  document.getElementById('gauges').innerHTML=KEYS.map(v=>`<div class="gw"><canvas id="g-${v}" width="96" height="58"></canvas><div class="gl" style="color:${VC[v]}">${SY(v)}</div><div class="gs" id="gv-${v}">—</div></div>`).join('');
 }
 function drawG(id,val,col){
   const el=document.getElementById('g-'+id);if(!el)return;
@@ -456,7 +459,7 @@ function buildCharts(){
       scales:{x:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},
         y:{grid:{display:false},ticks:{color:'#e2e6f0',font:{size:10,weight:'bold'}},border:{color:'#252c3c'}}},
       plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(3),font:{size:11,weight:'bold',family:'monospace'},color:ctx=>getLv(ctx.dataset.data[ctx.dataIndex]).c,offset:4},
-        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' MP_norm: '+c.parsed.x.toFixed(3)}}}},
+        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>(LANG==='es'?' PM_norm: ':' MP_norm: ')+c.parsed.x.toFixed(3)}}}},
     plugins:[ChartDataLabels]});
   bC=new Chart(document.getElementById('bar'),{type:'bar',data:{labels:KEYS,datasets:[]},
     options:{responsive:true,maintainAspectRatio:false,
@@ -486,7 +489,7 @@ function updSens(X){
   const mrCP=om.CP*P/X.CP;
   tb.innerHTML=KEYS.map(k=>{
     const x=X[k],x1=Math.min(1,1.2*x),d=(Math.pow(x1/x,om[k])-1)*100,mr=om[k]*P/x,be=k==='CP'?'—':(mr/mrCP).toFixed(2);
-    return `<tr><td style="font-weight:600;color:${VC[k]}">${k}</td><td class="mono">${x.toFixed(2)}</td><td class="mono">${om[k].toFixed(3)}</td><td class="mono" style="font-weight:700">+${d.toFixed(1)} %${x1<1.2*x-1e-9?` <span title="${T('capped')}" style="color:var(--text3)">⌈1⌉</span>`:''}</td><td class="mono">${mr.toFixed(3)}</td><td class="mono">${be}</td></tr>`;
+    return `<tr><td style="font-weight:600;color:${VC[k]}">${SY(k)}</td><td class="mono">${x.toFixed(2)}</td><td class="mono">${om[k].toFixed(3)}</td><td class="mono" style="font-weight:700">+${d.toFixed(1)} %${x1<1.2*x-1e-9?` <span title="${T('capped')}" style="color:var(--text3)">⌈1⌉</span>`:''}</td><td class="mono">${mr.toFixed(3)}</td><td class="mono">${be}</td></tr>`;
   }).join('');
 }
 function update(){
@@ -495,7 +498,7 @@ function update(){
   const badge=document.getElementById('pm-badge');badge.textContent=lv.l;badge.style.background=lv.c+'20';badge.style.color=lv.c;badge.style.border='1px solid '+lv.c+'50';
   document.getElementById('pm-desc').textContent=lv.d;
   const sgn=Math.abs(X.CP-G)<5e-4?T('sgn_eq'):(X.CP>G?T('sgn_up'):T('sgn_dn'));
-  document.getElementById('pm-neff').innerHTML=fmt(T('neff'),{g:g.toFixed(2),a:a.toFixed(2),n:(3+g+a).toFixed(2),G:G.toFixed(3),w:w.toFixed(3),sgn:sgn,comp:KEYS.map(k=>k+' '+X[k].toFixed(2)+(L2[k]&&L2[k].on?'*':'')).join(' · '),band:band(X.CP)});
+  document.getElementById('pm-neff').innerHTML=fmt(T('neff'),{g:g.toFixed(2),a:a.toFixed(2),n:(3+g+a).toFixed(2),G:G.toFixed(3),w:w.toFixed(3),sgn:sgn,comp:KEYS.map(k=>SY(k)+' '+X[k].toFixed(2)+(L2[k]&&L2[k].on?'*':'')).join(' · '),band:band(X.CP)});
   KEYS.forEach(k=>{drawG(k,X[k],VC[k]);const gv=document.getElementById('gv-'+k);if(gv)gv.innerHTML=k==='CP'?band(X.CP)+' · '+T('band_w'):(L2[k]&&L2[k].on?T('fromL2'):T('direct'));});
   if(rC){rC.data.datasets[0].label=T('current');rC.data.datasets[0].data=KEYS.map(k=>X[k]);rC.update();}
   updSens(X);updBar();
@@ -540,7 +543,7 @@ function showMC(){
   const out=document.getElementById('mc-out');
   if(!MCRES){out.innerHTML=`<div><div class="k">Monte Carlo</div><div class="v" style="font-size:10px;color:var(--text3)">${T('mc_wait')}</div></div>`;return;}
   const {N,d,q,lvl,low,top,X0,P0}=MCRES;
-  const fmtO=o=>Object.entries(o).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${k} ${(100*v/N).toFixed(1)} %`).join(' · ');
+  const fmtO=o=>Object.entries(o).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${SY(k)} ${(100*v/N).toFixed(1)} %`).join(' · ');
   const fmtL=()=>lvl.map((v,i)=>[T('lv')[i],v]).filter(x=>x[1]>0).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${k} ${(100*v/N).toFixed(1)} %`).join(' · ');
   const am=KEYS.reduce((s,k)=>s+X0[k],0)/5,gm=Math.exp(KEYS.reduce((s,k)=>s+Math.log(X0[k]),0)/5);
   out.innerHTML=
@@ -549,7 +552,7 @@ function showMC(){
     `<div><div class="k">${T('mc_lvl')}</div><div class="v" style="font-size:9.5px">${fmtL()}</div></div>`+
     `<div><div class="k">${T('mc_low')}</div><div class="v" style="font-size:9.5px">${fmtO(low)}</div></div>`+
     `<div><div class="k">${T('mc_top')}</div><div class="v" style="font-size:9.5px">${fmtO(top)}</div></div>`+
-    `<div><div class="k">${T('mc_agg')}</div><div class="v" style="font-size:9.5px">MP_norm ${P0.toFixed(3)} (${getLv(P0).l}) · ${T('mc_ar')} ${am.toFixed(3)} (${getLv(am).l}) · ${T('mc_geo')} ${gm.toFixed(3)} (${getLv(gm).l})</div></div>`;
+    `<div><div class="k">${T('mc_agg')}</div><div class="v" style="font-size:9.5px">${LANG==='es'?'PM_norm':'MP_norm'} ${P0.toFixed(3)} (${getLv(P0).l}) · ${T('mc_ar')} ${am.toFixed(3)} (${getLv(am).l}) · ${T('mc_geo')} ${gm.toFixed(3)} (${getLv(gm).l})</div></div>`;
 }
 
 // ---------------------------------------------------------------- language
@@ -557,7 +560,8 @@ function applyLang(){
   document.documentElement.lang=LANG;
   document.querySelectorAll('[data-i18n]').forEach(el=>{el.innerHTML=T(el.dataset.i18n);});
   document.getElementById('lang-en').className=LANG==='en'?'on':'';document.getElementById('lang-es').className=LANG==='es'?'on':'';
-  buildSliders();buildCmp();buildScale();showMC();
+  buildSliders();buildCmp();buildScale();showMC();buildGauges();
+  [typeof rC!=='undefined'?rC:null,typeof bC!=='undefined'?bC:null,typeof rCC!=='undefined'?rCC:null].forEach(c=>{if(c){c.data.labels=KEYS.map(SY);c.update();}});
   if(SC[ACTIVE]&&!document.querySelector('[id^="b-"].ap,[id^="b-"].ar,[id^="b-"].ao,[id^="b-"].ac'))document.getElementById('b-'+ACTIVE).className='btn '+({col:'ac',pes:'ap',ref:'ar',opt:'ao'}[ACTIVE]);
   update();
 }
