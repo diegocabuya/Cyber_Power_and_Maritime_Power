@@ -8,7 +8,7 @@
 
 Naval Academy of Strategic Studies, Colombian Navy · Colombian War College “General Rafael Reyes Prieto” · Naval School “Admiral Padilla” (NAVTEG)
 
-*Manuscript under review — IEEE Access (revised version resubmitted, October 2026)*
+*Manuscript under review — IEEE Access (revised version, October 2026)*
 
 [![Simulator](https://img.shields.io/badge/▶_Simulator-interactive-185FA5?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)
 [![Site](https://img.shields.io/badge/🌐_Project-site-0D2A42?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)
@@ -50,7 +50,7 @@ Interpretation scale: **Critical** (0.00–0.20), **Low** (0.21–0.40), **Moder
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Value | 0.60 | 0.55 | 0.48 | **0.24** | 0.40 | 0.55 | 0.70 | **0.455** (Moderate) |
 
-Only **MS** derives from an external source: Colombia's 75th rank among 99 states in the maritime security index of Vargas Suárez et al. (2021), converted into a position percentile, (99 − 75)/98 ≈ 0.24. The other values and the parameters are illustrative choices of the authors, all set directly at Level 1. G = 0.464 > CP, so a larger α lowers the index (0.464 as α → 0, 0.450 at α = 1). Break-even cost ratios of Corollary 1: 1.21 (MI), 1.32 (NP), 1.52 (SW), 2.12 (MS). The result is robust to moderate (±0.10) but not to large (±0.20) uncertainty in the inputs.
+Only **MS** derives from an external source: Colombia's 75th rank among 99 states in the maritime security index of Vargas-Suárez et al. (2021), converted into a position percentile, (99 − 75)/98 ≈ 0.24. The other values and the parameters are illustrative choices of the authors, all set directly at Level 1. G = 0.464 > CP, so a larger α lowers the index (0.464 as α → 0, 0.450 at α = 1). Break-even cost ratios of Corollary 1: 1.21 (MI), 1.32 (NP), 1.52 (SW), 2.12 (MS). The result is robust to moderate (±0.10) but not to large (±0.20) uncertainty in the inputs.
 
 ## Start here
 
