@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Power as a Structural Variable of Maritime Power</title>
-<meta name="description" content="A normalized multiplicative model of maritime power that incorporates cyber power, strategic will, and maritime security as structural variables. Interactive simulator, verification script, documented literature search, and equation plates.">
+<title>Cyber Power as a Structural Variable of Maritime Power · El ciberpoder como variable estructural del poder marítimo</title>
+<meta name="description" content="A normalized multiplicative model of maritime power that incorporates cyber power, strategic will, and maritime security as structural variables. Interactive simulator, verification script, documented literature search, and equation plates. English / Español.">
 <meta property="og:title" content="Cyber Power as a Structural Variable of Maritime Power">
-<meta property="og:description" content="A normalized multiplicative model for multidomain assessment of maritime power. Simulator, verification script, and supporting materials.">
+<meta property="og:description" content="A normalized multiplicative model for multidomain assessment of maritime power. Simulator, verification script, and supporting materials (EN/ES).">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,17 +26,23 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  /* language switch: everything tagged data-lang is shown only in the active language */
+  html[data-lang="en"] [data-lang="es"]{display:none !important}
+  html[data-lang="es"] [data-lang="en"]{display:none !important}
   nav{position:sticky;top:0;z-index:50;background:rgba(13,42,66,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
   nav .brand{font-family:var(--serif);font-weight:600;color:#fff;font-size:17px;letter-spacing:.2px}
   nav .brand b{color:var(--ice)}
-  nav .links{display:flex;gap:22px;align-items:center}
+  nav .links{display:flex;gap:20px;align-items:center}
   nav .links a{color:#c9d6e2;font-size:14px;font-weight:500;transition:color .2s}
   nav .links a:hover{color:#fff}
   nav .cta{background:var(--ice);color:var(--navy)!important;padding:8px 16px;border-radius:8px;font-weight:700}
   nav .cta:hover{background:#fff}
+  .langsw{display:inline-flex;border:1px solid rgba(255,255,255,.3);border-radius:8px;overflow:hidden}
+  .langsw button{background:none;border:0;color:#c9d6e2;font-family:var(--sans);font-weight:700;font-size:13px;padding:6px 10px;cursor:pointer}
+  .langsw button.on{background:var(--ice);color:var(--navy)}
   .menu-btn{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
-  @media(max-width:860px){
+  @media(max-width:900px){
     nav .links{position:fixed;top:60px;left:0;right:0;flex-direction:column;background:var(--navy);padding:20px 24px;gap:18px;align-items:flex-start;transform:translateY(-140%);transition:transform .3s;border-bottom:1px solid rgba(255,255,255,.1)}
     nav .links.open{transform:translateY(0)}
     .menu-btn{display:block}
@@ -45,7 +51,7 @@
   .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(1100px 380px at 78% -8%,rgba(158,200,228,.16),transparent 60%);pointer-events:none}
   .hero .wrap{position:relative;z-index:1}
   .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:3px;color:var(--ice);text-transform:uppercase;font-weight:500}
-  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:16px 0 12px;max-width:22ch}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:16px 0 12px;max-width:24ch}
   .hero .sub{font-size:clamp(16px,2.1vw,20px);color:#cfdce8;font-weight:400;max-width:60ch;margin-bottom:14px}
   .hero .byline{color:#9fb4c6;font-size:14.5px;margin-bottom:8px;line-height:1.7}
   .hero .byline b{color:#e8f1f8;font-weight:600}
@@ -139,26 +145,30 @@
 
 <nav>
   <div class="wrap">
-    <a href="#top" class="brand">Cyber Power <b>&amp;</b> Maritime Power</a>
+    <a href="#top" class="brand"><span data-lang="en">Cyber Power <b>&amp;</b> Maritime Power</span><span data-lang="es">Ciberpoder <b>y</b> Poder Marítimo</span></a>
     <button class="menu-btn" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
     <div class="links" id="nl">
-      <a href="#project">Project</a>
-      <a href="#materials">Materials</a>
-      <a href="#equations">Equations</a>
-      <a href="#reproducibility">Reproducibility</a>
-      <a href="#revision">Revision</a>
-      <a href="simulator/simulator.html" class="cta">Open simulator ↗</a>
+      <a href="#project"><span data-lang="en">Project</span><span data-lang="es">Proyecto</span></a>
+      <a href="#materials"><span data-lang="en">Materials</span><span data-lang="es">Materiales</span></a>
+      <a href="#equations"><span data-lang="en">Equations</span><span data-lang="es">Ecuaciones</span></a>
+      <a href="#reproducibility"><span data-lang="en">Reproducibility</span><span data-lang="es">Reproducibilidad</span></a>
+      <a href="#revision"><span data-lang="en">Revision</span><span data-lang="es">Revisión</span></a>
+      <span class="langsw"><button id="lsw-en" onclick="setLang('en')">EN</button><button id="lsw-es" onclick="setLang('es')">ES</button></span>
+      <a href="simulator/simulator.html" class="cta simlink"><span data-lang="en">Open simulator ↗</span><span data-lang="es">Abrir el simulador ↗</span></a>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="eyebrow">Research in maritime power &amp; cyber power</div>
-    <h1>Cyber Power as a Structural Variable of Maritime Power</h1>
-    <p class="sub">A normalized multiplicative model for multidomain assessment of maritime power.</p>
-    <p class="byline"><b>Diego E. Cabuya-Padilla</b> · Naval Academy of Strategic Studies, Colombian Navy, and Poseidón Research Group, Naval School “Admiral Padilla”<br><b>Sergio Uribe-Cáceres</b> · Colombian War College “General Rafael Reyes Prieto”<br><b>Carlos A. Castaneda-Marroquin</b> · NAVTEG Research Group, Naval School “Admiral Padilla”</p>
-    <span class="status">Manuscript under review — IEEE Access (revised version, October 2026)</span>
+    <div class="eyebrow"><span data-lang="en">Research in maritime power &amp; cyber power</span><span data-lang="es">Investigación en poder marítimo y ciberpoder</span></div>
+    <h1><span data-lang="en">Cyber Power as a Structural Variable of Maritime Power</span><span data-lang="es">El ciberpoder como variable estructural del poder marítimo</span></h1>
+    <p class="sub"><span data-lang="en">A normalized multiplicative model for multidomain assessment of maritime power.</span><span data-lang="es">Un modelo multiplicativo normalizado para la evaluación multidominio del poder marítimo.</span></p>
+    <p class="byline">
+      <span data-lang="en"><b>Diego E. Cabuya-Padilla</b> · Naval Academy of Strategic Studies, Colombian Navy, and Poseidón Research Group, Naval School “Admiral Padilla”<br><b>Sergio Uribe-Cáceres</b> · Colombian War College “General Rafael Reyes Prieto”<br><b>Carlos A. Castaneda-Marroquin</b> · NAVTEG Research Group, Naval School “Admiral Padilla”</span>
+      <span data-lang="es"><b>Diego E. Cabuya-Padilla</b> · Academia Naval de Estudios Estratégicos, Armada de Colombia, y Grupo de Investigación Poseidón, Escuela Naval de Cadetes «Almirante Padilla»<br><b>Sergio Uribe-Cáceres</b> · Escuela Superior de Guerra «General Rafael Reyes Prieto»<br><b>Carlos A. Castaneda-Marroquin</b> · Grupo de Investigación NAVTEG, Escuela Naval de Cadetes «Almirante Padilla»</span>
+    </p>
+    <span class="status"><span data-lang="en">Manuscript under review — IEEE Access (revised version, October 2026)</span><span data-lang="es">Manuscrito en revisión — IEEE Access (versión revisada, octubre de 2026)</span></span>
 
     <div class="formula" aria-label="Normalized maritime power formula">
       <span class="pm">MP<sub>norm</sub></span>
@@ -170,11 +180,11 @@
       <span class="chip cp">CP<sup>α</sup></span>
       <span class="op">]</span><span class="exp">1/n<sub>eff</sub></span>
     </div>
-    <p class="fnote">n<sub>eff</sub> = 3 + γ + α &nbsp;·&nbsp; γ: weight of the security environment &nbsp;·&nbsp; α: weight of cyber dependence (not a measure of capability) &nbsp;·&nbsp; MP<sub>norm</sub> ∈ (0, 1]</p>
+    <p class="fnote"><span data-lang="en">n<sub>eff</sub> = 3 + γ + α &nbsp;·&nbsp; γ: weight of the security environment &nbsp;·&nbsp; α: weight of cyber dependence (not a measure of capability) &nbsp;·&nbsp; MP<sub>norm</sub> ∈ (0, 1]</span><span data-lang="es">n<sub>eff</sub> = 3 + γ + α &nbsp;·&nbsp; γ: peso del entorno de seguridad &nbsp;·&nbsp; α: peso de la dependencia cibernética (no una medida de capacidad) &nbsp;·&nbsp; MI = intereses marítimos (IM), NP = poder naval (PN), SW = voluntad estratégica (VE), MS = seguridad marítima (SM), CP = ciberpoder &nbsp;·&nbsp; MP<sub>norm</sub> ∈ (0, 1]</span></p>
 
     <div class="btns">
-      <a href="simulator/simulator.html" class="btn btn-primary">▶ Open the interactive simulator</a>
-      <a href="#reproducibility" class="btn btn-ghost">⌁ Reproduce the results</a>
+      <a href="simulator/simulator.html" class="btn btn-primary simlink"><span data-lang="en">▶ Open the interactive simulator</span><span data-lang="es">▶ Abrir el simulador interactivo</span></a>
+      <a href="#reproducibility" class="btn btn-ghost"><span data-lang="en">⌁ Reproduce the results</span><span data-lang="es">⌁ Reproducir los resultados</span></a>
     </div>
   </div>
 </header>
@@ -182,17 +192,25 @@
 <section id="project">
   <div class="wrap">
     <div class="sec-head fade">
-      <div class="kicker">The project</div>
-      <h2>From two variables to five: the sea is also exercised in cyberspace</h2>
-      <p>The classical formula <b>MP = MI × NP</b> does not capture the dynamics of digitalized maritime environments. This research extends it by incorporating <b>cyber power</b>, <b>strategic will</b>, and <b>maritime security</b> as structural variables, with a normalization that makes the result interpretable on a five-level scale.</p>
+      <div class="kicker"><span data-lang="en">The project</span><span data-lang="es">El proyecto</span></div>
+      <h2><span data-lang="en">From two variables to five: the sea is also exercised in cyberspace</span><span data-lang="es">De dos variables a cinco: el mar también se ejerce en el ciberespacio</span></h2>
+      <p data-lang="en">The classical formula <b>MP = MI × NP</b> does not capture the dynamics of digitalized maritime environments. This research extends it by incorporating <b>cyber power</b>, <b>strategic will</b>, and <b>maritime security</b> as structural variables, with a normalization that makes the result interpretable on a five-level scale.</p>
+      <p data-lang="es">La fórmula clásica <b>PM = IM × PN</b> no captura las dinámicas de los entornos marítimos digitalizados. Esta investigación la extiende incorporando el <b>ciberpoder</b>, la <b>voluntad estratégica</b> y la <b>seguridad marítima</b> como variables estructurales, con una normalización que hace el resultado interpretable en una escala de cinco niveles.</p>
     </div>
     <div class="abstract fade">
-      <div class="lbl">Abstract</div>
-      <p>The classical formulation of maritime power—the product of maritime interests and naval power—has become insufficient to explain the dynamics of digitalized maritime environments, where navigation, communications, traffic management, port facilities, and ocean surveillance depend on interconnected digital infrastructures. This article proposes an extended formulation that incorporates cyber power, strategic will, and maritime security as structural variables of maritime power. Following an analytical-conceptual approach, the model adopts a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate, and whose output lies within the interval (0, 1], enabling a directly interpretable five-level scale.</p>
-      <p>The formulation is verified in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—confirming that every component equation preserves the required range; calibration and external validation are distinguished from verification and left to future work, and a global sensitivity analysis identifies maritime security—its value and its weight—as the main source of uncertainty. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index currently available and illustrative values for the other components, the model places the country at the Moderate level and decomposes the result to show which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. The article concludes by proposing a National Maritime Power Index as a research agenda, supported by an open-access interactive simulator that allows the model to be explored.</p>
+      <div class="lbl"><span data-lang="en">Abstract</span><span data-lang="es">Resumen</span></div>
+      <div data-lang="en">
+        <p>The classical formulation of maritime power—the product of maritime interests and naval power—has become insufficient to explain the dynamics of digitalized maritime environments, where navigation, communications, traffic management, port facilities, and ocean surveillance depend on interconnected digital infrastructures. This article proposes an extended formulation that incorporates cyber power, strategic will, and maritime security as structural variables of maritime power. Following an analytical-conceptual approach, the model adopts a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate, and whose output lies within the interval (0, 1], enabling a directly interpretable five-level scale.</p>
+        <p>The formulation is verified in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—confirming that every component equation preserves the required range; calibration and external validation are distinguished from verification and left to future work, and a global sensitivity analysis identifies maritime security—its value and its weight—as the main source of uncertainty. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index available in the Latin American literature and illustrative values for the other components, the model places the country at the Moderate level and decomposes the result to show which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. The article concludes by proposing a National Maritime Power Index as a research agenda, supported by an open-access interactive simulator that allows the model to be explored.</p>
+      </div>
+      <div data-lang="es">
+        <p>La formulación clásica del poder marítimo —el producto de los intereses marítimos y el poder naval— resulta insuficiente para explicar las dinámicas de los entornos marítimos digitalizados, donde la navegación, las comunicaciones, la gestión del tráfico, las instalaciones portuarias y la vigilancia oceánica dependen de infraestructuras digitales interconectadas. Este artículo propone una formulación extendida que incorpora el ciberpoder, la voluntad estratégica y la seguridad marítima como variables estructurales del poder marítimo. Con un enfoque analítico-conceptual, el modelo adopta una estructura multiplicativa normalizada en la que el colapso de cualquier dimensión restringe el agregado, y cuyo resultado se sitúa en el intervalo (0, 1], lo que permite una escala de cinco niveles directamente interpretable.</p>
+        <p>La formulación se verifica en tres etapas —propiedades lógico-matemáticas, análisis de sensibilidad y perfiles construidos—, que confirman que cada ecuación componente preserva el rango requerido; la calibración y la validación externa se distinguen de la verificación y se dejan para trabajo futuro, y un análisis de sensibilidad global identifica la seguridad marítima —su valor y su peso— como la principal fuente de incertidumbre. Colombia se emplea como caso ilustrativo: tomando su puesto en seguridad marítima del índice de poder marítimo más sistemático disponible en la literatura latinoamericana y valores ilustrativos para los demás componentes, el modelo sitúa al país en el nivel Moderado y descompone el resultado para mostrar qué componentes concentran las mayores brechas; un corolario enuncia la condición de costes relativos bajo la cual el ciberpoder sería el vector de inversión más eficiente. El artículo concluye proponiendo un Índice Nacional de Poder Marítimo como agenda de investigación, apoyado en un simulador interactivo de acceso abierto que permite explorar el modelo.</p>
+        <p style="font-size:13.5px;color:var(--text2)">Traducción del resumen del manuscrito en inglés. La versión en español del artículo se encuentra en actualización para alinearla con la revisión de octubre de 2026.</p>
+      </div>
       <div class="kw">
-        <span>cyberdefense</span><span>cyber power</span><span>cybersecurity</span><span>maritime domain awareness</span>
-        <span>maritime power</span><span>maritime security</span><span>strategic assessment</span><span>strategic will</span>
+        <span data-lang="en">cyberdefense</span><span data-lang="en">cyber power</span><span data-lang="en">cybersecurity</span><span data-lang="en">maritime domain awareness</span><span data-lang="en">maritime power</span><span data-lang="en">maritime security</span><span data-lang="en">strategic assessment</span><span data-lang="en">strategic will</span>
+        <span data-lang="es">ciberdefensa</span><span data-lang="es">ciberpoder</span><span data-lang="es">ciberseguridad</span><span data-lang="es">conciencia situacional marítima</span><span data-lang="es">poder marítimo</span><span data-lang="es">seguridad marítima</span><span data-lang="es">evaluación estratégica</span><span data-lang="es">voluntad estratégica</span>
       </div>
     </div>
   </div>
@@ -201,62 +219,70 @@
 <section id="materials" class="alt">
   <div class="wrap">
     <div class="sec-head fade">
-      <div class="kicker">Explore the project</div>
-      <h2>Everything in one place</h2>
-      <p>The interactive model, the verification script, the documented literature search, and the figures of the revised manuscript.</p>
+      <div class="kicker"><span data-lang="en">Explore the project</span><span data-lang="es">Explora el proyecto</span></div>
+      <h2><span data-lang="en">Everything in one place</span><span data-lang="es">Todo en un solo lugar</span></h2>
+      <p><span data-lang="en">The interactive model, the verification script, the documented literature search, and the figures of the revised manuscript.</span><span data-lang="es">El modelo interactivo, el script de verificación, la búsqueda bibliográfica documentada y las figuras del manuscrito revisado.</span></p>
     </div>
     <div class="grid">
-      <a class="card feat fade" href="simulator/simulator.html">
-        <span class="badge">INTERACTIVE</span>
+      <a class="card feat fade simlink" href="simulator/simulator.html">
+        <span class="badge"><span data-lang="en">INTERACTIVE</span><span data-lang="es">INTERACTIVO</span></span>
         <div class="ico" style="background:rgba(158,200,228,.2)">🎛️</div>
-        <h3>Model simulator</h3>
-        <p>Level-1 components and parameters, optional Level-2 disaggregation, elasticities and marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the Colombian reference case and the constructed profiles of the article.</p>
-        <span class="go">Open simulator <span class="ar">→</span></span>
+        <h3><span data-lang="en">Model simulator</span><span data-lang="es">Simulador del modelo</span></h3>
+        <p data-lang="en">Level-1 components and parameters, optional Level-2 disaggregation, elasticities and marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the Colombian reference case and the constructed profiles of the article. Bilingual (EN/ES).</p>
+        <p data-lang="es">Componentes y parámetros de Nivel 1, desagregación opcional de Nivel 2, elasticidades y retornos marginales, la condición de coste del Corolario 1, una banda de incertidumbre por Monte Carlo y gráficas de comparación. Precargado con el caso de referencia colombiano y los perfiles construidos del artículo. Bilingüe (EN/ES).</p>
+        <span class="go"><span data-lang="en">Open simulator</span><span data-lang="es">Abrir el simulador</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="verification/verify_model.py">
         <span class="badge">PYTHON</span>
         <div class="ico" style="background:var(--sw-bg)">🧪</div>
-        <h3>Verification script</h3>
-        <p>Regenerates every number of the verification and case-study sections: the verified properties, the sensitivity table, the constructed profiles, the uncertainty analysis with Sobol' indices, Proposition 1 and Corollary 1. Standard library only.</p>
-        <span class="go">View script <span class="ar">→</span></span>
+        <h3><span data-lang="en">Verification script</span><span data-lang="es">Script de verificación</span></h3>
+        <p data-lang="en">Regenerates every number of the verification and case-study sections: the verified properties, the sensitivity table, the constructed profiles, the uncertainty analysis with Sobol' indices, Proposition 1 and Corollary 1. Standard library only.</p>
+        <p data-lang="es">Regenera todas las cifras de las secciones de verificación y del caso de estudio: las propiedades verificadas, la tabla de sensibilidad, los perfiles construidos, el análisis de incertidumbre con índices de Sobol', la Proposición 1 y el Corolario 1. Solo biblioteca estándar de Python.</p>
+        <span class="go"><span data-lang="en">View script</span><span data-lang="es">Ver el script</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="search/README.md">
-        <span class="badge">DATA</span>
+        <span class="badge"><span data-lang="en">DATA</span><span data-lang="es">DATOS</span></span>
         <div class="ico" style="background:var(--mi-bg)">🔎</div>
-        <h3>Documented literature search</h3>
-        <p>Query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026), and the screening log of the 812 unique records with the decision for each one.</p>
-        <span class="go">View search records <span class="ar">→</span></span>
+        <h3><span data-lang="en">Documented literature search</span><span data-lang="es">Búsqueda bibliográfica documentada</span></h3>
+        <p data-lang="en">Query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026), and the screening log of the 812 unique records with the decision for each one.</p>
+        <p data-lang="es">Cadenas de búsqueda, registros crudos (OpenAlex y Scopus, 13 de octubre de 2026, 2014–2026) y el registro de cribado de los 812 registros únicos con la decisión sobre cada uno.</p>
+        <span class="go"><span data-lang="en">View search records</span><span data-lang="es">Ver los registros</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="#equations">
         <div class="ico" style="background:var(--ms-bg)">🧮</div>
-        <h3>Equation plates</h3>
-        <p>Eight didactic figures explaining the model equation by equation, with the notation and the operational boundaries of the revised manuscript.</p>
-        <span class="go">View gallery <span class="ar">→</span></span>
+        <h3><span data-lang="en">Equation plates</span><span data-lang="es">Láminas de ecuaciones</span></h3>
+        <p data-lang="en">Eight didactic figures explaining the model equation by equation, with the notation and the operational boundaries of the revised manuscript.</p>
+        <p data-lang="es">Ocho figuras didácticas que explican el modelo ecuación por ecuación, con la notación y las fronteras operacionales del manuscrito revisado (láminas en inglés).</p>
+        <span class="go"><span data-lang="en">View gallery</span><span data-lang="es">Ver la galería</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="figures/schemes/Architecture_two_levels.pdf">
         <div class="ico" style="background:var(--cp-bg)">🏗️</div>
-        <h3>Model architecture</h3>
-        <p>The two-level scheme of the extended formula: the general normalized expression, the disaggregation of each component, and the operational boundaries between components (Figure 1 of the manuscript).</p>
-        <span class="go">View scheme <span class="ar">→</span></span>
+        <h3><span data-lang="en">Model architecture</span><span data-lang="es">Arquitectura del modelo</span></h3>
+        <p data-lang="en">The two-level scheme of the extended formula: the general normalized expression, the disaggregation of each component, and the operational boundaries between components (Figure 1 of the manuscript).</p>
+        <p data-lang="es">El esquema de dos niveles de la fórmula extendida: la expresión general normalizada, la desagregación de cada componente y las fronteras operacionales entre componentes (Figura 1 del manuscrito).</p>
+        <span class="go"><span data-lang="en">View scheme</span><span data-lang="es">Ver el esquema</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="figures/schemes/Bibliographic_synthesis.pdf">
         <div class="ico" style="background:var(--np-bg)">📚</div>
-        <h3>Bibliographic synthesis</h3>
-        <p>The sources that support each component and methodological decision of the model, with their IEEE reference numbers (Table 8 of the manuscript).</p>
-        <span class="go">View synthesis <span class="ar">→</span></span>
+        <h3><span data-lang="en">Bibliographic synthesis</span><span data-lang="es">Síntesis bibliográfica</span></h3>
+        <p data-lang="en">The sources that support each component and methodological decision of the model, with their IEEE reference numbers (Table 8 of the manuscript).</p>
+        <p data-lang="es">Las fuentes que respaldan cada componente y cada decisión metodológica del modelo, con sus números de referencia IEEE (Tabla 8 del manuscrito).</p>
+        <span class="go"><span data-lang="en">View synthesis</span><span data-lang="es">Ver la síntesis</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="#manuscript">
         <div class="ico" style="background:var(--mi-bg)">📄</div>
-        <h3>Manuscript</h3>
-        <p>Under review at IEEE Access. The revised version was resubmitted in October 2026 after a first round of peer review; the PDF will be posted here when the editorial process allows it.</p>
-        <span class="go">Status and citation <span class="ar">→</span></span>
+        <h3><span data-lang="en">Manuscript</span><span data-lang="es">Manuscrito</span></h3>
+        <p data-lang="en">Under review at IEEE Access. The revised version was prepared in October 2026 after a first round of peer review; the PDF will be posted here when the editorial process allows it.</p>
+        <p data-lang="es">En revisión en IEEE Access. La versión revisada se preparó en octubre de 2026 tras una primera ronda de evaluación por pares; el PDF se publicará aquí cuando el proceso editorial lo permita. La versión en español del artículo se está actualizando con los mismos cambios.</p>
+        <span class="go"><span data-lang="en">Status and citation</span><span data-lang="es">Estado y cita</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="archive/2026-08_pre-revision/">
-        <span class="badge grey">ARCHIVE</span>
+        <span class="badge grey"><span data-lang="en">ARCHIVE</span><span data-lang="es">ARCHIVO</span></span>
         <div class="ico" style="background:#eef1f4">🗄️</div>
-        <h3>Pre-revision materials</h3>
-        <p>The presentation, infographic, and submitted version of August–September 2026. They predate the revision and contain statements that the revised manuscript has corrected; kept for the record only.</p>
-        <span class="go">Browse archive <span class="ar">→</span></span>
+        <h3><span data-lang="en">Pre-revision materials</span><span data-lang="es">Materiales previos a la revisión</span></h3>
+        <p data-lang="en">The presentation, infographic, and submitted version of August–September 2026. They predate the revision and contain statements that the revised manuscript has corrected; kept for the record only.</p>
+        <p data-lang="es">La presentación, la infografía y la versión enviada en agosto–septiembre de 2026. Son anteriores a la revisión y contienen afirmaciones que el manuscrito revisado corrigió; se conservan solo como registro.</p>
+        <span class="go"><span data-lang="en">Browse archive</span><span data-lang="es">Ver el archivo</span> <span class="ar">→</span></span>
       </a>
     </div>
   </div>
@@ -265,9 +291,9 @@
 <section id="equations">
   <div class="wrap">
     <div class="sec-head fade">
-      <div class="kicker">The model, step by step</div>
-      <h2>The equations of maritime power</h2>
-      <p>From the classical core to the fully expanded formula, following the numbering of the revised manuscript. Click any plate to enlarge.</p>
+      <div class="kicker"><span data-lang="en">The model, step by step</span><span data-lang="es">El modelo, paso a paso</span></div>
+      <h2><span data-lang="en">The equations of maritime power</span><span data-lang="es">Las ecuaciones del poder marítimo</span></h2>
+      <p><span data-lang="en">From the classical core to the fully expanded formula, following the numbering of the revised manuscript. Click any plate to enlarge.</span><span data-lang="es">Del núcleo clásico a la fórmula completamente expandida, con la numeración del manuscrito revisado. Pulsa cualquier lámina para ampliarla.</span></p>
     </div>
     <div class="gal" id="gal"></div>
   </div>
@@ -276,27 +302,29 @@
 <section id="reproducibility" class="alt">
   <div class="wrap">
     <div class="sec-head fade">
-      <div class="kicker">Open science</div>
-      <h2>Reproduce the results</h2>
-      <p>Every number in the verification and case-study sections of the manuscript can be regenerated from this repository.</p>
+      <div class="kicker"><span data-lang="en">Open science</span><span data-lang="es">Ciencia abierta</span></div>
+      <h2><span data-lang="en">Reproduce the results</span><span data-lang="es">Reproduce los resultados</span></h2>
+      <p><span data-lang="en">Every number in the verification and case-study sections of the manuscript can be regenerated from this repository.</span><span data-lang="es">Todas las cifras de las secciones de verificación y del caso de estudio del manuscrito pueden regenerarse desde este repositorio.</span></p>
     </div>
     <div class="repro fade">
-      <p><b>1. Verification script.</b> Runs the numerical checks of Proposition 1 on random draws, regenerates the sensitivity table, the constructed profiles, the break-even cost ratios of Corollary 1 and the uncertainty analysis with Sobol' indices. Python 3, standard library only (about one minute for the canonical run).</p>
-      <pre>python3 verification/verify_model.py 300000   # canonical run quoted in the article
-python3 verification/verify_model.py          # quicker check with 200,000 draws</pre>
-      <p>The reference output is kept in <code>verification/verification_output.txt</code>.</p>
-      <p><b>2. Reference values of the Colombian case</b> (all set directly at Level 1; only MS derives from an external source).</p>
+      <p data-lang="en"><b>1. Verification script.</b> Runs the numerical checks of Proposition 1 on random draws, regenerates the sensitivity table, the constructed profiles, the break-even cost ratios of Corollary 1 and the uncertainty analysis with Sobol' indices. Python 3, standard library only (about one minute for the canonical run).</p>
+      <p data-lang="es"><b>1. Script de verificación.</b> Ejecuta las comprobaciones numéricas de la Proposición 1 sobre sorteos aleatorios y regenera la tabla de sensibilidad, los perfiles construidos, los umbrales de coste del Corolario 1 y el análisis de incertidumbre con índices de Sobol'. Python 3, solo biblioteca estándar (alrededor de un minuto para la corrida canónica).</p>
+      <pre>python3 verification/verify_model.py 300000   # <span data-lang="en">canonical run quoted in the article</span><span data-lang="es">corrida canónica citada en el artículo</span>
+python3 verification/verify_model.py          # <span data-lang="en">quicker check with 200,000 draws</span><span data-lang="es">comprobación rápida con 200.000 sorteos</span></pre>
+      <p><span data-lang="en">The reference output is kept in <code>verification/verification_output.txt</code>.</span><span data-lang="es">La salida de referencia está en <code>verification/verification_output.txt</code>.</span></p>
+      <p><b data-lang="en">2. Reference values of the Colombian case</b><b data-lang="es">2. Valores de referencia del caso colombiano</b> <span data-lang="en">(all set directly at Level 1; only MS derives from an external source).</span><span data-lang="es">(todos fijados directamente en el Nivel 1; solo MS procede de una fuente externa).</span></p>
       <table>
-        <tr><th>Component</th><th>Value</th><th>Origin</th></tr>
-        <tr><td class="mono">MI</td><td class="mono">0.60</td><td>Illustrative choice of the authors</td></tr>
-        <tr><td class="mono">NP</td><td class="mono">0.55</td><td>Illustrative choice of the authors</td></tr>
-        <tr><td class="mono">SW</td><td class="mono">0.48</td><td>Illustrative choice of the authors</td></tr>
-        <tr><td class="mono">MS</td><td class="mono">0.24</td><td>Position percentile of Colombia's rank, 75th of 99, in the maritime security index of Vargas-Suárez et al. (2021): (99 − 75)/98 ≈ 0.24</td></tr>
-        <tr><td class="mono">CP</td><td class="mono">0.40</td><td>Illustrative choice of the authors (upper end of the <i>basic</i> maturity band)</td></tr>
-        <tr><td class="mono">α · γ</td><td class="mono">0.55 · 0.70</td><td>Illustrative weights; n<sub>eff</sub> = 4.25</td></tr>
-        <tr><td class="mono">MP<sub>norm</sub></td><td class="mono">0.455</td><td>Moderate level; G = 0.464, so a larger α lowers the index (Proposition 1)</td></tr>
+        <tr><th><span data-lang="en">Component</span><span data-lang="es">Componente</span></th><th><span data-lang="en">Value</span><span data-lang="es">Valor</span></th><th><span data-lang="en">Origin</span><span data-lang="es">Origen</span></th></tr>
+        <tr><td class="mono">MI</td><td class="mono">0.60</td><td><span data-lang="en">Illustrative choice of the authors</span><span data-lang="es">Elección ilustrativa de los autores</span></td></tr>
+        <tr><td class="mono">NP</td><td class="mono">0.55</td><td><span data-lang="en">Illustrative choice of the authors</span><span data-lang="es">Elección ilustrativa de los autores</span></td></tr>
+        <tr><td class="mono">SW</td><td class="mono">0.48</td><td><span data-lang="en">Illustrative choice of the authors</span><span data-lang="es">Elección ilustrativa de los autores</span></td></tr>
+        <tr><td class="mono">MS</td><td class="mono">0.24</td><td><span data-lang="en">Position percentile of Colombia's rank, 75th of 99, in the maritime security index of Vargas-Suárez et al. (2021): (99 − 75)/98 ≈ 0.24</span><span data-lang="es">Percentil de posición del puesto de Colombia, 75 de 99, en el índice de seguridad marítima de Vargas-Suárez et al. (2021): (99 − 75)/98 ≈ 0,24</span></td></tr>
+        <tr><td class="mono">CP</td><td class="mono">0.40</td><td><span data-lang="en">Illustrative choice of the authors (upper end of the <i>basic</i> maturity band)</span><span data-lang="es">Elección ilustrativa de los autores (extremo superior del tramo de madurez <i>básico</i>)</span></td></tr>
+        <tr><td class="mono">α · γ</td><td class="mono">0.55 · 0.70</td><td><span data-lang="en">Illustrative weights; n<sub>eff</sub> = 4.25</span><span data-lang="es">Pesos ilustrativos; n<sub>eff</sub> = 4,25</span></td></tr>
+        <tr><td class="mono">MP<sub>norm</sub></td><td class="mono">0.455</td><td><span data-lang="en">Moderate level; G = 0.464, so a larger α lowers the index (Proposition 1)</span><span data-lang="es">Nivel Moderado; G = 0,464, así que una α mayor baja el índice (Proposición 1)</span></td></tr>
       </table>
-      <p><b>3. Documented literature search.</b> The query strings, the raw records, and the screening decisions are in <a href="search/README.md" style="color:var(--mi);font-weight:600">search/</a>; the OpenAlex queries can be re-run with <code>search/openalex_search.py</code>.</p>
+      <p data-lang="en"><b>3. Documented literature search.</b> The query strings, the raw records, and the screening decisions are in <a href="search/README.md" style="color:var(--mi);font-weight:600">search/</a>; the OpenAlex queries can be re-run with <code>search/openalex_search.py</code>.</p>
+      <p data-lang="es"><b>3. Búsqueda bibliográfica documentada.</b> Las cadenas de búsqueda, los registros crudos y las decisiones de cribado están en <a href="search/README.md" style="color:var(--mi);font-weight:600">search/</a>; las consultas de OpenAlex pueden repetirse con <code>search/openalex_search.py</code>.</p>
     </div>
   </div>
 </section>
@@ -304,18 +332,18 @@ python3 verification/verify_model.py          # quicker check with 200,000 draws
 <section id="revision">
   <div class="wrap">
     <div class="sec-head fade">
-      <div class="kicker">October 2026</div>
-      <h2>What changed in the revision</h2>
-      <p>The materials on this site follow the revised manuscript. The main changes with respect to the submitted version are:</p>
+      <div class="kicker"><span data-lang="en">October 2026</span><span data-lang="es">Octubre de 2026</span></div>
+      <h2><span data-lang="en">What changed in the revision</span><span data-lang="es">Qué cambió en la revisión</span></h2>
+      <p><span data-lang="en">The materials on this site follow the revised manuscript. The main changes with respect to the submitted version are:</span><span data-lang="es">Los materiales de este sitio siguen el manuscrito revisado. Los cambios principales respecto a la versión enviada son:</span></p>
     </div>
     <div class="rev fade">
-      <div class="item"><div class="k">α and CP</div><p><b>α is the weight of cyber dependence</b>, a property of the maritime system, and no longer a cyber-maturity index; maturity is read on CP itself in five bands. Proposition 1 shows that raising α raises MP<sub>norm</sub> only if CP exceeds the geometric mean of the rest of the system.</p></div>
-      <div class="item"><div class="k">Concavity</div><p>MP<sub>norm</sub> is strictly concave in every component for any α &gt; 0, because the normalized exponent α/(3 + γ + α) is always below one; concavity does not single out cyber power.</p></div>
-      <div class="item"><div class="k">Efficiency</div><p>The claim that cyber power is the most efficient investment vector was <b>removed</b> and replaced by Corollary 1, a testable condition on relative unit costs (break-even ratios of 1.21, 1.32, 1.52 and 2.12 for Colombia). Sensitivity measures responsiveness, not efficiency.</p></div>
-      <div class="item"><div class="k">Colombia</div><p>Only maritime security derives from an external source, as the position percentile of Colombia's rank (0.24); the other values are illustrative. MP<sub>norm</sub> = 0.455 (Moderate). No calibration or external validation is claimed.</p></div>
-      <div class="item"><div class="k">Verification</div><p>Verification, calibration and external validation are distinguished (Sargent, 2011). An uncertainty and variance-based sensitivity analysis with Sobol' indices was added; a four-step protocol for calibration and external validation and an operationalization table were specified.</p></div>
-      <div class="item"><div class="k">Boundaries</div><p>Operational boundaries between components were made explicit: tactical-operational cyberdefense in NP, strategic cyberdefense (CD<sub>m</sub>) in CP, cyber diplomacy only in CP, maritime security as incidence of threats; the resilience sub-component became <b>maritime recovery capacity (RC<sub>m</sub>)</b>, with Σβ = 1.</p></div>
-      <div class="item"><div class="k">Literature</div><p>The literature search was repeated as a documented, reproducible procedure (OpenAlex and Scopus, 2014–2026); existing composite measures of maritime and naval power are discussed and shown to be additive and without cyber power.</p></div>
+      <div class="item"><div class="k">α <span data-lang="en">and</span><span data-lang="es">y</span> CP</div><p data-lang="en"><b>α is the weight of cyber dependence</b>, a property of the maritime system, and no longer a cyber-maturity index; maturity is read on CP itself in five bands. Proposition 1 shows that raising α raises MP<sub>norm</sub> only if CP exceeds the geometric mean of the rest of the system.</p><p data-lang="es"><b>α es el peso de la dependencia cibernética</b>, una propiedad del sistema marítimo, y ya no un índice de madurez cibernética; la madurez se lee en el propio CP, en cinco tramos. La Proposición 1 muestra que subir α solo sube MP<sub>norm</sub> si CP supera la media geométrica del resto del sistema.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Concavity</span><span data-lang="es">Concavidad</span></div><p data-lang="en">MP<sub>norm</sub> is strictly concave in every component for any α &gt; 0, because the normalized exponent α/(3 + γ + α) is always below one; concavity does not single out cyber power.</p><p data-lang="es">MP<sub>norm</sub> es estrictamente cóncava en cada componente para cualquier α &gt; 0, porque el exponente normalizado α/(3 + γ + α) siempre es menor que uno; la concavidad no distingue al ciberpoder.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Efficiency</span><span data-lang="es">Eficiencia</span></div><p data-lang="en">The claim that cyber power is the most efficient investment vector was <b>removed</b> and replaced by Corollary 1, a testable condition on relative unit costs (break-even ratios of 1.21, 1.32, 1.52 and 2.12 for Colombia). Sensitivity measures responsiveness, not efficiency.</p><p data-lang="es">La afirmación de que el ciberpoder es el vector de inversión más eficiente se <b>retiró</b> y se sustituyó por el Corolario 1, una condición comprobable sobre costes unitarios relativos (umbrales de 1,21, 1,32, 1,52 y 2,12 para Colombia). La sensibilidad mide capacidad de respuesta, no eficiencia.</p></div>
+      <div class="item"><div class="k">Colombia</div><p data-lang="en">Only maritime security derives from an external source, as the position percentile of Colombia's rank (0.24); the other values are illustrative. MP<sub>norm</sub> = 0.455 (Moderate). No calibration or external validation is claimed.</p><p data-lang="es">Solo la seguridad marítima procede de una fuente externa, como percentil de posición del puesto de Colombia (0,24); los demás valores son ilustrativos. MP<sub>norm</sub> = 0,455 (Moderado). No se afirma calibración ni validación externa.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Verification</span><span data-lang="es">Verificación</span></div><p data-lang="en">Verification, calibration and external validation are distinguished (Sargent, 2011). An uncertainty and variance-based sensitivity analysis with Sobol' indices was added; a four-step protocol for calibration and external validation and an operationalization table were specified.</p><p data-lang="es">Se distinguen verificación, calibración y validación externa (Sargent, 2011). Se añadió un análisis de incertidumbre y de sensibilidad basado en varianza con índices de Sobol'; se especificaron un protocolo de cuatro pasos para la calibración y la validación externa y una tabla de operacionalización.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Boundaries</span><span data-lang="es">Fronteras</span></div><p data-lang="en">Operational boundaries between components were made explicit: tactical-operational cyberdefense in NP, strategic cyberdefense (CD<sub>m</sub>) in CP, cyber diplomacy only in CP, maritime security as incidence of threats; the resilience sub-component became <b>maritime recovery capacity (RC<sub>m</sub>)</b>, with Σβ = 1.</p><p data-lang="es">Se explicitaron las fronteras operacionales entre componentes: ciberdefensa táctico-operacional en NP, ciberdefensa estratégica (CD<sub>m</sub>) en CP, ciberdiplomacia solo en CP, seguridad marítima como incidencia de amenazas; el subcomponente de resiliencia pasó a ser la <b>capacidad de recuperación marítima (RC<sub>m</sub>)</b>, con Σβ = 1.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Literature</span><span data-lang="es">Literatura</span></div><p data-lang="en">The literature search was repeated as a documented, reproducible procedure (OpenAlex and Scopus, 2014–2026); existing composite measures of maritime and naval power are discussed and shown to be additive and without cyber power.</p><p data-lang="es">La búsqueda bibliográfica se repitió como procedimiento documentado y reproducible (OpenAlex y Scopus, 2014–2026); se discuten las medidas compuestas existentes del poder marítimo y naval y se muestra que todas son aditivas y ninguna incluye el ciberpoder.</p></div>
     </div>
   </div>
 </section>
@@ -324,23 +352,24 @@ python3 verification/verify_model.py          # quicker check with 200,000 draws
   <div class="wrap">
     <div class="top">
       <div style="max-width:640px">
-        <h4>How to cite</h4>
+        <h4><span data-lang="en">How to cite</span><span data-lang="es">Cómo citar</span></h4>
         <div class="cite">
-          Cabuya-Padilla, D. E., Uribe-Cáceres, S., &amp; Castaneda-Marroquin, C. A. (2026). <b>Cyber power as a structural variable of maritime power: A normalized multiplicative model for multidomain assessment of maritime power.</b> Manuscript under review, <i>IEEE Access</i>. Supporting materials: <span style="color:var(--ice)">https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power</span>
+          <span data-lang="en">Cabuya-Padilla, D. E., Uribe-Cáceres, S., &amp; Castaneda-Marroquin, C. A. (2026). <b>Cyber power as a structural variable of maritime power: A normalized multiplicative model for multidomain assessment of maritime power.</b> Manuscript under review, <i>IEEE Access</i>. Supporting materials: <span style="color:var(--ice)">https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power</span></span>
+          <span data-lang="es">Cabuya-Padilla, D. E., Uribe-Cáceres, S. y Castaneda-Marroquin, C. A. (2026). <b>Cyber power as a structural variable of maritime power: A normalized multiplicative model for multidomain assessment of maritime power</b> [El ciberpoder como variable estructural del poder marítimo: un modelo multiplicativo normalizado para la evaluación multidominio del poder marítimo]. Manuscrito en revisión, <i>IEEE Access</i>. Materiales de apoyo: <span style="color:var(--ice)">https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power</span></span>
         </div>
       </div>
       <div class="col">
-        <h4>Navigation</h4>
-        <a href="#project">The project</a>
-        <a href="#materials">Materials</a>
-        <a href="#equations">Equations</a>
-        <a href="#reproducibility">Reproducibility</a>
-        <a href="simulator/simulator.html">Simulator ↗</a>
+        <h4><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h4>
+        <a href="#project"><span data-lang="en">The project</span><span data-lang="es">El proyecto</span></a>
+        <a href="#materials"><span data-lang="en">Materials</span><span data-lang="es">Materiales</span></a>
+        <a href="#equations"><span data-lang="en">Equations</span><span data-lang="es">Ecuaciones</span></a>
+        <a href="#reproducibility"><span data-lang="en">Reproducibility</span><span data-lang="es">Reproducibilidad</span></a>
+        <a href="simulator/simulator.html" class="simlink"><span data-lang="en">Simulator ↗</span><span data-lang="es">Simulador ↗</span></a>
       </div>
     </div>
     <div class="bottom">
-      <span>© 2026 D. E. Cabuya-Padilla, S. Uribe-Cáceres, C. A. Castaneda-Marroquin · Materials released under CC BY 4.0</span>
-      <span><a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power">View repository on GitHub ↗</a></span>
+      <span>© 2026 D. E. Cabuya-Padilla, S. Uribe-Cáceres, C. A. Castaneda-Marroquin · <span data-lang="en">Materials released under CC BY 4.0</span><span data-lang="es">Materiales publicados bajo CC BY 4.0</span></span>
+      <span><a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power"><span data-lang="en">English repository ↗</span><span data-lang="es">Repositorio en inglés ↗</span></a> &nbsp;·&nbsp; <a href="https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo"><span data-lang="en">Spanish repository ↗</span><span data-lang="es">Repositorio en español ↗</span></a></span>
     </div>
   </div>
 </footer>
@@ -354,32 +383,37 @@ python3 verification/verify_model.py          # quicker check with 200,000 draws
 </div>
 
 <script>
+  // ---- language: ?lang=es | localStorage | browser; everything tagged data-lang switches via CSS
+  let LANG='en';
+  try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('pm_lang');const b=(navigator.language||'').toLowerCase();LANG=((q||s||b).toLowerCase().startsWith('es'))?'es':'en';}catch(e){}
+  function setLang(l){LANG=l;document.documentElement.setAttribute('data-lang',l);document.documentElement.lang=l;try{localStorage.setItem('pm_lang',l);}catch(e){}
+    document.getElementById('lsw-en').className=l==='en'?'on':'';document.getElementById('lsw-es').className=l==='es'?'on':'';
+    document.querySelectorAll('a.simlink').forEach(a=>a.href='simulator/simulator.html?lang='+l);
+    buildGal();}
+  // ---- equation gallery
   const EQS=[
-    ['figures/equations/Base_classical_core.png','Classical core','MP = MI × NP'],
-    ['figures/equations/Eq1-3_Extended_and_normalized.png','Eqs. 1–3 · Extended and normalized expression','Level 1, n_eff = 3 + γ + α'],
-    ['figures/equations/Eq4_Maritime_Interests.png','Eq. 4 · Maritime Interests','Weighted sub-index'],
-    ['figures/equations/Eq5_Naval_Power.png','Eq. 5 · Naval Power','Force × Position × MDA^μ'],
-    ['figures/equations/Eq6_Strategic_Will.png','Eq. 6 · Strategic Will','Political · Institutional · Social'],
-    ['figures/equations/Eq7_Maritime_Security.png','Eq. 7 · Maritime Security','Interstate conflicts · Terrorism · Blue crime'],
-    ['figures/equations/Eq8_Cyber_Power.png','Eq. 8 · Cyber Power','Cybersecurity · Cyberdefense · Recovery capacity · Cyber diplomacy'],
-    ['figures/equations/Eq9_Expanded_formula.png','Eq. 9 · Fully expanded formula','The two levels in one expression'],
+    ['figures/equations/Base_classical_core.png',{en:'Classical core',es:'Núcleo clásico'},{en:'MP = MI × NP',es:'MP = MI × NP'}],
+    ['figures/equations/Eq1-3_Extended_and_normalized.png',{en:'Eqs. 1–3 · Extended and normalized expression',es:'Ecs. 1–3 · Expresión extendida y normalizada'},{en:'Level 1, n_eff = 3 + γ + α',es:'Nivel 1, n_eff = 3 + γ + α'}],
+    ['figures/equations/Eq4_Maritime_Interests.png',{en:'Eq. 4 · Maritime Interests',es:'Ec. 4 · Intereses marítimos'},{en:'Weighted sub-index',es:'Subíndice ponderado'}],
+    ['figures/equations/Eq5_Naval_Power.png',{en:'Eq. 5 · Naval Power',es:'Ec. 5 · Poder naval'},{en:'Force × Position × MDA^μ',es:'Fuerza × Posición × MDA^μ'}],
+    ['figures/equations/Eq6_Strategic_Will.png',{en:'Eq. 6 · Strategic Will',es:'Ec. 6 · Voluntad estratégica'},{en:'Political · Institutional · Social',es:'Política · Institucional · Social'}],
+    ['figures/equations/Eq7_Maritime_Security.png',{en:'Eq. 7 · Maritime Security',es:'Ec. 7 · Seguridad marítima'},{en:'Interstate conflicts · Terrorism · Blue crime',es:'Conflictos interestatales · Terrorismo · Crimen azul'}],
+    ['figures/equations/Eq8_Cyber_Power.png',{en:'Eq. 8 · Cyber Power',es:'Ec. 8 · Ciberpoder'},{en:'Cybersecurity · Cyberdefense · Recovery capacity · Cyber diplomacy',es:'Ciberseguridad · Ciberdefensa · Capacidad de recuperación · Ciberdiplomacia'}],
+    ['figures/equations/Eq9_Expanded_formula.png',{en:'Eq. 9 · Fully expanded formula',es:'Ec. 9 · Fórmula completamente expandida'},{en:'The two levels in one expression',es:'Los dos niveles en una sola expresión'}],
   ];
   const gal=document.getElementById('gal');
-  EQS.forEach(([src,n,d],i)=>{
-    const el=document.createElement('div');
-    el.className='gitem';el.onclick=()=>openLb(i);
-    el.innerHTML=`<div class="thumb"><img src="${src}" alt="${n}" loading="lazy"></div><div class="cap"><div class="n">${n}</div><div class="d">${d}</div></div>`;
-    gal.appendChild(el);
-  });
+  function buildGal(){gal.innerHTML='';EQS.forEach(([src,n,d],i)=>{const el=document.createElement('div');el.className='gitem';el.onclick=()=>openLb(i);
+    el.innerHTML=`<div class="thumb"><img src="${src}" alt="${n[LANG]}" loading="lazy"></div><div class="cap"><div class="n">${n[LANG]}</div><div class="d">${d[LANG]}</div></div>`;gal.appendChild(el);});}
   let cur=0;
   const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
-  function openLb(i){cur=i;lbimg.src=EQS[i][0];lbcap.textContent=EQS[i][1]+' — '+EQS[i][2];lb.classList.add('open');document.body.style.overflow='hidden';}
+  function openLb(i){cur=i;lbimg.src=EQS[i][0];lbcap.textContent=EQS[i][1][LANG]+' — '+EQS[i][2][LANG];lb.classList.add('open');document.body.style.overflow='hidden';}
   function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
-  function navLb(d){cur=(cur+d+EQS.length)%EQS.length;lbimg.src=EQS[cur][0];lbcap.textContent=EQS[cur][1]+' — '+EQS[cur][2];}
+  function navLb(d){cur=(cur+d+EQS.length)%EQS.length;lbimg.src=EQS[cur][0];lbcap.textContent=EQS[cur][1][LANG]+' — '+EQS[cur][2][LANG];}
   document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')navLb(1);if(e.key==='ArrowLeft')navLb(-1);});
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
   document.querySelectorAll('.fade').forEach(el=>io.observe(el));
   document.querySelectorAll('#nl a').forEach(a=>a.onclick=()=>document.getElementById('nl').classList.remove('open'));
+  setLang(LANG);
 </script>
 </body>
 </html>
