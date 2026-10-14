@@ -1,0 +1,114 @@
+NUMERICAL VERIFICATION -- 300,000 random draws (a,g in (0,1], X in (0.01,1])
+------------------------------------------------------------------------------
+  1 identity G^(1-w)CP^w                       worst error = 3.331e-16
+  2 lower bound min(G,CP)                      worst error = 0.000e+00
+  2 range (0,1]                                worst error = 0.000e+00
+  2 upper bound max(G,CP)                      worst error = 0.000e+00
+  3 dMP/da analytical vs numerical             worst error = 1.196e-10
+  3 sign dMP/da = sign(CP-G)                   worst error = 0.000e+00
+  4 CP>MP equivalent to CP>G                   worst error = 0.000e+00
+  5 elasticity = omega_k                       worst error = 4.942e-11
+  5 sum of omegas = 1                          worst error = 3.331e-16
+  6 concave in X_k (2nd difference<0)          worst error = 0.000e+00
+  6 increasing in X_k                          worst error = 0.000e+00
+  6b d2MP/dX_k2 analytical vs numerical (rel.) worst error = 8.049e-07
+  6c effective exponent omega_k in (0,1)       worst error = 0.000e+00
+  7 homogeneous of degree 1                    worst error = 1.665e-16
+  -> ALL CHECKS PASS
+
+BOUNDARIES (Colombia: MI .60, NP .55, SW .48, MS 0.24 [rank 75/99], CP .40, g .70)
+  G = 0.46394   CP = 0.40   -> CP < G: the index FALLS as alpha rises
+  alpha=1e-09    w=0.0000  MP=0.46394
+  alpha=0.01     w=0.0027  MP=0.46375
+  alpha=0.2      w=0.0513  MP=0.46042
+  alpha=0.55     w=0.1294  MP=0.45512
+  alpha=1        w=0.2128  MP=0.44953
+  alpha=10       w=0.7299  MP=0.41634
+  alpha=1e+09    w=1.0000  MP=0.40000
+  maximum w in the admissible domain (alpha=1, g=0.70): 0.2128; with g->0: 0.2500; with g=1: 0.2000
+  range of MP for alpha in (0,1]: [0.4495, 0.4639]
+
+TABLE 5 -- sensitivity to +20 % (alpha=.55, g=.70)
+  MI: 0.60 -> 0.720   dMP = +4.38 %   omega = 0.2353
+  NP: 0.55 -> 0.660   dMP = +4.38 %   omega = 0.2353
+  SW: 0.48 -> 0.576   dMP = +4.38 %   omega = 0.2353
+  MS: 0.24 -> 0.288   dMP = +3.05 %   omega = 0.1647
+  CP: 0.40 -> 0.480   dMP = +2.39 %   omega = 0.1294
+  base MP = 0.45512
+  Marginal return dMP/dX = omega*MP/X, and effect of +0.10 absolute:
+  MI: 0.17848   +0.10 -> +3.69 %
+  NP: 0.19470   +0.10 -> +4.01 %
+  SW: 0.22310   +0.10 -> +4.55 %
+  MS: 0.31234   +0.10 -> +5.90 %
+  CP: 0.14724   +0.10 -> +2.93 %
+
+TABLE 6 -- constructed profiles (alpha=.55, g=.70)
+  Critical     MP = 0.1938  (Critical)   G = 0.2013  CP = 0.15
+  Reference    MP = 0.5163  (Moderate)   G = 0.5235  CP = 0.47
+  Consolidated MP = 0.8502  (High)   G = 0.8518  CP = 0.84
+
+MARGINAL RETURN OF MP_norm WITH RESPECT TO CP (Colombia, alpha=.55, g=.70; rest fixed)
+  CP      MP     dMP/dCP = w*MP/CP   (decreasing: concave for every alpha>0)
+  0.1   0.3804   0.4923
+  0.2   0.4161   0.2692
+  0.4   0.4551   0.1472
+  0.6   0.4796   0.1035
+  0.8   0.4978   0.0805
+  1.0   0.5124   0.0663
+  effective exponent of CP: w = alpha/(3+g+alpha) = 0.1294  (<1 for every alpha>0)
+    alpha=0.05    w=0.0133
+    alpha=0.55    w=0.1294
+    alpha=1       w=0.2128
+    alpha=5       w=0.5747
+    alpha=100     w=0.9643
+
+COROLLARY 1 -- comparative (local) investment efficiency with unit costs
+  the local condition identifies the best investment vector in 20000/20000 cases (100.00 %)
+  Colombia -- relative-cost threshold c_k/c_CP above which CP is more efficient than k:
+    MI: 1.212
+    NP: 1.322
+    SW: 1.515
+    MS: 2.121
+
+EQUAL-WEIGHT ADDITIVE INDEX VERSUS MP_norm -- collapse of MS to 0.01 (Colombia)
+  additive: -10.1 %   multiplicative: -40.8 %
+
+MS OF COLOMBIA -- alternative normalization
+  position percentile (99-75)/98: MS = 0.2449   MP = 0.4566
+  by the sample maximum 0.59/2.38: MS = 0.2479   MP = 0.4576
+
+AGGREGATION AT THE REFERENCE VALUES: MP_norm 0.455 (Moderate)   arithmetic 0.454 (Moderate)   geometric 0.433 (Moderate)
+
+UNCERTAINTY AND GLOBAL SENSITIVITY -- Colombia, components +-0.10 (Table 7)
+  200,000 evaluations   median 0.464   P5 0.406   P95 0.524   min 0.341   max 0.597
+  level: Moderate 96.6 %  Low 3.4 %
+  lowest component: MS 98.0 %  CP 2.0 %
+  MS and CP are the two lowest: 80.6 %
+  largest marginal return: MS 51.6 %  SW 30.5 %  CP 9.4 %  NP 7.0 %  MI 1.5 %
+  same level as MP_norm -- arithmetic mean: 96.6 %   unweighted geometric mean: 85.7 %
+  factor   S_i  [95 % CI]            S_Ti [95 % CI]
+  MI       0.096 [ 0.093,  0.098]    0.099 [ 0.098,  0.099]
+  NP       0.118 [ 0.115,  0.121]    0.119 [ 0.118,  0.120]
+  SW       0.155 [ 0.151,  0.158]    0.156 [ 0.155,  0.157]
+  MS       0.177 [ 0.173,  0.180]    0.204 [ 0.203,  0.206]
+  CP       0.063 [ 0.060,  0.065]    0.074 [ 0.073,  0.075]
+  alpha    0.019 [ 0.018,  0.021]    0.035 [ 0.035,  0.036]
+  gamma    0.331 [ 0.327,  0.336]    0.361 [ 0.357,  0.364]
+  sum of S_i = 0.958  (1 - sum = share due to interactions)
+
+UNCERTAINTY AND GLOBAL SENSITIVITY -- Colombia, components +-0.20 (Table 7)
+  200,000 evaluations   median 0.452   P5 0.346   P95 0.557   min 0.228   max 0.678
+  level: Moderate 78.1 %  Low 21.0 %  Significant 0.9 %
+  lowest component: MS 76.8 %  CP 16.8 %  SW 5.2 %  NP 1.0 %  MI 0.1 %
+  MS and CP are the two lowest: 53.8 %
+  largest marginal return: MS 45.7 %  SW 26.3 %  NP 11.6 %  CP 10.7 %  MI 5.7 %
+  same level as MP_norm -- arithmetic mean: 87.5 %   unweighted geometric mean: 79.1 %
+  factor   S_i  [95 % CI]            S_Ti [95 % CI]
+  MI       0.116 [ 0.113,  0.119]    0.121 [ 0.120,  0.122]
+  NP       0.143 [ 0.140,  0.147]    0.147 [ 0.146,  0.149]
+  SW       0.190 [ 0.186,  0.193]    0.195 [ 0.193,  0.196]
+  MS       0.283 [ 0.279,  0.288]    0.325 [ 0.323,  0.329]
+  CP       0.080 [ 0.077,  0.083]    0.096 [ 0.095,  0.096]
+  alpha    0.006 [ 0.005,  0.007]    0.025 [ 0.024,  0.025]
+  gamma    0.118 [ 0.114,  0.121]    0.163 [ 0.161,  0.165]
+  sum of S_i = 0.936  (1 - sum = share due to interactions)

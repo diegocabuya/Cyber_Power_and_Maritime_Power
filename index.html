@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cyber Power as a Structural Variable of Maritime Power</title>
-<meta name="description" content="A conceptual update of the maritime power formula incorporating cyber power as a structural variable. Article, interactive simulator, presentation, and infographic.">
+<meta name="description" content="A normalized multiplicative model of maritime power that incorporates cyber power, strategic will, and maritime security as structural variables. Interactive simulator, verification script, documented literature search, and equation plates.">
 <meta property="og:title" content="Cyber Power as a Structural Variable of Maritime Power">
-<meta property="og:description" content="A conceptual update of its formulation. Interactive simulator, article, and outreach materials.">
+<meta property="og:description" content="A normalized multiplicative model for multidomain assessment of maritime power. Simulator, verification script, and supporting materials.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +14,8 @@
 <style>
   :root{
     --navy:#0D2A42; --navy2:#10365A; --ice:#9EC8E4; --ice2:#7FA8C8;
-    --im:#185FA5; --pn:#534AB7; --ve:#0F6E56; --sm:#854F0B; --cp:#993C1D;
-    --im-bg:#EBF3FB; --pn-bg:#EEEDFE; --ve-bg:#E1F5EE; --sm-bg:#FEF4E4; --cp-bg:#FAECE7;
+    --mi:#185FA5; --np:#534AB7; --sw:#0F6E56; --ms:#854F0B; --cp:#993C1D;
+    --mi-bg:#EBF3FB; --np-bg:#EEEDFE; --sw-bg:#E1F5EE; --ms-bg:#FEF4E4; --cp-bg:#FAECE7;
     --text:#1c2b38; --text2:#51606e; --line:#e4e9ee; --bg:#ffffff; --bg2:#f6f9fb;
     --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
     --maxw:1180px;
@@ -26,323 +26,325 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-
-  /* ===== NAV ===== */
-  nav{position:sticky;top:0;z-index:50;background:rgba(13,42,66,.92);backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(255,255,255,.08)}
+  nav{position:sticky;top:0;z-index:50;background:rgba(13,42,66,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
   nav .brand{font-family:var(--serif);font-weight:600;color:#fff;font-size:17px;letter-spacing:.2px}
   nav .brand b{color:var(--ice)}
-  nav .links{display:flex;gap:26px;align-items:center}
-  nav .links a{color:#c9d6e2;font-size:14.5px;font-weight:500;transition:color .2s}
+  nav .links{display:flex;gap:22px;align-items:center}
+  nav .links a{color:#c9d6e2;font-size:14px;font-weight:500;transition:color .2s}
   nav .links a:hover{color:#fff}
   nav .cta{background:var(--ice);color:var(--navy)!important;padding:8px 16px;border-radius:8px;font-weight:700}
   nav .cta:hover{background:#fff}
   .menu-btn{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
-  @media(max-width:820px){
-    nav .links{position:fixed;top:60px;left:0;right:0;flex-direction:column;background:var(--navy);
-      padding:20px 24px;gap:18px;align-items:flex-start;transform:translateY(-140%);transition:transform .3s;
-      border-bottom:1px solid rgba(255,255,255,.1)}
+  @media(max-width:860px){
+    nav .links{position:fixed;top:60px;left:0;right:0;flex-direction:column;background:var(--navy);padding:20px 24px;gap:18px;align-items:flex-start;transform:translateY(-140%);transition:transform .3s;border-bottom:1px solid rgba(255,255,255,.1)}
     nav .links.open{transform:translateY(0)}
     .menu-btn{display:block}
   }
-
-  /* ===== HERO ===== */
-  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#164674 100%);color:#fff;
-    padding:74px 0 90px;position:relative;overflow:hidden}
-  .hero::after{content:'';position:absolute;inset:0;
-    background:radial-gradient(1100px 380px at 78% -8%,rgba(158,200,228,.16),transparent 60%);pointer-events:none}
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#164674 100%);color:#fff;padding:70px 0 84px;position:relative;overflow:hidden}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(1100px 380px at 78% -8%,rgba(158,200,228,.16),transparent 60%);pointer-events:none}
   .hero .wrap{position:relative;z-index:1}
   .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:3px;color:var(--ice);text-transform:uppercase;font-weight:500}
-  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.1;margin:16px 0 12px;max-width:16ch}
-  .hero .sub{font-size:clamp(16px,2.2vw,21px);color:#cfdce8;font-weight:400;max-width:52ch;margin-bottom:14px}
-  .hero .byline{color:#9fb4c6;font-size:15px;margin-bottom:30px}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:16px 0 12px;max-width:22ch}
+  .hero .sub{font-size:clamp(16px,2.1vw,20px);color:#cfdce8;font-weight:400;max-width:60ch;margin-bottom:14px}
+  .hero .byline{color:#9fb4c6;font-size:14.5px;margin-bottom:8px;line-height:1.7}
   .hero .byline b{color:#e8f1f8;font-weight:600}
-
-  /* fórmula hero */
-  .formula{display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 24px;margin-bottom:32px;
-    font-family:var(--mono);font-size:clamp(15px,2vw,20px)}
+  .hero .status{display:inline-block;background:rgba(158,200,228,.14);border:1px solid rgba(158,200,228,.35);color:#e8f1f8;font-size:13px;padding:5px 12px;border-radius:20px;margin:6px 0 26px}
+  .formula{display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 24px;margin-bottom:14px;font-family:var(--mono);font-size:clamp(15px,2vw,20px)}
   .formula .pm{font-family:var(--serif);font-weight:700;font-size:1.5em;color:#fff}
   .formula .pm sub{font-size:.5em;color:var(--ice)}
   .formula .op{color:#7f94a8}
-  .formula .chip{padding:5px 11px;border-radius:8px;font-weight:700;font-family:var(--sans);font-size:.82em;
-    border:2px solid}
-  .formula .im{background:var(--im-bg);color:var(--im);border-color:var(--im)}
-  .formula .pn{background:var(--pn-bg);color:var(--pn);border-color:var(--pn)}
-  .formula .ve{background:var(--ve-bg);color:var(--ve);border-color:var(--ve)}
-  .formula .sm{background:var(--sm-bg);color:var(--sm);border-color:var(--sm)}
+  .formula .chip{padding:5px 11px;border-radius:8px;font-weight:700;font-family:var(--sans);font-size:.82em;border:2px solid}
+  .formula .mi{background:var(--mi-bg);color:var(--mi);border-color:var(--mi)}
+  .formula .np{background:var(--np-bg);color:var(--np);border-color:var(--np)}
+  .formula .sw{background:var(--sw-bg);color:var(--sw);border-color:var(--sw)}
+  .formula .ms{background:var(--ms-bg);color:var(--ms);border-color:var(--ms)}
   .formula .cp{background:var(--cp-bg);color:var(--cp);border-color:var(--cp)}
   .formula .exp{font-size:.62em;color:var(--ice)}
-
+  .fnote{color:#a9bccd;font-size:13.5px;margin-bottom:30px;font-family:var(--mono)}
   .btns{display:flex;flex-wrap:wrap;gap:14px}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:11px;font-weight:700;
-    font-size:15.5px;transition:transform .15s,box-shadow .15s,background .2s;border:2px solid transparent}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:11px;font-weight:700;font-size:15.5px;transition:transform .15s,box-shadow .15s,background .2s;border:2px solid transparent}
   .btn:hover{transform:translateY(-2px)}
   .btn-primary{background:var(--ice);color:var(--navy);box-shadow:0 8px 26px rgba(158,200,228,.28)}
-  .btn-primary:hover{background:#fff;box-shadow:0 12px 32px rgba(158,200,228,.4)}
+  .btn-primary:hover{background:#fff}
   .btn-ghost{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.25)}
   .btn-ghost:hover{background:rgba(255,255,255,.13)}
-
-  /* ===== SECTIONS ===== */
-  section{padding:76px 0}
-  .sec-head{text-align:center;max-width:60ch;margin:0 auto 46px}
-  .sec-head .kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:3px;color:var(--im);
-    text-transform:uppercase;font-weight:500}
+  section{padding:72px 0}
+  .sec-head{text-align:center;max-width:62ch;margin:0 auto 44px}
+  .sec-head .kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:3px;color:var(--mi);text-transform:uppercase;font-weight:500}
   .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.5vw,38px);color:var(--navy);margin:10px 0 12px;line-height:1.15}
   .sec-head p{color:var(--text2);font-size:16.5px}
   .alt{background:var(--bg2)}
-
-  /* abstract */
-  .abstract{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;
-    padding:38px 40px;box-shadow:0 4px 24px rgba(13,42,66,.05)}
-  .abstract .lbl{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--im);text-transform:uppercase;font-weight:500;margin-bottom:12px}
-  .abstract p{font-size:16.5px;color:#33404d;margin-bottom:16px}
+  .abstract{max-width:860px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:38px 40px;box-shadow:0 4px 24px rgba(13,42,66,.05)}
+  .abstract .lbl{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--mi);text-transform:uppercase;font-weight:500;margin-bottom:12px}
+  .abstract p{font-size:16px;color:#33404d;margin-bottom:14px}
   .abstract .kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
-  .abstract .kw span{background:var(--im-bg);color:var(--im);padding:5px 13px;border-radius:20px;font-size:13.5px;font-weight:600}
-  .abstract .toggle-en{margin-top:18px;font-size:14.5px;color:var(--im);font-weight:600;cursor:pointer;
-    background:none;border:0;display:inline-flex;align-items:center;gap:6px;font-family:var(--sans)}
-  .abstract .en{display:none;font-size:15.5px;color:var(--text2);font-style:italic;margin-top:14px;
-    padding-top:16px;border-top:1px dashed var(--line)}
-  .abstract .en.show{display:block}
-
-  /* cards grid */
+  .abstract .kw span{background:var(--mi-bg);color:var(--mi);padding:5px 13px;border-radius:20px;font-size:13.5px;font-weight:600}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;
-    transition:transform .18s,box-shadow .18s,border-color .18s;position:relative;overflow:hidden}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:transform .18s,box-shadow .18s,border-color .18s;position:relative;overflow:hidden}
   .card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(13,42,66,.1);border-color:var(--ice2)}
   .card .ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:24px;margin-bottom:16px}
   .card h3{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--navy);margin-bottom:8px}
   .card p{color:var(--text2);font-size:15px;margin-bottom:18px}
-  .card .go{font-weight:700;font-size:14.5px;color:var(--im);display:inline-flex;align-items:center;gap:6px}
+  .card .go{font-weight:700;font-size:14.5px;color:var(--mi);display:inline-flex;align-items:center;gap:6px}
   .card .go .ar{transition:transform .2s}
   .card:hover .go .ar{transform:translateX(4px)}
   .card.feat{background:linear-gradient(155deg,var(--navy),var(--navy2));color:#fff;border:0}
   .card.feat h3{color:#fff}.card.feat p{color:#c5d4e1}.card.feat .go{color:var(--ice)}
-  .card .badge{position:absolute;top:18px;right:18px;background:var(--ve);color:#fff;font-size:11px;
-    font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px}
-
-  /* galería ecuaciones */
+  .card .badge{position:absolute;top:18px;right:18px;background:var(--sw);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px}
+  .card .badge.grey{background:#8ba0b3}
   .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-  .gitem{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;
-    transition:transform .18s,box-shadow .18s}
+  .gitem{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
   .gitem:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(13,42,66,.12)}
-  .gitem .thumb{background:var(--bg2);padding:14px;border-bottom:1px solid var(--line);aspect-ratio:16/8;
-    display:grid;place-items:center;overflow:hidden}
+  .gitem .thumb{background:var(--bg2);padding:14px;border-bottom:1px solid var(--line);aspect-ratio:16/8;display:grid;place-items:center;overflow:hidden}
   .gitem .thumb img{object-fit:contain;max-height:100%}
   .gitem .cap{padding:13px 16px}
   .gitem .cap .n{font-weight:700;font-size:14.5px;color:var(--navy)}
   .gitem .cap .d{font-size:13px;color:var(--text2)}
-
-  /* lightbox */
-  .lb{position:fixed;inset:0;background:rgba(8,20,32,.92);z-index:100;display:none;
-    align-items:center;justify-content:center;padding:30px;flex-direction:column;gap:16px}
+  .lb{position:fixed;inset:0;background:rgba(8,20,32,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:30px;flex-direction:column;gap:16px}
   .lb.open{display:flex}
-  .lb img{max-width:95%;max-height:82vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lb img{max-width:95%;max-height:82vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
   .lb .cap{color:#cfdce8;font-size:15px;font-weight:500}
-  .lb .close{position:absolute;top:20px;right:26px;color:#fff;font-size:34px;cursor:pointer;
-    background:none;border:0;line-height:1}
-  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);
-    color:#fff;border:0;font-size:30px;width:52px;height:52px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+  .lb .close{position:absolute;top:20px;right:26px;color:#fff;font-size:34px;cursor:pointer;background:none;border:0;line-height:1}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);color:#fff;border:0;font-size:30px;width:52px;height:52px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
   .lb .nav:hover{background:rgba(255,255,255,.22)}
   .lb .prev{left:24px}.lb .next{right:24px}
-
-  /* descargas */
-  .dl-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;max-width:900px;margin:0 auto}
-  .dl{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:13px;
-    padding:18px 20px;transition:border-color .18s,box-shadow .18s}
-  .dl:hover{border-color:var(--ice2);box-shadow:0 8px 24px rgba(13,42,66,.08)}
-  .dl .ic{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
-  .dl .meta{flex:1;min-width:0}
-  .dl .meta .t{font-weight:700;font-size:15px;color:var(--navy)}
-  .dl .meta .s{font-size:13px;color:var(--text2)}
-  .dl .arrow{color:var(--im);font-size:20px;font-weight:700}
-
-  /* footer */
+  .rev{max-width:900px;margin:0 auto;display:grid;gap:14px}
+  .rev .item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
+  .rev .item .k{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--mi);text-transform:uppercase;font-weight:600;padding-top:3px}
+  .rev .item p{color:#33404d;font-size:15px}
+  .rev .item p b{color:var(--navy)}
+  @media(max-width:640px){.rev .item{grid-template-columns:1fr}}
+  .repro{max-width:900px;margin:0 auto}
+  .repro pre{background:#0f1a26;color:#dbe6f0;border-radius:12px;padding:18px 20px;font-family:var(--mono);font-size:13.5px;overflow:auto;margin:14px 0 22px}
+  .repro p{color:#33404d;font-size:15.5px;margin-bottom:10px}
+  .repro table{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0 22px}
+  .repro th,.repro td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .repro th{color:var(--navy);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+  .repro td.mono{font-family:var(--mono);font-size:13px;white-space:nowrap}
   footer{background:var(--navy);color:#c5d4e1;padding:56px 0 34px;font-size:14.5px}
   footer .top{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;margin-bottom:36px}
   footer h4{color:#fff;font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:14px}
-  footer .cite{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;
-    padding:18px 20px;font-size:13.5px;line-height:1.7;max-width:600px;color:#b3c4d3}
+  footer .cite{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;font-size:13.5px;line-height:1.7;max-width:620px;color:#b3c4d3}
   footer .cite b{color:#fff}
   footer .col a{display:block;color:#a9bccd;margin-bottom:9px;transition:color .2s}
   footer .col a:hover{color:var(--ice)}
-  footer .bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;flex-wrap:wrap;
-    gap:12px;justify-content:space-between;color:#8ba0b3;font-size:13px}
+  footer .bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;color:#8ba0b3;font-size:13px}
   footer .bottom a{color:var(--ice)}
-
   .fade{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
   .fade.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="wrap">
-    <a href="#top" class="brand">Cyber Power<//a>
+    <a href="#top" class="brand">Cyber Power <b>&amp;</b> Maritime Power</a>
     <button class="menu-btn" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
     <div class="links" id="nl">
-      <a href="#proyecto">Project</a>
-      <a href="#materiales">Materials</a>
-      <a href="#ecuaciones">Equations</a>
+      <a href="#project">Project</a>
+      <a href="#materials">Materials</a>
+      <a href="#equations">Equations</a>
+      <a href="#reproducibility">Reproducibility</a>
+      <a href="#revision">Revision</a>
       <a href="simulator/simulator.html" class="cta">Open simulator ↗</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="eyebrow">Research in Maritime Power &amp; Cyber Power</div>
+    <div class="eyebrow">Research in maritime power &amp; cyber power</div>
     <h1>Cyber Power as a Structural Variable of Maritime Power</h1>
-    <p class="sub">A conceptual update of the maritime power formulation from the perspective of a middle regional power.</p>
-    <p class="byline"><b>CF Diego Edison Cabuya Padilla, PhD</b> · Naval Academy for Strategic Studies · Bogota, Colombia</p>
+    <p class="sub">A normalized multiplicative model for multidomain assessment of maritime power.</p>
+    <p class="byline"><b>Diego E. Cabuya-Padilla</b> · Naval Academy of Strategic Studies, Colombian Navy, and Poseidón Research Group, Naval School “Admiral Padilla”<br><b>Sergio Uribe-Cáceres</b> · Colombian War College “General Rafael Reyes Prieto”<br><b>Carlos A. Castaneda-Marroquin</b> · NAVTEG Research Group, Naval School “Admiral Padilla”</p>
+    <span class="status">Manuscript under review — IEEE Access (revised version resubmitted, October 2026)</span>
 
     <div class="formula" aria-label="Normalized maritime power formula">
-      <span class="pm">PM<sub>norm</sub></span>
+      <span class="pm">MP<sub>norm</sub></span>
       <span class="op">= [ (</span>
-      <span class="chip im">IM</span><span class="op">×</span><span class="chip pn">PN</span>
+      <span class="chip mi">MI</span><span class="op">×</span><span class="chip np">NP</span>
       <span class="op">) ×</span>
-      <span class="chip ve">VE</span><span class="op">×</span>
-      <span class="chip sm">SM<sup>γ</sup></span><span class="op">×</span>
+      <span class="chip sw">SW</span><span class="op">×</span>
+      <span class="chip ms">MS<sup>γ</sup></span><span class="op">×</span>
       <span class="chip cp">CP<sup>α</sup></span>
-      <span class="op">]</span><span class="exp">1/n_eff</span>
+      <span class="op">]</span><span class="exp">1/n<sub>eff</sub></span>
     </div>
+    <p class="fnote">n<sub>eff</sub> = 3 + γ + α &nbsp;·&nbsp; γ: weight of the security environment &nbsp;·&nbsp; α: weight of cyber dependence (not a measure of capability) &nbsp;·&nbsp; MP<sub>norm</sub> ∈ (0, 1]</p>
 
     <div class="btns">
       <a href="simulator/simulator.html" class="btn btn-primary">▶ Open the interactive simulator</a>
-      <a href="docs/article.pdf" class="btn btn-ghost">↓ Read the article</a>
+      <a href="#reproducibility" class="btn btn-ghost">⌁ Reproduce the results</a>
     </div>
   </div>
 </header>
 
-<!-- PROYECTO / ABSTRACT -->
-<section id="proyecto">
+<section id="project">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker">The project</div>
       <h2>From two variables to five: the sea is also exercised in cyberspace</h2>
-      <p>The classical formula <b>MP = MI × NP</b> does not capture the dynamics of digitalized maritime environments. This research updates it by incorporating <b>cyber power</b>, <b>strategic will</b>, and <b>maritime security</b> as structural variables, with a normalization that makes the result interpretable.</p>
+      <p>The classical formula <b>MP = MI × NP</b> does not capture the dynamics of digitalized maritime environments. This research extends it by incorporating <b>cyber power</b>, <b>strategic will</b>, and <b>maritime security</b> as structural variables, with a normalization that makes the result interpretable on a five-level scale.</p>
     </div>
     <div class="abstract fade">
       <div class="lbl">Abstract</div>
-      <p>The classical formulation of maritime power—the product of maritime interests and naval power—is insufficient to explain the dynamics of digitalized maritime environments. This work updates that formulation by incorporating cyber power, strategic will, and maritime security as structural variables. Through an analytical-conceptual approach and a normalized multiplicative model, the proposal yields interpretable results on a five-level scale. The Colombian case anchors the result on the scale of the most systematic available index and, on that basis, decomposes it to show that cyber power is the most efficient investment vector for middle regional powers. It concludes by proposing a National Maritime Power Index as a future research agenda, accompanied by an open-access interactive simulator that allows the model to be explored.</p>
-      
-      <div class="en" id="en">
-        <p>The classical formulation of sea power —the product of maritime interests and naval power— is insufficient to explain the dynamics of digitalized maritime environments. This work updates that formulation by incorporating cyber power, strategic will, and maritime security as structural variables. Through an analytical-conceptual approach and a normalized multiplicative model, the proposal yields interpretable results on a five-level scale. The Colombian case anchors the result on the scale of the most systematic available index and, on that basis, decomposes it to show that cyber power is the most efficient investment vector for middle powers. It concludes by proposing a national sea-power index as a future agenda, accompanied by an open-access interactive simulator to explore the model.</p>
-      </div>
+      <p>The classical formulation of maritime power—the product of maritime interests and naval power—has become insufficient to explain the dynamics of digitalized maritime environments, where navigation, communications, traffic management, port facilities, and ocean surveillance depend on interconnected digital infrastructures. This article proposes an extended formulation that incorporates cyber power, strategic will, and maritime security as structural variables of maritime power. Following an analytical-conceptual approach, the model adopts a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate, and whose output lies within the interval (0, 1], enabling a directly interpretable five-level scale.</p>
+      <p>The formulation is verified in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—confirming that every component equation preserves the required range; calibration and external validation are distinguished from verification and left to future work, and a global sensitivity analysis identifies maritime security—its value and its weight—as the main source of uncertainty. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index currently available and illustrative values for the other components, the model places the country at the Moderate level and decomposes the result to show which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. The article concludes by proposing a National Maritime Power Index as a research agenda, supported by an open-access interactive simulator that allows the model to be explored.</p>
       <div class="kw">
-        <span>cyber defense</span><span>cyber power</span><span>cyber security</span>
-        <span>maritime power</span><span>maritime security</span><span>strategic will</span>
+        <span>cyberdefense</span><span>cyber power</span><span>cybersecurity</span><span>maritime domain awareness</span>
+        <span>maritime power</span><span>maritime security</span><span>strategic assessment</span><span>strategic will</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MATERIALES -->
-<section id="materiales" class="alt">
+<section id="materials" class="alt">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker">Explore the project</div>
       <h2>Everything in one place</h2>
-      <p>The article, the interactive model, and all outreach materials, one click away.</p>
+      <p>The interactive model, the verification script, the documented literature search, and the figures of the revised manuscript.</p>
     </div>
     <div class="grid">
-      <a class="card fade" href="docs/article.pdf">
-        <div class="ico" style="background:var(--im-bg)">📄</div>
-        <h3>Scientific article</h3>
-        <p>The complete document with the formulation, methodology, Colombian case study, and the model's nine equations.</p>
-        <span class="go">Read the article <span class="ar">→</span></span>
+      <a class="card feat fade" href="simulator/simulator.html">
+        <span class="badge">INTERACTIVE</span>
+        <div class="ico" style="background:rgba(158,200,228,.2)">🎛️</div>
+        <h3>Model simulator</h3>
+        <p>Level-1 components and parameters, optional Level-2 disaggregation, elasticities and marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the Colombian reference case and the constructed profiles of the article.</p>
+        <span class="go">Open simulator <span class="ar">→</span></span>
       </a>
-      <a class="card fade" href="presentation/presentation.pdf">
-        <div class="ico" style="background:var(--pn-bg)">📊</div>
-        <h3>Executive presentation</h3>
-        <p>17 slides covering the problem, theoretical framework, extended formula, and case study. Ideal for presentation.</p>
-        <span class="go">View presentation <span class="ar">→</span></span>
+      <a class="card fade" href="verification/verify_model.py">
+        <span class="badge">PYTHON</span>
+        <div class="ico" style="background:var(--sw-bg)">🧪</div>
+        <h3>Verification script</h3>
+        <p>Regenerates every number of the verification and case-study sections: the verified properties, the sensitivity table, the constructed profiles, the uncertainty analysis with Sobol' indices, Proposition 1 and Corollary 1. Standard library only.</p>
+        <span class="go">View script <span class="ar">→</span></span>
       </a>
-      <a class="card fade" href="infographic/Infographic.pdf">
-        <div class="ico" style="background:var(--ve-bg)">🗺️</div>
-        <h3>Infographic</h3>
-        <p>A single sheet synthesizing the entire project: from the classical to the extended formula, the evidence, and the five contributions.</p>
-        <span class="go">View infographic <span class="ar">→</span></span>
+      <a class="card fade" href="search/README.md">
+        <span class="badge">DATA</span>
+        <div class="ico" style="background:var(--mi-bg)">🔎</div>
+        <h3>Documented literature search</h3>
+        <p>Query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026), and the screening log of the 812 unique records with the decision for each one.</p>
+        <span class="go">View search records <span class="ar">→</span></span>
       </a>
-      <a class="card fade" href="#ecuaciones">
-        <div class="ico" style="background:var(--sm-bg)">🧮</div>
+      <a class="card fade" href="#equations">
+        <div class="ico" style="background:var(--ms-bg)">🧮</div>
         <h3>Equation plates</h3>
-        <p>Eight didactic figures explaining each equation of the model, variable by variable, with its conventions.</p>
+        <p>Eight didactic figures explaining the model equation by equation, with the notation and the operational boundaries of the revised manuscript.</p>
         <span class="go">View gallery <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="figures/schemes/Architecture_two_levels.pdf">
         <div class="ico" style="background:var(--cp-bg)">🏗️</div>
         <h3>Model architecture</h3>
-        <p>The two-level scheme: the general expression and the disaggregation of each component into its sub-factors.</p>
+        <p>The two-level scheme of the extended formula: the general normalized expression, the disaggregation of each component, and the operational boundaries between components (Figure 1 of the manuscript).</p>
         <span class="go">View scheme <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="figures/schemes/Bibliographic_synthesis.pdf">
-        <div class="ico" style="background:var(--im-bg)">📚</div>
+        <div class="ico" style="background:var(--np-bg)">📚</div>
         <h3>Bibliographic synthesis</h3>
-        <p>The foundational sources of the research, organized by component with their contribution to the model.</p>
+        <p>The sources that support each component and methodological decision of the model, with their IEEE reference numbers (Table 8 of the manuscript).</p>
         <span class="go">View synthesis <span class="ar">→</span></span>
       </a>
-      <a class="card feat fade" href="simulator/simulator.html">
-        <span class="badge">INTERACTIVE</span>
-        <div class="ico" style="background:rgba(158,200,228,.2)">🎛️</div>
-        <h3>Model simulator</h3>
-        <p>27 controls, 11 pre-calibrated countries of the Americas, and live visualizations. Modify any variable and observe how normalized maritime power changes.</p>
-        <span class="go">Open simulator <span class="ar">→</span></span>
+      <a class="card fade" href="#manuscript">
+        <div class="ico" style="background:var(--mi-bg)">📄</div>
+        <h3>Manuscript</h3>
+        <p>Under review at IEEE Access. The revised version was resubmitted in October 2026 after a first round of peer review; the PDF will be posted here when the editorial process allows it.</p>
+        <span class="go">Status and citation <span class="ar">→</span></span>
       </a>
-      <a class="card fade" href="presentation/simulator_guide.pdf">
-        <div class="ico" style="background:var(--sm-bg)">📖</div>
-        <h3>Simulator guide</h3>
-        <p>Three slides explaining how to operate the model: the controls, the preloaded profiles, and how to read the results.</p>
-        <span class="go">View guide <span class="ar">→</span></span>
+      <a class="card fade" href="archive/2026-08_pre-revision/">
+        <span class="badge grey">ARCHIVE</span>
+        <div class="ico" style="background:#eef1f4">🗄️</div>
+        <h3>Pre-revision materials</h3>
+        <p>The presentation, infographic, and submitted version of August–September 2026. They predate the revision and contain statements that the revised manuscript has corrected; kept for the record only.</p>
+        <span class="go">Browse archive <span class="ar">→</span></span>
       </a>
     </div>
-    </div>
+  </div>
 </section>
 
-<!-- ECUACIONES -->
-<section id="ecuaciones">
+<section id="equations">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker">The model, step by step</div>
       <h2>The equations of maritime power</h2>
-      <p>From the essential idea to the fully expanded formula. Click any to enlarge.</p>
+      <p>From the classical core to the fully expanded formula, following the numbering of the revised manuscript. Click any plate to enlarge.</p>
     </div>
     <div class="gal" id="gal"></div>
   </div>
 </section>
 
+<section id="reproducibility" class="alt">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker">Open science</div>
+      <h2>Reproduce the results</h2>
+      <p>Every number in the verification and case-study sections of the manuscript can be regenerated from this repository.</p>
+    </div>
+    <div class="repro fade">
+      <p><b>1. Verification script.</b> Runs the numerical checks of Proposition 1 on random draws, regenerates the sensitivity table, the constructed profiles, the break-even cost ratios of Corollary 1 and the uncertainty analysis with Sobol' indices. Python 3, standard library only (about one minute for the canonical run).</p>
+      <pre>python3 verification/verify_model.py 300000   # canonical run quoted in the article
+python3 verification/verify_model.py          # quicker check with 200,000 draws</pre>
+      <p>The reference output is kept in <code>verification/verification_output.txt</code>.</p>
+      <p><b>2. Reference values of the Colombian case</b> (all set directly at Level 1; only MS derives from an external source).</p>
+      <table>
+        <tr><th>Component</th><th>Value</th><th>Origin</th></tr>
+        <tr><td class="mono">MI</td><td class="mono">0.60</td><td>Illustrative choice of the authors</td></tr>
+        <tr><td class="mono">NP</td><td class="mono">0.55</td><td>Illustrative choice of the authors</td></tr>
+        <tr><td class="mono">SW</td><td class="mono">0.48</td><td>Illustrative choice of the authors</td></tr>
+        <tr><td class="mono">MS</td><td class="mono">0.24</td><td>Position percentile of Colombia's rank, 75th of 99, in the maritime security index of Vargas Suárez et al. (2021): (99 − 75)/98 ≈ 0.24</td></tr>
+        <tr><td class="mono">CP</td><td class="mono">0.40</td><td>Illustrative choice of the authors (upper end of the <i>basic</i> maturity band)</td></tr>
+        <tr><td class="mono">α · γ</td><td class="mono">0.55 · 0.70</td><td>Illustrative weights; n<sub>eff</sub> = 4.25</td></tr>
+        <tr><td class="mono">MP<sub>norm</sub></td><td class="mono">0.455</td><td>Moderate level; G = 0.464, so a larger α lowers the index (Proposition 1)</td></tr>
+      </table>
+      <p><b>3. Documented literature search.</b> The query strings, the raw records, and the screening decisions are in <a href="search/README.md" style="color:var(--mi);font-weight:600">search/</a>; the OpenAlex queries can be re-run with <code>search/openalex_search.py</code>.</p>
+    </div>
+  </div>
+</section>
 
+<section id="revision">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker">October 2026</div>
+      <h2>What changed in the revision</h2>
+      <p>The materials on this site follow the revised manuscript. The main changes with respect to the submitted version are:</p>
+    </div>
+    <div class="rev fade">
+      <div class="item"><div class="k">α and CP</div><p><b>α is the weight of cyber dependence</b>, a property of the maritime system, and no longer a cyber-maturity index; maturity is read on CP itself in five bands. Proposition 1 shows that raising α raises MP<sub>norm</sub> only if CP exceeds the geometric mean of the rest of the system.</p></div>
+      <div class="item"><div class="k">Concavity</div><p>MP<sub>norm</sub> is strictly concave in every component for any α &gt; 0, because the normalized exponent α/(3 + γ + α) is always below one; concavity does not single out cyber power.</p></div>
+      <div class="item"><div class="k">Efficiency</div><p>The claim that cyber power is the most efficient investment vector was <b>removed</b> and replaced by Corollary 1, a testable condition on relative unit costs (break-even ratios of 1.21, 1.32, 1.52 and 2.12 for Colombia). Sensitivity measures responsiveness, not efficiency.</p></div>
+      <div class="item"><div class="k">Colombia</div><p>Only maritime security derives from an external source, as the position percentile of Colombia's rank (0.24); the other values are illustrative. MP<sub>norm</sub> = 0.455 (Moderate). No calibration or external validation is claimed.</p></div>
+      <div class="item"><div class="k">Verification</div><p>Verification, calibration and external validation are distinguished (Sargent, 2011). An uncertainty and variance-based sensitivity analysis with Sobol' indices was added; a four-step protocol for calibration and external validation and an operationalization table were specified.</p></div>
+      <div class="item"><div class="k">Boundaries</div><p>Operational boundaries between components were made explicit: tactical-operational cyberdefense in NP, strategic cyberdefense (CD<sub>m</sub>) in CP, cyber diplomacy only in CP, maritime security as incidence of threats; the resilience sub-component became <b>maritime recovery capacity (RC<sub>m</sub>)</b>, with Σβ = 1.</p></div>
+      <div class="item"><div class="k">Literature</div><p>The literature search was repeated as a documented, reproducible procedure (OpenAlex and Scopus, 2014–2026); existing composite measures of maritime and naval power are discussed and shown to be additive and without cyber power.</p></div>
+    </div>
+  </div>
+</section>
 
-<!-- FOOTER -->
-<footer>
+<footer id="manuscript">
   <div class="wrap">
     <div class="top">
-      <div style="max-width:620px">
+      <div style="max-width:640px">
         <h4>How to cite</h4>
         <div class="cite">
-          Cabuya Padilla, D. E. (2026). <b>Cyber Power as a Structural Variable of Maritime Power: A Conceptual Update of Its Formulation.</b> Naval Academy for Strategic Studies, Bogota. <span style="color:#8ba0b3">Research manuscript.</span>
+          Cabuya-Padilla, D. E., Uribe-Cáceres, S., &amp; Castaneda-Marroquin, C. A. (2026). <b>Cyber power as a structural variable of maritime power: A normalized multiplicative model for multidomain assessment of maritime power.</b> Manuscript under review, <i>IEEE Access</i>. Supporting materials: <span style="color:var(--ice)">https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power</span>
         </div>
       </div>
       <div class="col">
         <h4>Navigation</h4>
-        <a href="#proyecto">The project</a>
-        <a href="#materiales">Materials</a>
-        <a href="#ecuaciones">Equations</a>
+        <a href="#project">The project</a>
+        <a href="#materials">Materials</a>
+        <a href="#equations">Equations</a>
+        <a href="#reproducibility">Reproducibility</a>
         <a href="simulator/simulator.html">Simulator ↗</a>
       </div>
     </div>
     <div class="bottom">
-      <span>© 2026 Diego Edison Cabuya Padilla · Naval Academy for Strategic Studies</span>
-      <span><a href="https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo">View repository on GitHub ↗</a></span>
+      <span>© 2026 D. E. Cabuya-Padilla, S. Uribe-Cáceres, C. A. Castaneda-Marroquin · Materials released under CC BY 4.0</span>
+      <span><a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power">View repository on GitHub ↗</a></span>
     </div>
   </div>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lb" id="lb" onclick="if(event.target.id==='lb')closeLb()">
   <button class="close" onclick="closeLb()">×</button>
   <button class="nav prev" onclick="event.stopPropagation();navLb(-1)">‹</button>
@@ -352,39 +354,31 @@
 </div>
 
 <script>
-  // Galería de ecuaciones
   const EQS=[
-    ['figures/equations/Base_conceptual_equation.png','Eq. 1 · Essential idea','MP = (MI × NP) × SW × MS × CP'],
-    ['figures/equations/Eq1b-1c_Normalization.png','Eq. 1b–1c · Normalization','From raw product to index (0,1]'],
-    ['figures/equations/Eq2_Maritime_Interests.png','Eq. 2 · Maritime Interests','Weighted sub-index'],
-    ['figures/equations/Eq3_Naval_Power.png','Eq. 3 · Naval Power','Force × Position × MDA'],
-    ['figures/equations/Eq4_Strategic_Will.png','Eq. 4 · Strategic Will','Political · Institutional · Social'],
-    ['figures/equations/Eq5_Maritime_Security.png','Eq. 5 · Maritime Security','Conflicts · Terrorism · Blue crime'],
-    ['figures/equations/Eq6_Cyber_Power.png','Eq. 6 · Cyber Power','Cyber security · Cyber defense · Cyber resilience'],
-    ['figures/equations/Eq7_Expanded_formula.png','Eq. 7 · Expanded formula','The two levels in one expression'],
+    ['figures/equations/Base_classical_core.png','Classical core','MP = MI × NP'],
+    ['figures/equations/Eq1-3_Extended_and_normalized.png','Eqs. 1–3 · Extended and normalized expression','Level 1, n_eff = 3 + γ + α'],
+    ['figures/equations/Eq4_Maritime_Interests.png','Eq. 4 · Maritime Interests','Weighted sub-index'],
+    ['figures/equations/Eq5_Naval_Power.png','Eq. 5 · Naval Power','Force × Position × MDA^μ'],
+    ['figures/equations/Eq6_Strategic_Will.png','Eq. 6 · Strategic Will','Political · Institutional · Social'],
+    ['figures/equations/Eq7_Maritime_Security.png','Eq. 7 · Maritime Security','Interstate conflicts · Terrorism · Blue crime'],
+    ['figures/equations/Eq8_Cyber_Power.png','Eq. 8 · Cyber Power','Cybersecurity · Cyberdefense · Recovery capacity · Cyber diplomacy'],
+    ['figures/equations/Eq9_Expanded_formula.png','Eq. 9 · Fully expanded formula','The two levels in one expression'],
   ];
   const gal=document.getElementById('gal');
   EQS.forEach(([src,n,d],i)=>{
     const el=document.createElement('div');
     el.className='gitem';el.onclick=()=>openLb(i);
-    el.innerHTML=`<div class="thumb"><img src="${src}" alt="${n}" loading="lazy"></div>
-      <div class="cap"><div class="n">${n}</div><div class="d">${d}</div></div>`;
+    el.innerHTML=`<div class="thumb"><img src="${src}" alt="${n}" loading="lazy"></div><div class="cap"><div class="n">${n}</div><div class="d">${d}</div></div>`;
     gal.appendChild(el);
   });
-  // Lightbox
   let cur=0;
   const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
   function openLb(i){cur=i;lbimg.src=EQS[i][0];lbcap.textContent=EQS[i][1]+' — '+EQS[i][2];lb.classList.add('open');document.body.style.overflow='hidden';}
   function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
   function navLb(d){cur=(cur+d+EQS.length)%EQS.length;lbimg.src=EQS[cur][0];lbcap.textContent=EQS[cur][1]+' — '+EQS[cur][2];}
-  document.addEventListener('keydown',e=>{
-    if(!lb.classList.contains('open'))return;
-    if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')navLb(1);if(e.key==='ArrowLeft')navLb(-1);
-  });
-  // Fade-in on scroll
+  document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')navLb(1);if(e.key==='ArrowLeft')navLb(-1);});
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
   document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-  // Cerrar menú móvil al navegar
   document.querySelectorAll('#nl a').forEach(a=>a.onclick=()=>document.getElementById('nl').classList.remove('open'));
 </script>
 </body>
