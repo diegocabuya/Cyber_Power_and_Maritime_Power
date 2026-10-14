@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Simulator — Extended Maritime Power</title>
+<title>Simulator — Extended Maritime Power Model</title>
+<meta name="description" content="Interactive simulator of the normalized multiplicative model of maritime power with cyber power as a structural variable.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <style>
-:root{--bg0:#080a0d;--bg1:#0f1218;--bg2:#161b24;--bg3:#1c2230;--border:#252c3c;--border2:#313a52;--text:#e2e6f0;--text2:#a3adc4;--text3:#7c869e;--im:#4a8ff5;--pn:#9b7ff5;--ve:#2dd4a0;--sm:#f0b429;--cp:#e8504a}
+:root{--bg0:#080a0d;--bg1:#0f1218;--bg2:#161b24;--bg3:#1c2230;--border:#252c3c;--border2:#313a52;--text:#e2e6f0;--text2:#a3adc4;--text3:#7c869e;--mi:#4a8ff5;--np:#9b7ff5;--sw:#2dd4a0;--ms:#f0b429;--cp:#e8504a}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg0);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:12px}
+a{color:#7ab2f7}
 .header{background:linear-gradient(160deg,#080b14,#0d1222,#060910);border-bottom:1px solid var(--border);padding:18px 28px 14px}
 .h-title{font-size:15px;font-weight:600;color:#fff;letter-spacing:-.2px;line-height:1.35;margin-bottom:3px}
-.h-title span{color:var(--im)}
+.h-title span{color:var(--mi)}
 .h-author{font-size:11px;color:#b0bcd0;margin-bottom:1px}
 .h-loc{font-size:10px;color:var(--text3);margin-bottom:12px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -28,7 +30,7 @@ body{background:var(--bg0);color:var(--text);font-family:'Segoe UI',system-ui,sa
 .vv{background:rgba(45,212,160,.1);border-color:rgba(45,212,160,.3);color:#5dd9b4}
 .vs{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.3);color:#f5c65c}
 .vc{background:rgba(232,80,74,.1);border-color:rgba(232,80,74,.3);color:#ee7874}
-.vx{background:rgba(180,180,200,.07);border-color:rgba(180,180,200,.18);color:var(--text2)}
+.vx{background:rgba(180,180,200,.07);border-color:rgba(180,180,200,.18);color:var(--text2);font-weight:500}
 .main{padding:13px 22px;max-width:1300px;margin:0 auto}
 .pm-hero{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--border2);border-radius:11px;padding:13px 18px;display:flex;align-items:center;gap:16px;margin-bottom:11px}
 .pm-num{font-size:44px;font-weight:700;letter-spacing:-2px;line-height:1;transition:color .3s;min-width:102px;text-align:center}
@@ -36,17 +38,21 @@ body{background:var(--bg0);color:var(--text);font-family:'Segoe UI',system-ui,sa
 .pml{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:2px}
 .pm-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-bottom:3px}
 .pm-desc{font-size:10px;color:var(--text2);line-height:1.5}
-.pm-neff{font-size:8.5px;color:var(--text3);margin-top:3px;font-family:monospace;line-height:1.4}
+.pm-neff{font-size:8.5px;color:var(--text3);margin-top:3px;font-family:monospace;line-height:1.5}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
-.card{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.card{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:11px}
+.row2 .card{margin-bottom:0}
 .ct{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2);margin-bottom:8px}
+.note{font-size:8.5px;color:var(--text3);line-height:1.6;margin-top:6px}
+.note b{color:var(--text2)}
 .btn-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
-.btn{padding:4px 9px;border-radius:5px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);font-size:10px;font-weight:500;cursor:pointer;transition:all .15s}
-.btn:hover{border-color:var(--im);color:var(--text)}
+.btn{padding:4px 9px;border-radius:5px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);font-size:10px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn:hover{border-color:var(--mi);color:var(--text)}
+.btn.on{background:rgba(74,143,245,.15);border-color:var(--mi);color:#9cc2fa}
 .btn.ap{background:rgba(232,80,74,.15);border-color:#e8504a;color:#e8504a}
 .btn.ar{background:rgba(240,180,41,.15);border-color:#f0b429;color:#f0b429}
 .btn.ao{background:rgba(45,212,160,.15);border-color:#2dd4a0;color:#2dd4a0}
-.btn.ac{background:rgba(74,143,245,.15);border-color:var(--im);color:var(--im)}
+.btn.ac{background:rgba(255,205,0,.15);border-color:#FFCD00;color:#FFCD00}
 .cmp-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
 .pill{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:20px;font-size:9px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer}
 .pill.sel{border-color:#fff;color:#fff}
@@ -54,7 +60,7 @@ body{background:var(--bg0);color:var(--text);font-family:'Segoe UI',system-ui,sa
 .gauges{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:11px}
 .gw{background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:7px 5px 4px;text-align:center}
 .gl{font-size:10px;font-weight:700;margin-top:2px}
-.gs{font-size:8px;color:var(--text3);margin-top:1px}
+.gs{font-size:8px;color:var(--text3);margin-top:1px;line-height:1.4}
 .cg{background:var(--bg2);border-radius:7px;padding:8px 10px;margin-bottom:6px}
 .cg:last-child{margin-bottom:0}
 .cgh{display:flex;align-items:center;gap:6px;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--border)}
@@ -62,18 +68,19 @@ body{background:var(--bg0);color:var(--text);font-family:'Segoe UI',system-ui,sa
 .cgn{font-size:10px;font-weight:600;line-height:1.2}
 .cge{font-size:8px;font-family:monospace;color:var(--text3);margin-top:1px}
 .sg{margin-bottom:5px}
-.sg:last-child{margin-bottom:0}
-.sgl{font-size:7.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:3px;padding-left:1px}
+.sgl{font-size:7.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:3px;padding-left:1px;display:flex;align-items:center;gap:6px}
+.sgl label{cursor:pointer;color:var(--text2);text-transform:none;letter-spacing:0;font-weight:500}
 .sr{display:flex;align-items:center;gap:6px;margin-bottom:3px}
-.sr:last-child{margin-bottom:0}
-.sk{font-size:9px;font-weight:700;width:28px;flex-shrink:0}
-.sd{font-size:8.5px;color:var(--text3);width:138px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.sk{font-size:9px;font-weight:700;width:36px;flex-shrink:0}
+.sd{font-size:8.5px;color:var(--text3);width:150px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--thumb,#fff);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45)}input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--thumb,#fff);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45);cursor:pointer}
-.sv{font-size:9px;font-weight:700;width:30px;text-align:right;font-family:monospace;flex-shrink:0}
-.ssep{height:1px;background:var(--border);margin:4px 0}
+input[type=range]:disabled{opacity:.35;cursor:not-allowed}
+.sv{font-size:9px;font-weight:700;width:34px;text-align:right;font-family:monospace;flex-shrink:0}
+.l2{display:none;margin-top:4px;padding:6px 8px;border-left:2px solid var(--border2);background:rgba(255,255,255,.02);border-radius:0 6px 6px 0}
+.l2.open{display:block}
 .cmp-ch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px}
-.ch230{position:relative;height:360px}
+.ch360{position:relative;height:360px}
 .ch210{position:relative;height:210px}
 .legrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;justify-content:center}
 .li{display:flex;align-items:center;gap:3px;font-size:9px;color:var(--text2)}
@@ -82,94 +89,116 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 .stbl th{text-align:left;padding:3px 5px;color:var(--text3);font-size:8px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border)}
 .stbl td{padding:4px 5px;border-bottom:1px solid var(--border)}
 .stbl tr:last-child td{border-bottom:none}
+.mono{font-family:monospace}
 .lb{display:inline-block;padding:1px 6px;border-radius:3px;font-size:8.5px;font-weight:600}
-.cf{color:#FFCD00;font-size:8px;margin-top:1px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:6px}
+.kv div{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
+.kv .k{font-size:7.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3)}
+.kv .v{font-size:13px;font-weight:700;font-family:monospace;margin-top:1px}
+.kv .s{font-size:8px;color:var(--text3)}
+@media(max-width:860px){.row2,.fgrid,.cmp-ch{grid-template-columns:1fr}.gauges{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="h-title"><span>Cyber power</span> as a structural variable of maritime power:<br>a conceptual update of its formulation</div>
-  <div class="h-author">Diego Edison Cabuya Padilla, PhD</div>
-  <div class="h-loc">Bogota, Colombia · 2026</div>
+  <div class="h-title"><span>Cyber power</span> as a structural variable of maritime power:<br>a normalized multiplicative model for multidomain assessment of maritime power</div>
+  <div class="h-author">Diego E. Cabuya-Padilla · Sergio Uribe-Cáceres · Carlos A. Castaneda-Marroquin</div>
+  <div class="h-loc">Manuscript under review (IEEE Access, resubmitted October 2026) · Interactive simulator, revised version · <a href="../index.html">project site</a> · <a href="https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power">repository</a></div>
   <div class="fgrid">
     <div class="fblock">
-      <div class="flbl">General formula — Level 1</div>
-      <div class="feq">PM = (IM × PN) × VE × SM<sup>γ</sup> × CP<sup>α</sup></div>
+      <div class="flbl">General expression — Level 1 (Eq. 1)</div>
+      <div class="feq">MP = (MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup></div>
       <div class="vpills">
         <span class="vp vi">MI — Maritime Interests</span>
         <span class="vp vp2">NP — Naval Power</span>
         <span class="vp vv">SW — Strategic Will</span>
         <span class="vp vs">MS — Maritime Security</span>
         <span class="vp vc">CP — Cyber Power</span>
-        <span class="vp vx">γ — MS weight · α — SCMI</span>
+        <span class="vp vx">γ — weight of the security environment · α — weight of cyber dependence</span>
       </div>
     </div>
     <div class="fblock b2">
-      <div class="flbl">Normalized formula — Eq. (1b-1c)</div>
-      <div class="feq">PM<sub>norm</sub> = [ PM ]<sup>1/n<sub>eff</sub></sup></div>
-      <div class="fnote">n<sub>eff</sub> = 3 + γ + α &nbsp;·&nbsp; PM<sub>norm</sub> ∈ (0, 1]</div>
+      <div class="flbl">Normalized formula — Eqs. (2)–(3)</div>
+      <div class="feq">MP<sub>norm</sub> = [ MP ]<sup>1/n<sub>eff</sub></sup> &nbsp;·&nbsp; n<sub>eff</sub> = 3 + γ + α</div>
+      <div class="fnote">weighted geometric mean: ω<sub>MI</sub> = ω<sub>NP</sub> = ω<sub>SW</sub> = 1/n<sub>eff</sub>, ω<sub>MS</sub> = γ/n<sub>eff</sub>, ω<sub>CP</sub> = α/n<sub>eff</sub> · MP<sub>norm</sub> ∈ (0, 1]</div>
       <div class="vpills">
-        <span class="vp vx">Normalization: geometric mean — UNDP (2010); OECD (2008)</span>
-        <span class="vp vx">The (0, 1] scale is comparable with the maritime power index of Vargas Suárez et al. (2021); this model adds the component breakdown that the latter does not distinguish.</span>
+        <span class="vp vx">Proposition 1: MP<sub>norm</sub> = G<sup>1−w</sup> · CP<sup>w</sup>, with G the geometric mean of the rest of the system and w = α/n<sub>eff</sub></span>
+        <span class="vp vx">UNDP (2010); OECD–JRC (2008)</span>
       </div>
     </div>
   </div>
 </div>
 
 <div class="main">
-  <div class="row2">
-    <div class="card">
-      <div class="ct">Validation scenarios — generic profiles</div>
-      <div class="btn-row">
-        <button class="btn" id="b-pes" onclick="loadP('pes')">🔴 Critical profile</button>
-        <button class="btn" id="b-ref" onclick="loadP('ref')">🟡 Reference profile</button>
-        <button class="btn" id="b-opt" onclick="loadP('opt')">🟢 Consolidated profile</button>
-        <button class="btn" onclick="resetAll()" title="Reset">↺</button>
-      </div>
-      <div style="font-size:8px;color:var(--text3);margin-bottom:2px">Compare in charts:</div>
-      <div class="cmp-row">
-        <span class="pill" id="p-pes" onclick="tCmp('pes')"><span class="dot" style="background:#e8504a"></span>Critical</span>
-        <span class="pill" id="p-ref" onclick="tCmp('ref')"><span class="dot" style="background:#f0b429"></span>Reference</span>
-        <span class="pill" id="p-opt" onclick="tCmp('opt')"><span class="dot" style="background:#2dd4a0"></span>Consolidated</span>
-      </div>
+
+  <div class="card">
+    <div class="ct">Scenarios — reference case and constructed profiles</div>
+    <div class="btn-row">
+      <button class="btn" id="b-col" onclick="loadS('col')">🇨🇴 Colombia — reference case (Table 4)</button>
+      <button class="btn" id="b-pes" onclick="loadS('pes')">🔴 Critical profile</button>
+      <button class="btn" id="b-ref" onclick="loadS('ref')">🟡 Reference profile</button>
+      <button class="btn" id="b-opt" onclick="loadS('opt')">🟢 Consolidated profile</button>
+      <button class="btn" onclick="loadS('col')" title="Reset to the Colombian reference case">↺ Reset</button>
     </div>
-    <div class="card">
-      <div class="ct">Countries of the Americas — calibrated indicative values</div>
-      <div class="btn-row" id="cbrow"></div>
-      <div style="font-size:8px;color:var(--text3);margin-bottom:2px">Compare in charts:</div>
-      <div class="cmp-row" id="cprow"></div>
-    </div>
+    <div class="note"><b>Colombia:</b> only MS derives from an external source — the country's 75th rank among 99 states in the maritime security index of Vargas Suárez et al. (2021), converted into a position percentile, (99 − 75)/98 ≈ 0.24; the other values and the parameters α = 0.55 and γ = 0.70 are illustrative choices of the authors, all set directly at Level 1. <b>Profiles:</b> scenarios constructed by the authors to span the five-level scale (Table 6); they are a consistency check, not validation cases. The model has been verified, but neither calibrated nor externally validated.</div>
   </div>
 
   <div class="pm-hero">
-    <div class="pm-num" id="pm-num">0.528</div>
+    <div class="pm-num" id="pm-num">0.455</div>
     <div class="pm-info">
       <div class="pml">Normalized Maritime Power — MP<sub>norm</sub></div>
       <div class="pm-badge" id="pm-badge">Moderate</div>
-      <div class="pm-desc" id="pm-desc">Developing maritime power with identifiable strategic gaps</div>
-      <div class="pm-neff" id="pm-neff">n_eff = 4.25</div>
+      <div class="pm-desc" id="pm-desc">Developing power, identifiable gaps</div>
+      <div class="pm-neff" id="pm-neff"></div>
     </div>
   </div>
 
   <div class="gauges" id="gauges"></div>
 
   <div class="row2">
-    <div class="card" style="overflow-y:auto;max-height:680px">
-      <div class="ct">Parameters by component — all ∈ (0, 1]</div>
+    <div class="card" style="overflow-y:auto;max-height:720px">
+      <div class="ct">Inputs — Level 1 components and parameters (all ∈ (0, 1])</div>
       <div id="sliders"></div>
+      <div class="note">Each component can be set directly (as in the article, Table 4) or, by ticking <b>from sub-components</b>, computed from its Level-2 disaggregation (Eqs. 5–8). The Level-2 values and weights are illustrative defaults for exploration; within-component weights are normalized to sum to one, including β<sub>1</sub>–β<sub>3</sub>.</div>
     </div>
-    <div class="card">
-      <div class="ct">Component radar — current state</div>
-      <div class="ch230"><canvas id="radar"></canvas></div>
+    <div>
+      <div class="card">
+        <div class="ct">Component radar — current state</div>
+        <div class="ch210"><canvas id="radar"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ct">Responsiveness, marginal return and the cost condition (Table 5 · Corollary 1)</div>
+        <table class="stbl">
+          <thead><tr><th>Component</th><th>Value</th><th>Elasticity ω<sub>k</sub></th><th>ΔMP<sub>norm</sub> at +20 %</th><th>∂MP<sub>norm</sub>/∂X<sub>k</sub></th><th>Break-even c<sub>k</sub>/c<sub>CP</sub></th></tr></thead>
+          <tbody id="sens-body"></tbody>
+        </table>
+        <div class="note">Under normalization the elasticity of MP<sub>norm</sub> with respect to each component equals its normalized weight ω<sub>k</sub>, so a 20 % increase changes the index by 1.2<sup>ω<sub>k</sub></sup> − 1. <b>Sensitivity measures responsiveness, not investment efficiency.</b> The break-even ratio is the relative unit cost c<sub>k</sub>/c<sub>CP</sub> above which raising cyber power is more efficient than raising component k (Corollary 1, valid for small investments); the model contains no cost data, so it is a testable condition rather than a result.</div>
+      </div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:11px">
-    <div class="ct">Comparison · selected scenarios and/or countries</div>
+  <div class="card">
+    <div class="ct">Uncertainty and robustness — Monte Carlo on the current values</div>
+    <div class="btn-row">
+      <button class="btn on" id="mc-10" onclick="setMC(.10)">components ± 0.10</button>
+      <button class="btn" id="mc-20" onclick="setMC(.20)">components ± 0.20</button>
+      <button class="btn" onclick="runMC()">▶ Run 20,000 draws</button>
+    </div>
+    <div class="kv" id="mc-out"><div><div class="k">Status</div><div class="v" style="font-size:10px;color:var(--text3)">not run yet</div></div></div>
+    <div class="note">The five components vary uniformly within ± d of their current values (bounded below at 0.01) and α and γ within [0.10, 1]; these ranges are assumptions, not estimates. Reported: median and 5th–95th percentile band of MP<sub>norm</sub>, share of draws by level, how often each component is the lowest and how often each has the largest marginal return. The full variance-based analysis with Sobol' indices (Table 7) is regenerated by <code>verification/verify_model.py</code>. The equal-weight arithmetic mean and the unweighted geometric mean of the current values are shown as an aggregation check.</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Comparison — select the scenarios to plot</div>
+    <div style="font-size:8px;color:var(--text3);margin-bottom:2px">Reference case and constructed profiles (article):</div>
+    <div class="cmp-row" id="cprow-a"></div>
+    <div style="font-size:8px;color:var(--text3);margin:8px 0 2px">Illustrative scenarios — author-set values, not measurements:</div>
+    <div class="cmp-row" id="cprow-b"></div>
+    <div class="note" style="margin-top:4px">The ten illustrative scenarios are provided only to exercise the comparison charts. Their values have no external source and have not been calibrated; all of them use the parameters of the reference case (α = 0.55, γ = 0.70) so that the comparison reflects the components, not the weights. Clicking a scenario adds it to the charts; the current state of the sliders is always plotted as <b>Current</b>.</div>
     <div class="cmp-ch">
       <div>
-        <div style="font-size:8px;color:var(--text3);margin-bottom:3px">PM<sub>norm</sub> — final index · scale (0,1]</div>
+        <div style="font-size:8px;color:var(--text3);margin-bottom:3px">MP<sub>norm</sub> — final index · scale (0, 1]</div>
         <div class="ch210"><canvas id="barpm"></canvas></div>
         <div class="legrow" id="pmleg"></div>
       </div>
@@ -179,115 +208,151 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
         <div class="legrow" id="bleg"></div>
       </div>
       <div>
-        <div style="font-size:8px;color:var(--text3);margin-bottom:3px">Radar — profile of the 5 components</div>
+        <div style="font-size:8px;color:var(--text3);margin-bottom:3px">Radar — profile of the five components</div>
         <div class="ch210"><canvas id="rcmp"></canvas></div>
         <div class="legrow" id="rleg"></div>
       </div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:11px">
-    <div class="ct">Sensitivity analysis — +20% variation per variable (Table A2)</div>
-    <table class="stbl">
-      <thead><tr><th>Variable</th><th>Valor base</th><th>+20% (efectivo)</th><th>ΔPM_norm</th><th>Elasticidad</th></tr></thead>
-      <tbody id="sens-body"></tbody>
-    </table>
-    <div style="margin-top:6px;font-size:8.5px;color:var(--text2);line-height:1.7">
-      Under normalization, the direct-weight factors (<b style="color:var(--im)">IM</b>, <b style="color:var(--pn)">PN</b>, <b style="color:var(--ve)">VE</b>) comparten la misma elasticidad 1.2<sup>1/n_eff</sup>−1, mientras que los exponentes <b>γ</b> y <b>α</b> dampen the proportional effect of <b style="color:var(--sm)">SM</b> y <b style="color:var(--cp)">CP</b>.
-      <span style="color:var(--text)">The strategic priority of CP does not derive from its point elasticity</span>, but from three convergent properties: its <b>brecha</b> (lowest baseline value in the system → greatest absolute margin for improvement), its <b>concavidad</b> (α &lt; 1 → decreasing marginal returns, highest at low cyber maturity) and its <b>transversal enabling character</b> (su degradación compromete simultáneamente PN y SM), a lo que se suma la asimetría de costo y tiempo frente a transformar IM o PN.
-    </div>
-  </div>
-
   <div class="card">
-    <div class="ct">Interpretation scale · MP<sub>norm</sub> ∈ (0, 1]</div>
+    <div class="ct">Interpretation scale · MP<sub>norm</sub> ∈ (0, 1] (Table 1)</div>
     <table class="stbl">
-      <thead><tr><th>PM_norm</th><th>Level</th><th>Strategic description</th></tr></thead>
+      <thead><tr><th>MP<sub>norm</sub></th><th>Level</th><th>Strategic description</th></tr></thead>
       <tbody>
-        <tr><td style="font-family:monospace;font-weight:600">0.81–1.00</td><td><span class="lb" style="background:rgba(45,212,160,.15);color:#2dd4a0">Alto</span></td><td style="color:var(--text2)">Consolidated power with global multidomain projection</td></tr>
-        <tr><td style="font-family:monospace;font-weight:600">0.61–0.80</td><td><span class="lb" style="background:rgba(74,143,245,.15);color:#4a8ff5">Significativo</span></td><td style="color:var(--text2)">Regional power with developed multidomain capabilities</td></tr>
-        <tr><td style="font-family:monospace;font-weight:600">0.41–0.60</td><td><span class="lb" style="background:rgba(240,180,41,.15);color:#f0b429">Moderate</span></td><td style="color:var(--text2)">Developing power with identifiable strategic gaps</td></tr>
-        <tr><td style="font-family:monospace;font-weight:600">0.21–0.40</td><td><span class="lb" style="background:rgba(232,80,74,.1);color:#e8504a">Bajo</span></td><td style="color:var(--text2)">Incipient capability with dominant structural vulnerabilities</td></tr>
-        <tr><td style="font-family:monospace;font-weight:600">0.00–0.20</td><td><span class="lb" style="background:rgba(232,80,74,.2);color:#ff7875">Critical</span></td><td style="color:var(--text2)">Structural maritime vulnerability — minimal use of the domain</td></tr>
+        <tr><td class="mono" style="font-weight:600">0.81–1.00</td><td><span class="lb" style="background:rgba(45,212,160,.15);color:#2dd4a0">High</span></td><td style="color:var(--text2)">Consolidated multidomain projection</td></tr>
+        <tr><td class="mono" style="font-weight:600">0.61–0.80</td><td><span class="lb" style="background:rgba(74,143,245,.15);color:#4a8ff5">Significant</span></td><td style="color:var(--text2)">Regional power, developed capabilities</td></tr>
+        <tr><td class="mono" style="font-weight:600">0.41–0.60</td><td><span class="lb" style="background:rgba(240,180,41,.15);color:#f0b429">Moderate</span></td><td style="color:var(--text2)">Developing power, identifiable gaps</td></tr>
+        <tr><td class="mono" style="font-weight:600">0.21–0.40</td><td><span class="lb" style="background:rgba(232,80,74,.1);color:#e8504a">Low</span></td><td style="color:var(--text2)">Incipient capability, structural vulnerabilities</td></tr>
+        <tr><td class="mono" style="font-weight:600">0.00–0.20</td><td><span class="lb" style="background:rgba(232,80,74,.2);color:#ff7875">Critical</span></td><td style="color:var(--text2)">Structural maritime vulnerability</td></tr>
       </tbody>
     </table>
-    <div style="margin-top:6px;font-size:8px;color:var(--text3);line-height:1.6">PM_norm = [(IM × PN) × VE × SM^γ × CP^α]^(1/n_eff) · n_eff = 3+γ+α · OCDE (2008); PNUD (2010) · Valores indicativos para validación del modelo</div>
+    <div class="note">The scale divides the range of the normalized formula into five equal intervals; its limits are conventions of the article, not thresholds estimated from data. <b>Cyber maturity is read on CP itself</b>, in five bands: incipient (0.00–0.20), basic (0.21–0.40), consolidating (0.41–0.60), advanced (0.61–0.80) and consolidated (0.81–1.00). <b>α is a weight, not a maturity index:</b> raising CP always raises MP<sub>norm</sub>, whereas raising α raises it only if CP exceeds G, the geometric mean of the rest of the system, and lowers it otherwise (Proposition 1). MP<sub>norm</sub> = [(MI × NP) × SW × MS<sup>γ</sup> × CP<sup>α</sup>]<sup>1/n<sub>eff</sub></sup>, n<sub>eff</sub> = 3 + γ + α.</div>
   </div>
 </div>
 
 <script>
-const PR={
-  pes:{l:'Perfil crítico',c:'#e8504a',IM:.35,F:.61,P:.71,MDA:.57,mu:.55,VP:.28,VI:.31,VS:.24,w1:.5,w2:.3,w3:.2,CI:.47,TE:.35,BC:.23,a1:.25,a2:.2,a3:.55,CS:.24,CD:.21,CR:.19,CDb:.15,b1:.35,b2:.35,b3:.2,dl:.1,alpha:.55,gamma:.7},
-  ref:{l:'Perfil de referencia',c:'#f0b429',IM:.65,F:.82,P:.85,MDA:.8,mu:.55,VP:.61,VI:.57,VS:.52,w1:.5,w2:.3,w3:.2,CI:.66,TE:.59,BC:.57,a1:.25,a2:.2,a3:.55,CS:.54,CD:.52,CR:.49,CDb:.48,b1:.35,b2:.35,b3:.2,dl:.35,alpha:.55,gamma:.7},
-  opt:{l:'Perfil consolidado',c:'#2dd4a0',IM:.9,F:.95,P:.96,MDA:.93,mu:.55,VP:.87,VI:.84,VS:.82,w1:.5,w2:.3,w3:.2,CI:.91,TE:.89,BC:.86,a1:.25,a2:.2,a3:.55,CS:.62,CD:.61,CR:.6,CDb:.8,b1:.35,b2:.35,b3:.2,dl:.7,alpha:.55,gamma:.7}
-};
-const CO={
-  col:{l:'🇨🇴 Colombia',c:'#FFCD00',IM:.6,F:.79,P:.81,MDA:.76,mu:.55,VP:.51,VI:.49,VS:.4,w1:.5,w2:.3,w3:.2,CI:.66,TE:.56,BC:.57,a1:.25,a2:.2,a3:.55,CS:.45,CD:.4,CR:.37,CDb:.3,b1:.35,b2:.35,b3:.2,dl:.25,alpha:.55,gamma:.7},
-  bra:{l:'🇧🇷 Brazil',c:'#009C3B',IM:.78,F:.88,P:.9,MDA:.83,mu:.6,VP:.72,VI:.68,VS:.64,w1:.5,w2:.3,w3:.2,CI:.68,TE:.62,BC:.65,a1:.25,a2:.2,a3:.55,CS:.62,CD:.6,CR:.58,CDb:.55,b1:.35,b2:.35,b3:.2,dl:.45,alpha:.65,gamma:.72},
-  arg:{l:'🇦🇷 Argentina',c:'#74ACDF',IM:.68,F:.83,P:.85,MDA:.77,mu:.55,VP:.65,VI:.62,VS:.59,w1:.5,w2:.3,w3:.2,CI:.68,TE:.62,BC:.65,a1:.25,a2:.2,a3:.55,CS:.52,CD:.48,CR:.46,CDb:.42,b1:.35,b2:.35,b3:.2,dl:.35,alpha:.58,gamma:.7},
-  usa:{l:'🇺🇸 USA',c:'#3C3B6E',IM:.95,F:.99,P:.98,MDA:.97,mu:.8,VP:.92,VI:.9,VS:.88,w1:.45,w2:.35,w3:.2,CI:.88,TE:.85,BC:.82,a1:.35,a2:.3,a3:.35,CS:.95,CD:.96,CR:.95,CDb:.92,b1:.33,b2:.4,b3:.2,dl:.85,alpha:.85,gamma:.78},
-  can:{l:'🇨🇦 Canada',c:'#D52B1E',IM:.78,F:.88,P:.91,MDA:.86,mu:.7,VP:.82,VI:.8,VS:.78,w1:.45,w2:.35,w3:.2,CI:.85,TE:.8,BC:.81,a1:.3,a2:.25,a3:.45,CS:.75,CD:.73,CR:.73,CDb:.75,b1:.35,b2:.35,b3:.2,dl:.35,alpha:.78,gamma:.72},
-  mex:{l:'🇲🇽 Mexico',c:'#006847',IM:.72,F:.82,P:.84,MDA:.76,mu:.55,VP:.58,VI:.55,VS:.52,w1:.5,w2:.3,w3:.2,CI:.58,TE:.52,BC:.55,a1:.25,a2:.2,a3:.55,CS:.52,CD:.5,CR:.48,CDb:.42,b1:.35,b2:.35,b3:.2,dl:.35,alpha:.55,gamma:.7},
-  chl:{l:'🇨🇱 Chile',c:'#D52B1E',IM:.68,F:.84,P:.87,MDA:.8,mu:.58,VP:.75,VI:.72,VS:.69,w1:.45,w2:.35,w3:.2,CI:.74,TE:.7,BC:.69,a1:.3,a2:.25,a3:.45,CS:.55,CD:.53,CR:.52,CDb:.48,b1:.35,b2:.35,b3:.2,dl:.4,alpha:.6,gamma:.7},
-  per:{l:'🇵🇪 Peru',c:'#D91023',IM:.6,F:.77,P:.8,MDA:.71,mu:.5,VP:.52,VI:.5,VS:.48,w1:.5,w2:.3,w3:.2,CI:.62,TE:.56,BC:.56,a1:.25,a2:.2,a3:.55,CS:.38,CD:.36,CR:.35,CDb:.28,b1:.35,b2:.35,b3:.2,dl:.22,alpha:.45,gamma:.68},
-  ecu:{l:'🇪🇨 Ecuador',c:'#FFD100',IM:.48,F:.7,P:.73,MDA:.67,mu:.5,VP:.48,VI:.45,VS:.42,w1:.5,w2:.3,w3:.2,CI:.55,TE:.5,BC:.51,a1:.25,a2:.2,a3:.55,CS:.33,CD:.3,CR:.28,CDb:.22,b1:.35,b2:.35,b3:.2,dl:.18,alpha:.42,gamma:.68},
-  uru:{l:'🇺🇾 Uruguay',c:'#63CEFA',IM:.42,F:.67,P:.71,MDA:.64,mu:.52,VP:.68,VI:.65,VS:.62,w1:.45,w2:.35,w3:.2,CI:.75,TE:.7,BC:.71,a1:.25,a2:.25,a3:.5,CS:.45,CD:.42,CR:.4,CDb:.35,b1:.35,b2:.35,b3:.2,dl:.28,alpha:.52,gamma:.65},
-  ven:{l:'🇻🇪 Venezuela',c:'#CC0001',IM:.55,F:.74,P:.77,MDA:.68,mu:.5,VP:.28,VI:.25,VS:.22,w1:.5,w2:.3,w3:.2,CI:.42,TE:.36,BC:.36,a1:.25,a2:.2,a3:.55,CS:.22,CD:.18,CR:.16,CDb:.12,b1:.35,b2:.35,b3:.2,dl:.1,alpha:.38,gamma:.65}
-};
-const VK=['IM','PN','VE','SM','CP'];
-const VC={IM:'#4a8ff5',PN:'#9b7ff5',VE:'#2dd4a0',SM:'#f0b429',CP:'#e8504a'};
+// ---------------------------------------------------------------- model
+const KEYS=['MI','NP','SW','MS','CP'];
+const VC={MI:'#4a8ff5',NP:'#9b7ff5',SW:'#2dd4a0',MS:'#f0b429',CP:'#e8504a'};
 const LV=[
-  {mn:.81,mx:1.01,l:'Alto',d:'Consolidated power with global multidomain projection',c:'#2dd4a0'},
-  {mn:.61,mx:.81,l:'Significativo',d:'Regional power with developed multidomain capabilities',c:'#4a8ff5'},
-  {mn:.41,mx:.61,l:'Moderate',d:'Developing power with identifiable strategic gaps',c:'#f0b429'},
-  {mn:.21,mx:.41,l:'Bajo',d:'Incipient capability with dominant structural vulnerabilities',c:'#e8504a'},
-  {mn:0,mx:.21,l:'Critical',d:'Vulnerabilidad marítima estructural — aprovechamiento mínimo',c:'#ff7875'}
+  {mn:.81,l:'High',d:'Consolidated multidomain projection',c:'#2dd4a0'},
+  {mn:.61,l:'Significant',d:'Regional power, developed capabilities',c:'#4a8ff5'},
+  {mn:.41,l:'Moderate',d:'Developing power, identifiable gaps',c:'#f0b429'},
+  {mn:.21,l:'Low',d:'Incipient capability, structural vulnerabilities',c:'#e8504a'},
+  {mn:0,l:'Critical',d:'Structural maritime vulnerability',c:'#ff7875'}
 ];
+const BANDS=[[.81,'consolidated'],[.61,'advanced'],[.41,'consolidating'],[.21,'basic'],[0,'incipient']];
+function getLv(v){const x=Math.round(v*100)/100;return LV.find(l=>x>=l.mn)||LV[4];}
+function band(v){const x=Math.round(v*100)/100;return BANDS.find(b=>x>=b[0])[1];}
+function pm(X,a,g){const n=3+g+a;const s=Math.log(X.MI)+Math.log(X.NP)+Math.log(X.SW)+g*Math.log(X.MS)+a*Math.log(X.CP);return Math.exp(s/n);}
+function restG(X,g){return Math.pow(X.MI*X.NP*X.SW*Math.pow(X.MS,g),1/(3+g));}
+function omegas(a,g){const n=3+g+a;return{MI:1/n,NP:1/n,SW:1/n,MS:g/n,CP:a/n};}
+
+// Scenarios of the article (Level 1, Tables 4 and 6)
+const SC={
+  col:{l:'🇨🇴 Colombia (reference case)',c:'#FFCD00',MI:.60,NP:.55,SW:.48,MS:.24,CP:.40,alpha:.55,gamma:.70},
+  pes:{l:'🔴 Critical profile',c:'#e8504a',MI:.22,NP:.20,SW:.18,MS:.21,CP:.15,alpha:.55,gamma:.70},
+  ref:{l:'🟡 Reference profile',c:'#f0b429',MI:.54,NP:.52,SW:.50,MS:.54,CP:.47,alpha:.55,gamma:.70},
+  opt:{l:'🟢 Consolidated profile',c:'#2dd4a0',MI:.87,NP:.85,SW:.83,MS:.86,CP:.84,alpha:.55,gamma:.70}
+};
+// Illustrative scenarios: author-set values, no external source, not calibrated (same alpha and gamma as the reference case)
+const IL={
+  bra:{l:'🇧🇷 Brazil',c:'#009C3B',MI:.78,NP:.71,SW:.69,MS:.65,CP:.75},
+  arg:{l:'🇦🇷 Argentina',c:'#74ACDF',MI:.68,NP:.61,SW:.63,MS:.65,CP:.56},
+  usa:{l:'🇺🇸 United States',c:'#6b6ad6',MI:.95,NP:.95,SW:.91,MS:.85,CP:.99},
+  can:{l:'🇨🇦 Canada',c:'#D52B1E',MI:.78,NP:.72,SW:.81,MS:.82,CP:.93},
+  mex:{l:'🇲🇽 Mexico',c:'#2e9c6a',MI:.72,NP:.59,SW:.56,MS:.55,CP:.58},
+  chl:{l:'🇨🇱 Chile',c:'#e05a5a',MI:.68,NP:.64,SW:.73,MS:.71,CP:.64},
+  per:{l:'🇵🇪 Peru',c:'#D91023',MI:.60,NP:.52,SW:.51,MS:.57,CP:.39},
+  ecu:{l:'🇪🇨 Ecuador',c:'#FFD100',MI:.48,NP:.42,SW:.46,MS:.52,CP:.32},
+  uru:{l:'🇺🇾 Uruguay',c:'#63CEFA',MI:.42,NP:.38,SW:.66,MS:.72,CP:.47},
+  ven:{l:'🇻🇪 Venezuela',c:'#CC0001',MI:.55,NP:.47,SW:.26,MS:.37,CP:.19}
+};
+Object.values(IL).forEach(s=>{s.alpha=.55;s.gamma=.70;});
+const ALL={...SC,...IL};
+
+// Current state: Level-1 values and parameters
+let ST={MI:.60,NP:.55,SW:.48,MS:.24,CP:.40,alpha:.55,gamma:.70};
+// Level-2 disaggregation (illustrative defaults), one block per computable component
+const L2={
+  NP:{on:false,F:.70,P:.70,MDA:.65,mu:.55},
+  SW:{on:false,PW:.55,IW:.50,SocW:.45,w1:.50,w2:.30,w3:.20},
+  MS:{on:false,IC:.50,TE:.50,BC:.45,a1:.25,a2:.20,a3:.55},
+  CP:{on:false,CS:.45,CD:.40,RC:.40,CDip:.30,b1:.34,b2:.33,b3:.33,dl:.25}
+};
+function l2NP(s){return s.F*s.P*Math.pow(s.MDA,s.mu);}
+function l2SW(s){const w=s.w1+s.w2+s.w3;return Math.pow(Math.pow(s.PW,s.w1)*Math.pow(s.IW,s.w2)*Math.pow(s.SocW,s.w3),1/w);}
+function l2MS(s){const a=s.a1+s.a2+s.a3;return Math.pow(Math.pow(s.IC,s.a1)*Math.pow(s.TE,s.a2)*Math.pow(s.BC,s.a3),1/a);}
+function l2CP(s){const b=s.b1+s.b2+s.b3;return Math.min(1,((s.b1*s.CS+s.b2*s.CD+s.b3*s.RC)/b)*(1+s.dl*s.CDip));}
+const L2F={NP:l2NP,SW:l2SW,MS:l2MS,CP:l2CP};
+// Effective Level-1 values of the current state
+function eff(){
+  const X={MI:ST.MI,NP:ST.NP,SW:ST.SW,MS:ST.MS,CP:ST.CP};
+  for(const k of ['NP','SW','MS','CP']) if(L2[k].on) X[k]=Math.max(.01,L2F[k](L2[k]));
+  return X;
+}
+
+// ---------------------------------------------------------------- UI spec
 const GR=[
-  {k:'IM',n:'Maritime Interests',c:'#4a8ff5',e:'IM = Σwᵢ·IMᵢ ; IM∈(0,1]',s:[{l:'MI index',v:[{k:'IM',l:'IM',d:'Weighted sub-index of national MI'}]}]},
-  {k:'PN',n:'Naval Power',c:'#9b7ff5',e:'PN = F × P × MDA^μ ; PN∈(0,1]',s:[
-    {l:'Components F · P · MDA',v:[{k:'F',l:'F',d:'Force (platforms·C2·tactical CD·logistics)'},{k:'P',l:'P',d:'Position (geography·bases·routes)'},{k:'MDA',l:'MDA',d:'Maritime Domain Awareness'}]},
-    {l:'Parameter μ',v:[{k:'mu',l:'μ',d:'MDA calibration exponent in NP'}]}
-  ]},
-  {k:'VE',n:'Strategic Will',c:'#2dd4a0',e:'VE = (VP^w₁·VI^w₂·VS^w₃)^(1/Σw) ; VE∈(0,1]',s:[
-    {l:'Variables VP · VI · VS',v:[{k:'VP',l:'VP',d:'Political Will'},{k:'VI',l:'VI',d:'Institutional Will'},{k:'VS',l:'VS',d:'Social Will / Maritime Consciousness'}]},
-    {l:'Pesos w₁ w₂ w₃',v:[{k:'w1',l:'w₁',d:'Weight of PW'},{k:'w2',l:'w₂',d:'Weight of IW'},{k:'w3',l:'w₃',d:'Weight of SocW'}]}
-  ]},
-  {k:'SM',n:'Maritime Security',c:'#f0b429',e:'SM = (CI^a₁·TE^a₂·BC^a₃)^(1/Σa) ; SM∈(0,1]',s:[
-    {l:'Dimensiones CI · TE · BC',v:[{k:'CI',l:'CI',d:'Interstate Conflicts / gray zone'},{k:'TE',l:'TE',d:'Maritime Terrorism and Extremism'},{k:'BC',l:'BC',d:'Blue Crime (drug trafficking·piracy·IUU)'}]},
-    {l:'Pesos a₁ a₂ a₃',v:[{k:'a1',l:'a₁',d:'Weight of IC in MS index'},{k:'a2',l:'a₂',d:'Weight of TE in MS index'},{k:'a3',l:'a₃',d:'Weight of BC in MS index'}]}
-  ]},
-  {k:'CP',n:'Cyber Power',c:'#e8504a',e:'CP = mín{1, (β₁·CS_m+β₂·CD_m+β₃·CR_m)·(1+δ·CDb)} ; CP∈(0,1]',s:[
-    {l:'Capacidades CS · CD · CR · CDb',v:[{k:'CS',l:'CS_m',d:'Maritime Cyber Security'},{k:'CD',l:'CD_m',d:'Maritime Cyber Defense (strategic)'},{k:'CR',l:'CR_m',d:'Maritime Cyber Resilience'},{k:'CDb',l:'CDb',d:'Cyber Diplomacy (projection)'}]},
-    {l:'Pesos β₁ β₂ β₃ y δ',v:[{k:'b1',l:'β₁',d:'Weight of CS_m en CP'},{k:'b2',l:'β₂',d:'Weight of CD_m en CP'},{k:'b3',l:'β₃',d:'Weight of CR_m en CP'},{k:'dl',l:'δ',d:'Efectividad CDb como amplificador'}]}
-  ]},
-  {k:'PAR',n:'Model parameters',c:'#8891a8',e:'n_eff = 3+γ+α ; PM_norm = [PM]^(1/n_eff)',s:[
-    {l:'α y γ',v:[{k:'alpha',l:'α',d:'SCMI — Strategic Cyber Maturity'},{k:'gamma',l:'γ',d:'Peso global SM en el sistema PM'}]}
-  ]}
+  {k:'MI',n:'Maritime Interests',c:VC.MI,e:'MI = Σ wᵢ · MIᵢ  (Eq. 4) ; Σ wᵢ = 1',top:[{k:'MI',l:'MI',d:'Weighted sub-index of maritime interests'}]},
+  {k:'NP',n:'Naval Power',c:VC.NP,e:'NP = F × P × MDA^μ  (Eq. 5)',top:[{k:'NP',l:'NP',d:'Set directly, or from F, P, MDA'}],
+    sub:[{l:'Factors',v:[{k:'F',l:'F',d:'Force (incl. tactical-operational cyberdefense)'},{k:'P',l:'P',d:'Position'},{k:'MDA',l:'MDA',d:'Maritime domain awareness'}]},{l:'Parameter',v:[{k:'mu',l:'μ',d:'MDA calibration exponent'}]}]},
+  {k:'SW',n:'Strategic Will',c:VC.SW,e:'SW = (PW^w₁ · IW^w₂ · SocW^w₃)^(1/Σw)  (Eq. 6)',top:[{k:'SW',l:'SW',d:'Set directly, or from PW, IW, SocW'}],
+    sub:[{l:'Dimensions',v:[{k:'PW',l:'PW',d:'Political will'},{k:'IW',l:'IW',d:'Institutional will'},{k:'SocW',l:'SocW',d:'Social will (maritime consciousness)'}]},{l:'Weights (normalized)',v:[{k:'w1',l:'w₁',d:'Weight of PW'},{k:'w2',l:'w₂',d:'Weight of IW'},{k:'w3',l:'w₃',d:'Weight of SocW'}]}]},
+  {k:'MS',n:'Maritime Security',c:VC.MS,e:'MS = (IC^a₁ · TE^a₂ · BC^a₃)^(1/Σa)  (Eq. 7)',top:[{k:'MS',l:'MS',d:'Set directly, or from IC, TE, BC'}],
+    sub:[{l:'Threat dimensions (incidence, inverted: higher = more secure)',v:[{k:'IC',l:'IC',d:'Interstate conflicts and gray zone'},{k:'TE',l:'TE',d:'Terrorism and extremism'},{k:'BC',l:'BC',d:'Blue crime'}]},{l:'Weights (normalized)',v:[{k:'a1',l:'a₁',d:'Weight of IC'},{k:'a2',l:'a₂',d:'Weight of TE'},{k:'a3',l:'a₃',d:'Weight of BC'}]}]},
+  {k:'CP',n:'Cyber Power',c:VC.CP,e:'CP = min{1, (β₁·CS_m + β₂·CD_m + β₃·RC_m)(1 + δ·CDip)}  (Eq. 8) ; Σβ = 1',top:[{k:'CP',l:'CP',d:'Set directly, or from its sub-components'}],
+    sub:[{l:'Sub-components',v:[{k:'CS',l:'CS_m',d:'Maritime cybersecurity'},{k:'CD',l:'CD_m',d:'Strategic maritime cyberdefense'},{k:'RC',l:'RC_m',d:'Maritime recovery capacity, min{1, t_ref/t}'},{k:'CDip',l:'CDip',d:'Cyber diplomacy (amplifier only)'}]},{l:'Weights (normalized) and δ',v:[{k:'b1',l:'β₁',d:'Weight of CS_m'},{k:'b2',l:'β₂',d:'Weight of CD_m'},{k:'b3',l:'β₃',d:'Weight of RC_m'},{k:'dl',l:'δ',d:'Gain of CP at CDip = 1'}]}]},
+  {k:'PAR',n:'Model parameters',c:'#8891a8',e:'n_eff = 3 + γ + α ; MP_norm = [MP]^(1/n_eff)',top:[{k:'alpha',l:'α',d:'Weight of cyber dependence'},{k:'gamma',l:'γ',d:'Weight of the security environment'}]}
 ];
-let ST={...CO.col};
-let CMP=new Set();
-let rC,bC,rCC,pmC;
+let CMP=new Set(['col']);
+let rC,bC,rCC,pmC;let MCD=.10;
 
-function pN(s){return s.F*s.P*Math.pow(Math.max(s.MDA,.001),s.mu)}
-function vE(s){const sw=s.w1+s.w2+s.w3;return Math.pow(Math.pow(Math.max(s.VP,.001),s.w1)*Math.pow(Math.max(s.VI,.001),s.w2)*Math.pow(Math.max(s.VS,.001),s.w3),1/sw)}
-function sM(s){const sa=s.a1+s.a2+s.a3;return Math.pow(Math.pow(Math.max(s.CI,.001),s.a1)*Math.pow(Math.max(s.TE,.001),s.a2)*Math.pow(Math.max(s.BC,.001),s.a3),1/sa)}
-function cP(s){return Math.min((s.b1*s.CS+s.b2*s.CD+s.b3*s.CR)*(1+s.dl*s.CDb),1)}
-function PM(s){const pn=pN(s),ve=vE(s),sm=sM(s),cp=cP(s);const inner=s.IM*pn*ve*Math.pow(Math.max(sm,.001),s.gamma)*Math.pow(Math.max(cp,.001),s.alpha);return Math.pow(Math.max(inner,1e-9),1/(3+s.gamma+s.alpha))}
-function disp(s){return{IM:s.IM,PN:pN(s),VE:vE(s),SM:sM(s),CP:cP(s)}}
-function getLv(v){return LV.find(l=>v>=l.mn&&v<l.mx)||LV[4]}
-
-function buildUI(){
-  const br=document.getElementById('cbrow'),pr=document.getElementById('cprow');
-  Object.entries(CO).forEach(([id,c])=>{
-    br.innerHTML+=`<button class="btn" id="bc-${id}" onclick="loadC('${id}')">${c.l}</button>`;
-    pr.innerHTML+=`<span class="pill" id="pc-${id}" onclick="tCmp('${id}')"><span class="dot" style="background:${c.c}"></span>${c.l.replace(/^[^\s]+\s/,'')}</span>`;
+function slider(k,v,c,val,dis,l2){
+  return `<div class="sr"><span class="sk" style="color:${c}">${v.l}</span><span class="sd" title="${v.d}">${v.d}</span>
+    <input type="range" min=".01" max="1" step=".01" value="${val.toFixed(2)}" id="sl-${k}" ${dis?'disabled':''} oninput="onSl('${k}',this.value,${l2?`'${l2}'`:'null'})" style="accent-color:${c};--thumb:${c}">
+    <span class="sv" id="sv-${k}">${val.toFixed(2)}</span></div>`;
+}
+function buildSliders(){
+  const c=document.getElementById('sliders');c.innerHTML='';
+  GR.forEach(g=>{
+    let html=`<div class="cg"><div class="cgh"><div class="cgb" style="background:${g.c}20;border:1px solid ${g.c}45;color:${g.c}">${g.k==='PAR'?'⚙':g.k}</div><div><div class="cgn" style="color:${g.c}">${g.n}</div><div class="cge">${g.e}</div></div></div>`;
+    html+=`<div class="sg">${g.top.map(v=>slider(v.k,v,g.c,ST[v.k],g.sub&&L2[g.k].on,null)).join('')}</div>`;
+    if(g.sub){
+      html+=`<div class="sgl"><input type="checkbox" id="l2-${g.k}" ${L2[g.k].on?'checked':''} onchange="togL2('${g.k}',this.checked)"><label for="l2-${g.k}">from sub-components (Level 2, illustrative)</label></div>`;
+      html+=`<div class="l2 ${L2[g.k].on?'open':''}" id="l2b-${g.k}">`+g.sub.map(sub=>`<div class="sg"><div class="sgl">${sub.l}</div>${sub.v.map(v=>slider(v.k,v,g.c,L2[g.k][v.k],false,g.k)).join('')}</div>`).join('')+`</div>`;
+    }
+    c.innerHTML+=html+'</div>';
   });
+}
+function onSl(k,v,grp){
+  const x=parseFloat(v);
+  if(grp){L2[grp][k]=x;}else{ST[k]=x;}
+  const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=x.toFixed(2);
+  clrBtns();update();
+}
+function togL2(k,on){
+  L2[k].on=on;document.getElementById('l2b-'+k).classList.toggle('open',on);
+  const sl=document.getElementById('sl-'+k);sl.disabled=on;
+  if(!on){sl.value=ST[k].toFixed(2);document.getElementById('sv-'+k).textContent=ST[k].toFixed(2);}
+  clrBtns();update();
+}
+function syncSl(){
+  GR.forEach(g=>{g.top.forEach(v=>{const sl=document.getElementById('sl-'+v.k);if(sl){sl.value=ST[v.k].toFixed(2);sl.disabled=!!(g.sub&&L2[g.k].on);}const sv=document.getElementById('sv-'+v.k);if(sv)sv.textContent=ST[v.k].toFixed(2);});
+    if(g.sub){document.getElementById('l2-'+g.k).checked=L2[g.k].on;document.getElementById('l2b-'+g.k).classList.toggle('open',L2[g.k].on);}});
+}
+function clrBtns(){document.querySelectorAll('[id^="b-"]').forEach(e=>e.className='btn');}
+function loadS(id){
+  const s=SC[id];KEYS.forEach(k=>ST[k]=s[k]);ST.alpha=s.alpha;ST.gamma=s.gamma;
+  ['NP','SW','MS','CP'].forEach(k=>L2[k].on=false);
+  clrBtns();document.getElementById('b-'+id).className='btn '+({col:'ac',pes:'ap',ref:'ar',opt:'ao'}[id]);
+  syncSl();update();
 }
 
 function buildGauges(){
-  document.getElementById('gauges').innerHTML=VK.map(v=>`<div class="gw"><canvas id="g-${v}" width="96" height="58"></canvas><div class="gl" style="color:${VC[v]}">${v}</div><div class="gs" id="gv-${v}">—</div></div>`).join('');
+  document.getElementById('gauges').innerHTML=KEYS.map(v=>`<div class="gw"><canvas id="g-${v}" width="96" height="58"></canvas><div class="gl" style="color:${VC[v]}">${v}</div><div class="gs" id="gv-${v}">—</div></div>`).join('');
 }
-
 function drawG(id,val,col){
   const el=document.getElementById('g-'+id);if(!el)return;
   const ctx=el.getContext('2d'),cx=48,cy=51,r=34;
@@ -298,144 +363,105 @@ function drawG(id,val,col){
   ctx.fillStyle='#e2e6f0';ctx.font='bold 11px monospace';ctx.textAlign='center';ctx.fillText(val.toFixed(2),cx,cy-3);
 }
 
-function buildSliders(){
-  const c=document.getElementById('sliders');c.innerHTML='';
-  GR.forEach(g=>{
-    const subs=g.s.map((sub,si)=>`
-      ${si>0?'<div class="ssep"></div>':''}
-      <div class="sg">
-        <div class="sgl">${sub.l}</div>
-        ${sub.v.map(v=>`<div class="sr">
-          <span class="sk" style="color:${g.c}">${v.l}</span>
-          <span class="sd">${v.d}</span>
-          <input type="range" min=".05" max=".99" step=".01" value="${(ST[v.k]||.5).toFixed(2)}" id="sl-${v.k}" oninput="onSl('${v.k}',this.value)" style="accent-color:${g.c};--thumb:${g.c}">
-          <span class="sv" id="sv-${v.k}">${(ST[v.k]||.5).toFixed(2)}</span>
-        </div>`).join('')}
-      </div>`).join('');
-    c.innerHTML+=`<div class="cg"><div class="cgh">
-      <div class="cgb" style="background:${g.c}20;border:1px solid ${g.c}45;color:${g.c}">${g.k==='PAR'?'⚙':g.k}</div>
-      <div><div class="cgn" style="color:${g.c}">${g.n}</div><div class="cge">${g.e}</div></div>
-    </div>${subs}</div>`;
-  });
-}
-
 function buildCharts(){
   Chart.defaults.color='#8891a8';Chart.defaults.borderColor='#252c3c';
-  const d=disp(ST);
+  const X=eff();
   rC=new Chart(document.getElementById('radar'),{type:'radar',
-    data:{labels:VK,datasets:[{label:'Actual',data:VK.map(v=>d[v]),backgroundColor:'rgba(74,143,245,.12)',borderColor:'#4a8ff5',pointBackgroundColor:VK.map(v=>VC[v]),pointRadius:4,borderWidth:2}]},
+    data:{labels:KEYS,datasets:[{label:'Current',data:KEYS.map(v=>X[v]),backgroundColor:'rgba(74,143,245,.12)',borderColor:'#4a8ff5',pointBackgroundColor:KEYS.map(v=>VC[v]),pointRadius:4,borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:1,ticks:{stepSize:.25,color:'#4d566a',backdropColor:'transparent',font:{size:9}},pointLabels:{color:'#8891a8',font:{size:11,weight:'bold'}},grid:{color:'#1c2230'},angleLines:{color:'#1c2230'}}},plugins:{legend:{display:false}}}
   });
-  pmC=new Chart(document.getElementById('barpm'),{
-    type:'bar',
-    data:{labels:[],datasets:[]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      layout:{padding:{right:40}},
-      scales:{
-        x:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'},
-          afterTickToLabelConversion:function(axis){axis.ticks.forEach((t,i)=>{if(i===0||i===axis.ticks.length-1)t.label='';});}
-        },
-        y:{grid:{display:false},ticks:{color:'#e2e6f0',font:{size:10,weight:'bold'}},border:{color:'#252c3c'}}
-      },
-      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(3),font:{size:11,weight:'bold',family:'monospace'},color:function(ctx){const v=ctx.dataset.data[ctx.dataIndex];return v>=.81?'#2dd4a0':v>=.61?'#4a8ff5':v>=.41?'#f0b429':v>=.21?'#e8504a':'#ff7875';},offset:4},
-        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' PM_norm: '+c.parsed.x.toFixed(3)}}
-      }
-    },
-    plugins:[ChartDataLabels]
-  });
-  bC=new Chart(document.getElementById('bar'),{type:'bar',
-    data:{labels:['IM','PN','VE','SM','CP'],datasets:[]},
+  pmC=new Chart(document.getElementById('barpm'),{type:'bar',data:{labels:[],datasets:[]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:40}},
+      scales:{x:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},
+        y:{grid:{display:false},ticks:{color:'#e2e6f0',font:{size:10,weight:'bold'}},border:{color:'#252c3c'}}},
+      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(3),font:{size:11,weight:'bold',family:'monospace'},color:ctx=>getLv(ctx.dataset.data[ctx.dataIndex]).c,offset:4},
+        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' MP_norm: '+c.parsed.x.toFixed(3)}}}},
+    plugins:[ChartDataLabels]});
+  bC=new Chart(document.getElementById('bar'),{type:'bar',data:{labels:KEYS,datasets:[]},
     options:{responsive:true,maintainAspectRatio:false,
       scales:{y:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},x:{grid:{display:false},ticks:{color:'#8891a8',font:{size:10}},border:{color:'#252c3c'}}},
       plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(2),font:{size:8,family:'monospace'},color:'#8891a8',rotation:-90,offset:2},
-        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,titleColor:'#e2e6f0',bodyColor:'#8891a8',callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.y.toFixed(3)}}
-      }
-    },
-    plugins:[ChartDataLabels]
-  });
-  rCC=new Chart(document.getElementById('rcmp'),{type:'radar',
-    data:{labels:VK,datasets:[]},
-    options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:1,ticks:{stepSize:.25,color:'#4d566a',backdropColor:'transparent',font:{size:9}},pointLabels:{color:'#8891a8',font:{size:11,weight:'bold'}},grid:{color:'#1c2230'},angleLines:{color:'#1c2230'}}},plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.r.toFixed(2)}}}}
-  });
-  updBar();
+        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,titleColor:'#e2e6f0',bodyColor:'#8891a8',callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.y.toFixed(3)}}}},
+    plugins:[ChartDataLabels]});
+  rCC=new Chart(document.getElementById('rcmp'),{type:'radar',data:{labels:KEYS,datasets:[]},
+    options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:1,ticks:{stepSize:.25,color:'#4d566a',backdropColor:'transparent',font:{size:9}},pointLabels:{color:'#8891a8',font:{size:11,weight:'bold'}},grid:{color:'#1c2230'},angleLines:{color:'#1c2230'}}},plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.r.toFixed(2)}}}}});
 }
 
-function updSens(){
-  const tb=document.getElementById('sens-body');if(!tb)return;
-  const d=disp(ST),neff=3+ST.gamma+ST.alpha,pm0=PM(ST);
-  const rows=[
-    {k:'IM',lbl:'IM (peso directo)',w:1,c:VC.IM},
-    {k:'PN',lbl:'PN (peso directo)',w:1,c:VC.PN},
-    {k:'VE',lbl:'VE (multiplicador global)',w:1,c:VC.VE},
-    {k:'SM',lbl:'SM (γ = '+ST.gamma.toFixed(2)+')',w:ST.gamma,c:VC.SM},
-    {k:'CP',lbl:'CP (α = '+ST.alpha.toFixed(2)+')',w:ST.alpha,c:VC.CP}
-  ];
-  tb.innerHTML=rows.map(r=>{
-    const v0=d[r.k],v1=Math.min(1,v0*1.2);
-    const dpm=(Math.pow(v1/v0,r.w/neff)-1)*100;
-    const sat=v1<v0*1.2-1e-9;
-    const el=r.w===1?'Maximum':(r.k==='SM'?'Amortiguada (γ < 1)':'Amortiguada (α < 1)');
-    return `<tr><td style="font-weight:600;color:${r.c}">${r.lbl}</td><td style="font-family:monospace">${v0.toFixed(2)}</td><td style="font-family:monospace">${v1.toFixed(2)}${sat?' <span style="color:var(--text3)" title="Saturado por el tope CP ≤ 1">⌈sat⌉</span>':''}</td><td style="font-family:monospace;font-weight:700">+${dpm.toFixed(1)}%</td><td style="color:var(--text2)">${el}</td></tr>`;
+function buildCmp(){
+  const a=document.getElementById('cprow-a'),b=document.getElementById('cprow-b');
+  const pill=(id,s)=>`<span class="pill ${CMP.has(id)?'sel':''}" id="pc-${id}" onclick="tCmp('${id}')"><span class="dot" style="background:${s.c}"></span>${s.l.replace(/^[^\s]+\s/,'')}</span>`;
+  a.innerHTML=Object.entries(SC).map(([id,s])=>pill(id,s)).join('');
+  b.innerHTML=Object.entries(IL).map(([id,s])=>pill(id,s)).join('');
+}
+function tCmp(id){const p=document.getElementById('pc-'+id);if(CMP.has(id)){CMP.delete(id);p.classList.remove('sel');}else{CMP.add(id);p.classList.add('sel');}updBar();}
+
+function updSens(X){
+  const tb=document.getElementById('sens-body');const om=omegas(ST.alpha,ST.gamma),P=pm(X,ST.alpha,ST.gamma);
+  const mrCP=om.CP*P/X.CP;
+  tb.innerHTML=KEYS.map(k=>{
+    const x=X[k],x1=Math.min(1,1.2*x),d=(Math.pow(x1/x,om[k])-1)*100,mr=om[k]*P/x,be=k==='CP'?'—':(mr/mrCP).toFixed(2);
+    return `<tr><td style="font-weight:600;color:${VC[k]}">${k}</td><td class="mono">${x.toFixed(2)}</td><td class="mono">${om[k].toFixed(3)}</td><td class="mono" style="font-weight:700">+${d.toFixed(1)} %${x1<1.2*x-1e-9?' <span title="capped at 1" style="color:var(--text3)">⌈1⌉</span>':''}</td><td class="mono">${mr.toFixed(3)}</td><td class="mono">${be}</td></tr>`;
   }).join('');
 }
 function update(){
-  const pm=PM(ST),lv=getLv(pm),d=disp(ST),neff=(3+ST.gamma+ST.alpha).toFixed(2);
-  const el=document.getElementById('pm-num');el.textContent=pm.toFixed(3);el.style.color=lv.c;
+  const X=eff(),a=ST.alpha,g=ST.gamma,P=pm(X,a,g),lv=getLv(P),G=restG(X,g),w=a/(3+g+a);
+  const el=document.getElementById('pm-num');el.textContent=P.toFixed(3);el.style.color=lv.c;
   const badge=document.getElementById('pm-badge');badge.textContent=lv.l;badge.style.background=lv.c+'20';badge.style.color=lv.c;badge.style.border='1px solid '+lv.c+'50';
   document.getElementById('pm-desc').textContent=lv.d;
-  document.getElementById('pm-neff').textContent=`n_eff = 3 + ${ST.gamma.toFixed(2)} + ${ST.alpha.toFixed(2)} = ${neff}  ·  PN=${d.PN.toFixed(2)}  VE=${d.VE.toFixed(2)}  SM=${d.SM.toFixed(2)}  CP=${d.CP.toFixed(2)}`;
-  VK.forEach(v=>{drawG(v,d[v],VC[v]);const gv=document.getElementById('gv-'+v);if(gv)gv.textContent=d[v].toFixed(2);});
-  if(rC){rC.data.datasets[0].data=VK.map(v=>d[v]);rC.update();}
-  updBar();updSens();
+  const sgn=Math.abs(X.CP-G)<5e-4?'CP = G → MP_norm does not depend on α':(X.CP>G?'CP > G → raising α raises MP_norm':'CP < G → raising α lowers MP_norm');
+  document.getElementById('pm-neff').innerHTML=`n_eff = 3 + ${g.toFixed(2)} + ${a.toFixed(2)} = ${(3+g+a).toFixed(2)} · G (rest of the system) = ${G.toFixed(3)} · w = α/n_eff = ${w.toFixed(3)} · ${sgn} (Proposition 1)<br>components: ${KEYS.map(k=>k+' '+X[k].toFixed(2)+(L2[k]&&L2[k].on?'*':'')).join(' · ')} · CP maturity band: <b>${band(X.CP)}</b>`;
+  KEYS.forEach(k=>{drawG(k,X[k],VC[k]);const gv=document.getElementById('gv-'+k);if(gv)gv.innerHTML=k==='CP'?band(X.CP)+' band':(L2[k]&&L2[k].on?'from Level 2':'set directly');});
+  if(rC){rC.data.datasets[0].data=KEYS.map(k=>X[k]);rC.update();}
+  updSens(X);updBar();
 }
-
 function updBar(){
-  if(!bC||!rCC)return;
-  const items=[...CMP];
-  if(!items.length){
-    // Sin selección — limpiar gráficos y mostrar placeholder
-    pmC.data.labels=[];pmC.data.datasets=[];pmC.update();
-    bC.data.datasets=[];bC.update();
-    rCC.data.datasets=[];rCC.update();
-    document.getElementById('pmleg').innerHTML='<span style="font-size:9px;color:var(--text3);font-style:italic">Select scenarios or countries to compare</span>';
-    document.getElementById('bleg').innerHTML='';
-    document.getElementById('rleg').innerHTML='';
-    return;
-  } else {
-    const pmLabels=[],pmVals=[],pmColors=[];
-    const bDS=[],rDS=[],lPM=[],lB=[],lR=[];
-    items.forEach(id=>{
-      const s=PR[id]||CO[id],d=disp(s),pm=PM(s);
-      const sn=s.l.replace(/^[^\s]+\s/,'');
-      pmLabels.push(sn);pmVals.push(pm);pmColors.push(s.c+'cc');
-      bDS.push({label:sn,data:[d.IM,d.PN,d.VE,d.SM,d.CP],backgroundColor:s.c+'bb',borderRadius:3,borderWidth:0});
-      rDS.push({label:sn,data:VK.map(v=>d[v]),backgroundColor:s.c+'22',borderColor:s.c,pointBackgroundColor:s.c,pointRadius:4,borderWidth:2});
-      lPM.push(`<span class="li"><span class="lsq" style="background:${s.c}cc"></span>${sn}: <b style="color:${pm>=.81?'#2dd4a0':pm>=.61?'#4a8ff5':pm>=.41?'#f0b429':pm>=.21?'#e8504a':'#ff7875'}">${pm.toFixed(3)}</b></span>`);
-      lB.push(`<span class="li"><span class="lsq" style="background:${s.c}bb"></span>${sn}</span>`);
-      lR.push(`<span class="li"><span class="lsq" style="background:${s.c}"></span>${sn}</span>`);
-    });
-    pmC.data.labels=pmLabels;
-    pmC.data.datasets=[{data:pmVals,backgroundColor:pmColors,borderRadius:5,borderWidth:0,barThickness:22}];
-    pmC.update();
-    bC.data.datasets=bDS;rCC.data.datasets=rDS;
-    document.getElementById('pmleg').innerHTML=lPM.join('');
-    document.getElementById('bleg').innerHTML=lB.join('');document.getElementById('rleg').innerHTML=lR.join('');
-  }
-  bC.update();rCC.update();
+  if(!bC||!rCC||!pmC)return;
+  const cur={l:'Current',c:'#ffffff',...eff(),alpha:ST.alpha,gamma:ST.gamma};
+  const items=[['cur',cur],...[...CMP].filter(id=>ALL[id]).map(id=>[id,ALL[id]])];
+  const pmLabels=[],pmVals=[],pmColors=[],bDS=[],rDS=[],lPM=[],lB=[],lR=[];
+  items.forEach(([id,s])=>{
+    const X={MI:s.MI,NP:s.NP,SW:s.SW,MS:s.MS,CP:s.CP},P=pm(X,s.alpha,s.gamma),sn=s.l.replace(/^[^\s]+\s/,'');
+    pmLabels.push(sn);pmVals.push(P);pmColors.push(s.c+'cc');
+    bDS.push({label:sn,data:KEYS.map(k=>X[k]),backgroundColor:s.c+'bb',borderRadius:3,borderWidth:0});
+    rDS.push({label:sn,data:KEYS.map(k=>X[k]),backgroundColor:s.c+'22',borderColor:s.c,pointBackgroundColor:s.c,pointRadius:4,borderWidth:2});
+    lPM.push(`<span class="li"><span class="lsq" style="background:${s.c}cc"></span>${sn}: <b style="color:${getLv(P).c}">${P.toFixed(3)}</b></span>`);
+    lB.push(`<span class="li"><span class="lsq" style="background:${s.c}bb"></span>${sn}</span>`);
+    lR.push(`<span class="li"><span class="lsq" style="background:${s.c}"></span>${sn}</span>`);
+  });
+  pmC.data.labels=pmLabels;pmC.data.datasets=[{data:pmVals,backgroundColor:pmColors,borderRadius:5,borderWidth:0,barThickness:18}];pmC.update();
+  bC.data.datasets=bDS;bC.update();rCC.data.datasets=rDS;rCC.update();
+  document.getElementById('pmleg').innerHTML=lPM.join('');document.getElementById('bleg').innerHTML=lB.join('');document.getElementById('rleg').innerHTML=lR.join('');
 }
 
-function onSl(k,v){ST[k]=parseFloat(v);const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=parseFloat(v).toFixed(2);clrA();update();}
-function loadP(id){clrA();const m={pes:'ap',ref:'ar',opt:'ao'};document.getElementById('b-'+id).className='btn '+(m[id]||'');Object.assign(ST,{...PR[id]});delete ST.l;delete ST.c;syncSl();update();}
-function loadC(id){clrA();document.getElementById('bc-'+id).className='btn ac';Object.assign(ST,{...CO[id]});delete ST.l;delete ST.c;syncSl();update();}
-function tCmp(id){const p=document.getElementById('p-'+id)||document.getElementById('pc-'+id);if(CMP.has(id)){CMP.delete(id);if(p)p.classList.remove('sel');}else{CMP.add(id);if(p)p.classList.add('sel');}updBar();}
-function clrA(){document.querySelectorAll('[id^="b-"],[id^="bc-"]').forEach(e=>e.className='btn');}
-function resetAll(){clrA();CMP.clear();document.querySelectorAll('[id^="p-"],[id^="pc-"]').forEach(e=>e.classList.remove('sel'));Object.assign(ST,{...CO.col});delete ST.l;delete ST.c;document.getElementById('bc-col').className='btn ac';syncSl();update();}
-function syncSl(){GR.forEach(g=>g.s.forEach(sub=>sub.v.forEach(v=>{const sl=document.getElementById('sl-'+v.k);if(sl)sl.value=(ST[v.k]||.5).toFixed(2);const sv=document.getElementById('sv-'+v.k);if(sv)sv.textContent=(ST[v.k]||.5).toFixed(2);})));}
+// ---------------------------------------------------------------- Monte Carlo (uncertainty)
+function setMC(d){MCD=d;document.getElementById('mc-10').className='btn'+(d===.10?' on':'');document.getElementById('mc-20').className='btn'+(d===.20?' on':'');}
+function runMC(){
+  const X0=eff(),N=20000,d=MCD,u=(lo,hi)=>lo+Math.random()*(hi-lo);
+  const ys=[],lvl={},low={},top={};let cnt=0;
+  for(let i=0;i<N;i++){
+    const X={};KEYS.forEach(k=>X[k]=u(Math.max(.01,X0[k]-d),Math.min(1,X0[k]+d)));
+    const a=u(.10,1),g=u(.10,1),y=pm(X,a,g),om=omegas(a,g);
+    ys.push(y);const L=getLv(y).l;lvl[L]=(lvl[L]||0)+1;
+    let kl=KEYS[0],kt=KEYS[0];KEYS.forEach(k=>{if(X[k]<X[kl])kl=k;if(om[k]*y/X[k]>om[kt]*y/X[kt])kt=k;});
+    low[kl]=(low[kl]||0)+1;top[kt]=(top[kt]||0)+1;cnt++;
+  }
+  ys.sort((p,q)=>p-q);const q=p=>ys[Math.floor(p*(N-1))];
+  const fmt=o=>Object.entries(o).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${k} ${(100*v/cnt).toFixed(1)} %`).join(' · ');
+  const am=KEYS.reduce((s,k)=>s+X0[k],0)/5,gm=Math.exp(KEYS.reduce((s,k)=>s+Math.log(X0[k]),0)/5),P0=pm(X0,ST.alpha,ST.gamma);
+  document.getElementById('mc-out').innerHTML=
+    `<div><div class="k">Median MP<sub>norm</sub></div><div class="v">${q(.5).toFixed(3)}</div><div class="s">current value ${P0.toFixed(3)}</div></div>`+
+    `<div><div class="k">P5 – P95 band</div><div class="v">[${q(.05).toFixed(3)}, ${q(.95).toFixed(3)}]</div><div class="s">${N.toLocaleString()} draws, ± ${d.toFixed(2)}</div></div>`+
+    `<div><div class="k">Share by level</div><div class="v" style="font-size:9.5px">${fmt(lvl)}</div></div>`+
+    `<div><div class="k">Lowest component</div><div class="v" style="font-size:9.5px">${fmt(low)}</div></div>`+
+    `<div><div class="k">Largest marginal return</div><div class="v" style="font-size:9.5px">${fmt(top)}</div></div>`+
+    `<div><div class="k">Aggregation check (current values)</div><div class="v" style="font-size:9.5px">MP_norm ${P0.toFixed(3)} (${getLv(P0).l}) · arithmetic ${am.toFixed(3)} (${getLv(am).l}) · geometric ${gm.toFixed(3)} (${getLv(gm).l})</div></div>`;
+}
 
-buildUI();buildGauges();buildSliders();
-document.getElementById('bc-col').className='btn ac';
-buildCharts();update();
-setTimeout(()=>{const d=disp(ST);VK.forEach(v=>drawG(v,d[v],VC[v]));},180);
+// ---------------------------------------------------------------- init
+buildSliders();buildGauges();buildCmp();buildCharts();
+document.getElementById('b-col').className='btn ac';
+update();
+setTimeout(()=>{const X=eff();KEYS.forEach(k=>drawG(k,X[k],VC[k]));},180);
 </script>
 </body>
 </html>
