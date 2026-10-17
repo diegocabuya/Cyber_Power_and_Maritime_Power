@@ -115,12 +115,12 @@
   .lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);color:#fff;border:0;font-size:30px;width:52px;height:52px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
   .lb .nav:hover{background:rgba(255,255,255,.22)}
   .lb .prev{left:24px}.lb .next{right:24px}
-  .rev{max-width:900px;margin:0 auto;display:grid;gap:14px}
-  .rev .item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
-  .rev .item .k{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--mi);text-transform:uppercase;font-weight:600;padding-top:3px}
-  .rev .item p{color:#33404d;font-size:15px}
-  .rev .item p b{color:var(--navy)}
-  @media(max-width:640px){.rev .item{grid-template-columns:1fr}}
+  .fw{max-width:900px;margin:0 auto;display:grid;gap:14px}
+  .fw .item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
+  .fw .item .k{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--mi);text-transform:uppercase;font-weight:600;padding-top:3px}
+  .fw .item p{color:#33404d;font-size:15px}
+  .fw .item p b{color:var(--navy)}
+  @media(max-width:640px){.fw .item{grid-template-columns:1fr}}
   .repro{max-width:900px;margin:0 auto}
   .repro pre{background:#0f1a26;color:#dbe6f0;border-radius:12px;padding:18px 20px;font-family:var(--mono);font-size:13.5px;overflow:auto;margin:14px 0 22px}
   .repro p{color:#33404d;font-size:15.5px;margin-bottom:10px}
@@ -149,10 +149,10 @@
     <button class="menu-btn" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
     <div class="links" id="nl">
       <a href="#project"><span data-lang="en">Project</span><span data-lang="es">Proyecto</span></a>
+      <a href="#framework"><span data-lang="en">Framework</span><span data-lang="es">Marco teórico</span></a>
       <a href="#materials"><span data-lang="en">Materials</span><span data-lang="es">Materiales</span></a>
       <a href="#equations"><span data-lang="en">Equations</span><span data-lang="es">Ecuaciones</span></a>
       <a href="#reproducibility"><span data-lang="en">Reproducibility</span><span data-lang="es">Reproducibilidad</span></a>
-      <a href="#revision"><span data-lang="en">Revision</span><span data-lang="es">Revisión</span></a>
       <span class="langsw"><button id="lsw-en" onclick="setLang('en')">EN</button><button id="lsw-es" onclick="setLang('es')">ES</button></span>
       <a href="simulator/simulator.html" class="cta simlink"><span data-lang="en">Open simulator ↗</span><span data-lang="es">Abrir el simulador ↗</span></a>
     </div>
@@ -168,7 +168,7 @@
       <span data-lang="en"><b>Diego E. Cabuya-Padilla</b> · Naval Academy of Strategic Studies, Colombian Navy, and Poseidón Research Group, Naval School “Admiral Padilla”<br><b>Sergio Uribe-Cáceres</b> · Colombian War College “General Rafael Reyes Prieto”<br><b>Carlos A. Castaneda-Marroquin</b> · NAVTEG Research Group, Naval School “Admiral Padilla”</span>
       <span data-lang="es"><b>Diego E. Cabuya-Padilla</b> · Academia Naval de Estudios Estratégicos, Armada de Colombia, y Grupo de Investigación Poseidón, Escuela Naval de Cadetes «Almirante Padilla»<br><b>Sergio Uribe-Cáceres</b> · Escuela Superior de Guerra «General Rafael Reyes Prieto»<br><b>Carlos A. Castaneda-Marroquin</b> · Grupo de Investigación NAVTEG, Escuela Naval de Cadetes «Almirante Padilla»</span>
     </p>
-    <span class="status"><span data-lang="en">Manuscript under review — IEEE Access (revised version, October 2026)</span><span data-lang="es">Manuscrito en revisión — IEEE Access (versión revisada, octubre de 2026)</span></span>
+    <span class="status"><span data-lang="en">Manuscript under review — IEEE Access</span><span data-lang="es">Manuscrito en revisión — IEEE Access</span></span>
 
     <div class="formula" aria-label="Normalized maritime power formula">
       <span class="pm"><span data-lang="en">MP</span><span data-lang="es">PM</span><sub>norm</sub></span>
@@ -201,12 +201,12 @@
       <div class="lbl"><span data-lang="en">Abstract</span><span data-lang="es">Resumen</span></div>
       <div data-lang="en">
         <p>The classical formulation of maritime power—the product of maritime interests and naval power—has become insufficient to explain the dynamics of digitalized maritime environments, where navigation, communications, traffic management, port facilities, and ocean surveillance depend on interconnected digital infrastructures. This article proposes an extended formulation that incorporates cyber power, strategic will, and maritime security as structural variables of maritime power. Following an analytical-conceptual approach, the model adopts a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate, and whose output lies within the interval (0, 1], enabling a directly interpretable five-level scale.</p>
-        <p>The formulation is verified in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—confirming that every component equation preserves the required range; calibration and external validation are distinguished from verification and left to future work, and a global sensitivity analysis identifies maritime security—its value and its weight—as the main source of uncertainty. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index available in the Latin American literature and illustrative values for the other components, the model places the country at the Moderate level and decomposes the result to show which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. The article concludes by proposing a National Maritime Power Index as a research agenda, supported by an open-access interactive simulator that allows the model to be explored.</p>
+        <p>The formulation is verified in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—confirming that every component equation preserves the required range; calibration and external validation are distinguished from verification and left to future work, and a global sensitivity analysis identifies maritime security—its value and its weight—as the main source of uncertainty. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index available in the Latin American literature and illustrative values for the other components, the model places the country at the Moderate level and shows which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. The article concludes by proposing a National Maritime Power Index as a research agenda, supported by an open-access interactive simulator for exploring the model.</p>
       </div>
       <div data-lang="es">
         <p>La formulación clásica del poder marítimo —el producto de los intereses marítimos y el poder naval— resulta insuficiente para explicar las dinámicas de los entornos marítimos digitalizados, donde la navegación, las comunicaciones, la gestión del tráfico, las instalaciones portuarias y la vigilancia oceánica dependen de infraestructuras digitales interconectadas. Este artículo propone una formulación extendida que incorpora el ciberpoder, la voluntad estratégica y la seguridad marítima como variables estructurales del poder marítimo. Con un enfoque analítico-conceptual, el modelo adopta una estructura multiplicativa normalizada en la que el colapso de cualquier dimensión restringe el agregado, y cuyo resultado se sitúa en el intervalo (0, 1], lo que permite una escala de cinco niveles directamente interpretable.</p>
-        <p>La formulación se verifica en tres etapas —propiedades lógico-matemáticas, análisis de sensibilidad y perfiles construidos—, que confirman que cada ecuación componente preserva el rango requerido; la calibración y la validación externa se distinguen de la verificación y se dejan para trabajo futuro, y un análisis de sensibilidad global identifica la seguridad marítima —su valor y su peso— como la principal fuente de incertidumbre. Colombia se emplea como caso ilustrativo: tomando su puesto en seguridad marítima del índice de poder marítimo más sistemático disponible en la literatura latinoamericana y valores ilustrativos para los demás componentes, el modelo sitúa al país en el nivel Moderado y descompone el resultado para mostrar qué componentes concentran las mayores brechas; un corolario enuncia la condición de costes relativos bajo la cual el ciberpoder sería el vector de inversión más eficiente. El artículo concluye proponiendo un Índice Nacional de Poder Marítimo como agenda de investigación, apoyado en un simulador interactivo de acceso abierto que permite explorar el modelo.</p>
-        <p style="font-size:13.5px;color:var(--text2)">Traducción del resumen del manuscrito en inglés. La versión en español del artículo se encuentra en actualización para alinearla con la revisión de octubre de 2026.</p>
+        <p>La formulación se verifica en tres etapas —propiedades lógico-matemáticas, análisis de sensibilidad y perfiles construidos—, que confirman que cada ecuación componente preserva el rango requerido; la calibración y la validación externa se distinguen de la verificación y se dejan para trabajo futuro, y un análisis de sensibilidad global identifica la seguridad marítima —su valor y su peso— como la principal fuente de incertidumbre. Colombia se emplea como caso ilustrativo: tomando su puesto en seguridad marítima del índice de poder marítimo más sistemático disponible en la literatura latinoamericana y valores ilustrativos para los demás componentes, el modelo sitúa al país en el nivel Moderado y muestra qué componentes concentran las mayores brechas; un corolario enuncia la condición de costes relativos bajo la cual el ciberpoder sería el vector de inversión más eficiente. El artículo concluye proponiendo un Índice Nacional de Poder Marítimo como agenda de investigación, apoyado en un simulador interactivo de acceso abierto para explorar el modelo.</p>
+        <p style="font-size:13.5px;color:var(--text2)">Traducción del resumen del manuscrito en inglés. El artículo en español está disponible en el repositorio en español.</p>
       </div>
       <div class="kw">
         <span data-lang="en">cyberdefense</span><span data-lang="en">cyber power</span><span data-lang="en">cybersecurity</span><span data-lang="en">maritime domain awareness</span><span data-lang="en">maritime power</span><span data-lang="en">maritime security</span><span data-lang="en">strategic assessment</span><span data-lang="en">strategic will</span>
@@ -216,12 +216,30 @@
   </div>
 </section>
 
-<section id="materials" class="alt">
+<section id="framework" class="alt">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker"><span data-lang="en">Theoretical framework</span><span data-lang="es">Marco teórico</span></div>
+      <h2><span data-lang="en">Where maritime power sits within power</span><span data-lang="es">Dónde se sitúa el poder marítimo dentro del poder</span></h2>
+      <p><span data-lang="en">The premise of the model: maritime power combines naval power with maritime interests, and cyber power cuts across both.</span><span data-lang="es">La premisa del modelo: el poder marítimo combina el poder naval con los intereses marítimos, y el ciberpoder atraviesa ambos.</span></p>
+    </div>
+    <div class="fw fade">
+      <div class="item"><div class="k"><span data-lang="en">Power</span><span data-lang="es">Poder</span></div><p data-lang="en">The ability to affect others to obtain the outcomes one wants; it can be stated only by specifying its scope and its domain (Nye, 2010).</p><p data-lang="es">La capacidad de afectar a otros para obtener los resultados que se desean; solo puede enunciarse especificando su alcance y su dominio (Nye, 2010).</p></div>
+      <div class="item"><div class="k"><span data-lang="en">National power</span><span data-lang="es">Poder nacional</span></div><p data-lang="en">Exercised through the coordinated use of four instruments—<b>diplomatic, information, military, and economic</b> (NATO, 2023)—of which military power is one.</p><p data-lang="es">Se ejerce mediante el uso coordinado de cuatro instrumentos —<b>diplomático, informativo, militar y económico</b> (OTAN, 2023)—, uno de los cuales es el poder militar.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Naval power</span><span data-lang="es">Poder naval</span></div><p data-lang="en">The expression of military power at sea. Booth (1977) conceives the functions of navies as a trinity unified by the use of the sea—<b>military, diplomatic, and policing</b>—whose weights differ from state to state.</p><p data-lang="es">La expresión del poder militar en el mar. Booth (1977) concibe las funciones de las armadas como una trinidad unificada por el uso del mar —<b>militar, diplomática y policial</b>—, cuyos pesos varían de un Estado a otro.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Maritime power</span><span data-lang="es">Poder marítimo</span></div><p data-lang="en">The capacity to create, develop, exploit, and defend the maritime interests of a country in peace and in conflict (Colombian Ocean Commission, 2018): it combines naval power, its military component, with interests of an economic, social, and political nature.</p><p data-lang="es">La capacidad de crear, desarrollar, explotar y defender los intereses marítimos de un país en la paz y en el conflicto (Comisión Colombiana del Océano, 2018): combina el poder naval, su componente militar, con intereses de naturaleza económica, social y política.</p></div>
+      <div class="item"><div class="k"><span data-lang="en">Cyber power</span><span data-lang="es">Ciberpoder</span></div><p data-lang="en">Obtains outcomes within and beyond cyberspace (Nye, 2010), so it cuts across both components. Naval power decays with distance—Booth’s loss-of-power gradient—whereas cyberspace offers instantaneous global reach (NATO, 2025): <b>cyber power enters as a factor of the whole system</b>, not as part of naval force.</p><p data-lang="es">Obtiene resultados dentro y fuera del ciberespacio (Nye, 2010), por lo que atraviesa ambos componentes. El poder naval decae con la distancia —el gradiente de pérdida de poder de Booth—, mientras que el ciberespacio ofrece alcance global instantáneo (OTAN, 2025): <b>el ciberpoder entra como factor de todo el sistema</b>, no como parte de la fuerza naval.</p></div>
+      <div class="item"><div class="k">Colombia</div><p data-lang="en">The National Ocean and Coastal Areas Policy (PNOEC), the state policy that frames the national and sectoral development plans, aims at a <b>Medium Oceanic Power</b> and associates that goal with position, political will, and maritime interests; the Naval Development Plan 2042 protects those interests through naval power. Neither the policy nor the documents that define the eighteen maritime interests mention the cyber dimension.</p><p data-lang="es">La Política Nacional del Océano y de los Espacios Costeros (PNOEC), política de Estado que enmarca los planes de desarrollo nacional y sectoriales, apunta a una <b>Potencia Media Oceánica</b> y asocia esa meta a la posición, la voluntad política y los intereses marítimos; el Plan de Desarrollo Naval 2042 protege esos intereses mediante el poder naval. Ni la política ni los documentos que definen los dieciocho intereses marítimos mencionan la dimensión cibernética.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker"><span data-lang="en">Explore the project</span><span data-lang="es">Explora el proyecto</span></div>
       <h2><span data-lang="en">Everything in one place</span><span data-lang="es">Todo en un solo lugar</span></h2>
-      <p><span data-lang="en">The interactive model, the verification script, the documented literature search, and the figures of the revised manuscript.</span><span data-lang="es">El modelo interactivo, el script de verificación, la búsqueda bibliográfica documentada y las figuras del manuscrito revisado.</span></p>
+      <p><span data-lang="en">The interactive model, the verification script, the documented literature search, and the figures of the manuscript.</span><span data-lang="es">El modelo interactivo, el script de verificación, la búsqueda bibliográfica documentada y las figuras del artículo.</span></p>
     </div>
     <div class="grid">
       <a class="card feat fade simlink" href="simulator/simulator.html">
@@ -251,8 +269,8 @@
       <a class="card fade" href="#equations">
         <div class="ico" style="background:var(--ms-bg)">🧮</div>
         <h3><span data-lang="en">Equation plates</span><span data-lang="es">Láminas de ecuaciones</span></h3>
-        <p data-lang="en">Eight didactic figures explaining the model equation by equation, with the notation and the operational boundaries of the revised manuscript.</p>
-        <p data-lang="es">Ocho figuras didácticas que explican el modelo ecuación por ecuación, con la notación y las fronteras operacionales del manuscrito revisado (láminas en inglés).</p>
+        <p data-lang="en">Eight didactic figures explaining the model equation by equation, with the notation and the operational boundaries of the manuscript.</p>
+        <p data-lang="es">Ocho figuras didácticas que explican el modelo ecuación por ecuación, con la notación y las fronteras operacionales del artículo en español.</p>
         <span class="go"><span data-lang="en">View gallery</span><span data-lang="es">Ver la galería</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="figures/schemes/Architecture_two_levels.pdf" data-en="figures/schemes/Architecture_two_levels.pdf" data-es="https://diegocabuya.github.io/Ciberpoder-y-Poder-Maritimo/figuras/esquemas/Arquitectura_dos_niveles.pdf">
@@ -269,18 +287,18 @@
         <p data-lang="es">Las fuentes que respaldan cada componente y cada decisión metodológica del modelo, con citas autor-año (Tabla 8 del artículo en español).</p>
         <span class="go"><span data-lang="en">View synthesis</span><span data-lang="es">Ver la síntesis</span> <span class="ar">→</span></span>
       </a>
-      <a class="card fade" href="#manuscript">
+      <a class="card fade" href="#manuscript" data-en="#manuscript" data-es="https://diegocabuya.github.io/Ciberpoder-y-Poder-Maritimo/docs/Articulo_Poder_Maritimo_y_Ciberpoder.pdf">
         <div class="ico" style="background:var(--mi-bg)">📄</div>
         <h3><span data-lang="en">Manuscript</span><span data-lang="es">Manuscrito</span></h3>
-        <p data-lang="en">Under review at IEEE Access. The revised version was prepared in October 2026 after a first round of peer review; the PDF will be posted here when the editorial process allows it.</p>
-        <p data-lang="es">En revisión en IEEE Access. La versión revisada se preparó en octubre de 2026 tras una primera ronda de evaluación por pares; el PDF se publicará aquí cuando el proceso editorial lo permita. La versión en español, revisada con los mismos cambios, está en el repositorio en español.</p>
-        <span class="go"><span data-lang="en">Status and citation</span><span data-lang="es">Estado y cita</span> <span class="ar">→</span></span>
+        <p data-lang="en">Under review at IEEE Access; the PDF will be posted here when the editorial process allows it. The Spanish version of the article is available in the Spanish repository.</p>
+        <p data-lang="es">En revisión en IEEE Access; el PDF se publicará aquí cuando el proceso editorial lo permita. El artículo en español está disponible en el repositorio en español.</p>
+        <span class="go"><span data-lang="en">Status and citation</span><span data-lang="es">Abrir el artículo en español (PDF)</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="presentation/presentation.pdf" data-en="presentation/presentation.pdf" data-es="https://diegocabuya.github.io/Ciberpoder-y-Poder-Maritimo/presentacion/Presentacion_PM_Ciberpoder.pdf">
         <div class="ico" style="background:var(--sw-bg)">🎞️</div>
         <h3><span data-lang="en">Presentation</span><span data-lang="es">Presentación</span></h3>
-        <p data-lang="en">Eighteen slides that follow the revised manuscript: problem, gaps, method, the two levels of the model, verification, uncertainty, the Colombian illustration and Corollary 1.</p>
-        <p data-lang="es">Dieciocho diapositivas que siguen la versión revisada: problema, vacíos, método, los dos niveles del modelo, verificación, incertidumbre, la ilustración colombiana y el Corolario 1.</p>
+        <p data-lang="en">Twenty-four slides structured for an academic presentation: problem, general and specific objectives, theoretical framework, method, results, discussion, and conclusions.</p>
+        <p data-lang="es">Veinticuatro diapositivas estructuradas para una sustentación académica: problema, objetivo general y objetivos específicos, marco teórico, método, resultados, discusión y conclusiones.</p>
         <span class="go"><span data-lang="en">Open PDF</span><span data-lang="es">Abrir el PDF</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="presentation/simulator_guide.pdf" data-en="presentation/simulator_guide.pdf" data-es="https://diegocabuya.github.io/Ciberpoder-y-Poder-Maritimo/presentacion/Diapositivas_Simulador_PM.pdf">
@@ -293,34 +311,26 @@
       <a class="card fade" href="infographic/Infographic.pdf" data-en="infographic/Infographic.pdf" data-es="https://diegocabuya.github.io/Ciberpoder-y-Poder-Maritimo/infografia/Infografia_PM_Ciberpoder.pdf">
         <div class="ico" style="background:var(--ms-bg)">🗺️</div>
         <h3><span data-lang="en">Infographic</span><span data-lang="es">Infografía</span></h3>
-        <p data-lang="en">The model on one page: the formula, the five variables, the scale with Colombia, robustness, Proposition 1 and Corollary 1.</p>
-        <p data-lang="es">El modelo en una página: la fórmula, las cinco variables, la escala con Colombia, la robustez, la Proposición 1 y el Corolario 1.</p>
+        <p data-lang="en">The model on one page: the formula, the five variables, the scale with Colombia, robustness, Proposition 1, Corollary 1, and the theoretical and policy framework.</p>
+        <p data-lang="es">El modelo en una página: la fórmula, las cinco variables, la escala con Colombia, la robustez, la Proposición 1, el Corolario 1 y el marco teórico y de política.</p>
         <span class="go"><span data-lang="en">Open PDF</span><span data-lang="es">Abrir el PDF</span> <span class="ar">→</span></span>
-      </a>
-      <a class="card fade" href="archive/2026-08_pre-revision/">
-        <span class="badge grey"><span data-lang="en">ARCHIVE</span><span data-lang="es">ARCHIVO</span></span>
-        <div class="ico" style="background:#eef1f4">🗄️</div>
-        <h3><span data-lang="en">Pre-revision materials</span><span data-lang="es">Materiales previos a la revisión</span></h3>
-        <p data-lang="en">The presentation, infographic, and submitted version of August–September 2026. They predate the revision and contain statements that the revised manuscript has corrected; kept for the record only.</p>
-        <p data-lang="es">La presentación, la infografía y la versión enviada en agosto–septiembre de 2026. Son anteriores a la revisión y contienen afirmaciones que el manuscrito revisado corrigió; se conservan solo como registro.</p>
-        <span class="go"><span data-lang="en">Browse archive</span><span data-lang="es">Ver el archivo</span> <span class="ar">→</span></span>
       </a>
     </div>
   </div>
 </section>
 
-<section id="equations">
+<section id="equations" class="alt">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker"><span data-lang="en">The model, step by step</span><span data-lang="es">El modelo, paso a paso</span></div>
       <h2><span data-lang="en">The equations of maritime power</span><span data-lang="es">Las ecuaciones del poder marítimo</span></h2>
-      <p><span data-lang="en">From the classical core to the fully expanded formula, following the numbering of the revised manuscript. Click any plate to enlarge.</span><span data-lang="es">Del núcleo clásico a la fórmula expandida, con las siglas y la numeración del artículo en español. Pulsa cualquier lámina para ampliarla.</span></p>
+      <p><span data-lang="en">From the classical core to the fully expanded formula, following the numbering of the manuscript. Click any plate to enlarge.</span><span data-lang="es">Del núcleo clásico a la fórmula expandida, con las siglas y la numeración del artículo en español. Pulsa cualquier lámina para ampliarla.</span></p>
     </div>
     <div class="gal" id="gal"></div>
   </div>
 </section>
 
-<section id="reproducibility" class="alt">
+<section id="reproducibility">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker"><span data-lang="en">Open science</span><span data-lang="es">Ciencia abierta</span></div>
@@ -350,24 +360,6 @@ python3 verification/verify_model.py          # <span data-lang="en">quicker che
   </div>
 </section>
 
-<section id="revision">
-  <div class="wrap">
-    <div class="sec-head fade">
-      <div class="kicker"><span data-lang="en">October 2026</span><span data-lang="es">Octubre de 2026</span></div>
-      <h2><span data-lang="en">What changed in the revision</span><span data-lang="es">Qué cambió en la revisión</span></h2>
-      <p><span data-lang="en">The materials on this site follow the revised manuscript. The main changes with respect to the submitted version are:</span><span data-lang="es">Los materiales de este sitio siguen el manuscrito revisado. Los cambios principales respecto a la versión enviada son:</span></p>
-    </div>
-    <div class="rev fade">
-      <div class="item"><div class="k">α <span data-lang="en">and</span><span data-lang="es">y</span> CP</div><p data-lang="en"><b>α is the weight of cyber dependence</b>, a property of the maritime system, and no longer a cyber-maturity index; maturity is read on CP itself in five bands. Proposition 1 shows that raising α raises MP<sub>norm</sub> only if CP exceeds the geometric mean of the rest of the system.</p><p data-lang="es"><b>α es el peso de la dependencia cibernética</b>, una propiedad del sistema marítimo, y ya no un índice de madurez cibernética; la madurez se lee en el propio CP, en cinco tramos. La Proposición 1 muestra que subir α solo sube PM<sub>norm</sub> si CP supera la media geométrica del resto del sistema.</p></div>
-      <div class="item"><div class="k"><span data-lang="en">Concavity</span><span data-lang="es">Concavidad</span></div><p data-lang="en">MP<sub>norm</sub> is strictly concave in every component for any α &gt; 0, because the normalized exponent α/(3 + γ + α) is always below one; concavity does not single out cyber power.</p><p data-lang="es">PM<sub>norm</sub> es estrictamente cóncava en cada componente para cualquier α &gt; 0, porque el exponente normalizado α/(3 + γ + α) siempre es menor que uno; la concavidad no distingue al ciberpoder.</p></div>
-      <div class="item"><div class="k"><span data-lang="en">Efficiency</span><span data-lang="es">Eficiencia</span></div><p data-lang="en">The claim that cyber power is the most efficient investment vector was <b>removed</b> and replaced by Corollary 1, a testable condition on relative unit costs (break-even ratios of 1.21, 1.32, 1.52 and 2.12 for Colombia). Sensitivity measures responsiveness, not efficiency.</p><p data-lang="es">La afirmación de que el ciberpoder es el vector de inversión más eficiente se <b>retiró</b> y se sustituyó por el Corolario 1, una condición comprobable sobre costes unitarios relativos (umbrales de 1,21, 1,32, 1,52 y 2,12 para Colombia). La sensibilidad mide capacidad de respuesta, no eficiencia.</p></div>
-      <div class="item"><div class="k">Colombia</div><p data-lang="en">Only maritime security derives from an external source, as the position percentile of Colombia's rank (0.24); the other values are illustrative. MP<sub>norm</sub> = 0.455 (Moderate). No calibration or external validation is claimed.</p><p data-lang="es">Solo la seguridad marítima procede de una fuente externa, como percentil de posición del puesto de Colombia (0,24); los demás valores son ilustrativos. PM<sub>norm</sub> = 0,455 (Moderado). No se afirma calibración ni validación externa.</p></div>
-      <div class="item"><div class="k"><span data-lang="en">Verification</span><span data-lang="es">Verificación</span></div><p data-lang="en">Verification, calibration and external validation are distinguished (Sargent, 2011). An uncertainty and variance-based sensitivity analysis with Sobol' indices was added; a four-step protocol for calibration and external validation and an operationalization table were specified.</p><p data-lang="es">Se distinguen verificación, calibración y validación externa (Sargent, 2011). Se añadió un análisis de incertidumbre y de sensibilidad basado en varianza con índices de Sobol'; se especificaron un protocolo de cuatro pasos para la calibración y la validación externa y una tabla de operacionalización.</p></div>
-      <div class="item"><div class="k"><span data-lang="en">Boundaries</span><span data-lang="es">Fronteras</span></div><p data-lang="en">Operational boundaries between components were made explicit: tactical-operational cyberdefense in NP, strategic cyberdefense (CD<sub>m</sub>) in CP, cyber diplomacy only in CP, maritime security as incidence of threats; the resilience sub-component became <b>maritime recovery capacity (RC<sub>m</sub>)</b>, with Σβ = 1.</p><p data-lang="es">Se explicitaron las fronteras operacionales entre componentes: ciberdefensa táctico-operacional en PN, ciberdefensa estratégica (CD<sub>m</sub>) en CP, ciberdiplomacia solo en CP, seguridad marítima como incidencia de amenazas; el subcomponente de resiliencia pasó a ser la <b>capacidad de recuperación marítima (CR<sub>m</sub>)</b>, con Σβ = 1.</p></div>
-      <div class="item"><div class="k"><span data-lang="en">Literature</span><span data-lang="es">Literatura</span></div><p data-lang="en">The literature search was repeated as a documented, reproducible procedure (OpenAlex and Scopus, 2014–2026); existing composite measures of maritime and naval power are discussed and shown to be additive and without cyber power.</p><p data-lang="es">La búsqueda bibliográfica se repitió como procedimiento documentado y reproducible (OpenAlex y Scopus, 2014–2026); se discuten las medidas compuestas existentes del poder marítimo y naval y se muestra que todas son aditivas y ninguna incluye el ciberpoder.</p></div>
-    </div>
-  </div>
-</section>
 
 <footer id="manuscript">
   <div class="wrap">
@@ -382,6 +374,7 @@ python3 verification/verify_model.py          # <span data-lang="en">quicker che
       <div class="col">
         <h4><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h4>
         <a href="#project"><span data-lang="en">The project</span><span data-lang="es">El proyecto</span></a>
+        <a href="#framework"><span data-lang="en">Theoretical framework</span><span data-lang="es">Marco teórico</span></a>
         <a href="#materials"><span data-lang="en">Materials</span><span data-lang="es">Materiales</span></a>
         <a href="#equations"><span data-lang="en">Equations</span><span data-lang="es">Ecuaciones</span></a>
         <a href="#reproducibility"><span data-lang="en">Reproducibility</span><span data-lang="es">Reproducibilidad</span></a>
