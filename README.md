@@ -8,7 +8,7 @@
 
 Naval Academy of Strategic Studies, Colombian Navy · Colombian War College “General Rafael Reyes Prieto” · Naval School “Admiral Padilla” (NAVTEG)
 
-*Manuscript under review — IEEE Access (revised version, October 2026)*
+*Manuscript under review — IEEE Access*
 
 [![Simulator](https://img.shields.io/badge/▶_Simulator-interactive-185FA5?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)
 [![Site](https://img.shields.io/badge/🌐_Project-site-0D2A42?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)
@@ -22,7 +22,13 @@ Naval Academy of Strategic Studies, Colombian Navy · Colombian War College “G
 
 The classical formulation of maritime power—the product of **maritime interests** and **naval power**—has become insufficient to explain the dynamics of digitalized maritime environments. This article proposes an extended formulation that incorporates **cyber power**, **strategic will**, and **maritime security** as structural variables of maritime power. The model adopts a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate, and whose output lies within (0, 1], enabling a directly interpretable five-level scale.
 
-The formulation is **verified** in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—and a global sensitivity analysis identifies maritime security (its value and its weight) as the main source of uncertainty; **calibration and external validation are distinguished from verification and left to future work**. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index currently available and illustrative values for the other components, the model places the country at the Moderate level and decomposes the result to show which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector.
+The formulation is **verified** in three stages—logical-mathematical properties, sensitivity analysis, and constructed profiles—and a global sensitivity analysis identifies maritime security (its value and its weight) as the main source of uncertainty; **calibration and external validation are distinguished from verification and left to future work**. Colombia is used as an illustrative case: taking its maritime security rank from the most systematic maritime power index available in the Latin American literature and illustrative values for the other components, the model places the country at the Moderate level and shows which components concentrate the largest gaps; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector.
+
+## Theoretical framework
+
+Power is the ability to affect others to obtain the outcomes one wants (Nye, 2010). National power is exercised through four instruments—diplomatic, information, military, and economic (NATO, 2023). **Naval power** is the expression of military power at sea, whose functions Booth (1977) conceives as a trinity—military, diplomatic, and policing—unified by the use of the sea. **Maritime power** is broader: the capacity to create, develop, exploit, and defend a country's maritime interests (Colombian Ocean Commission, 2018), so it combines naval power with interests of an economic, social, and political nature. **Cyber power** obtains outcomes within and beyond cyberspace (Nye, 2010) and therefore cuts across both components; unlike naval power, whose effectiveness decays with distance (Booth's loss-of-power gradient), it acts with instantaneous global reach (NATO, 2025). This is why it enters the model as a factor of the whole system.
+
+In Colombia, the National Ocean and Coastal Areas Policy (PNOEC), the state policy that frames the national and sectoral development plans, aims at a Medium Oceanic Power and associates that goal with position, political will, and maritime interests; the Naval Development Plan 2042 protects those interests through naval power. Neither the policy nor the documents that define the eighteen maritime interests mention the cyber dimension.
 
 ## The model
 
@@ -63,8 +69,8 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 
   Reference output: [`verification/verification_output.txt`](verification/verification_output.txt).
 - **[🔎 Documented literature search](search/README.md)** — query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026) and the screening log of the 812 unique records.
-- **[🌐 Project site](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)** — equation plates, model architecture, bibliographic synthesis, and revision notes.
-- **[🎞️ Presentation](presentation/presentation.pdf)**, **[simulator guide](presentation/simulator_guide.pdf)** and **[infographic](infographic/Infographic.pdf)** — regenerated in October 2026 from the revised manuscript.
+- **[🌐 Project site](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)** — theoretical framework, equation plates, model architecture, and bibliographic synthesis.
+- **[🎞️ Presentation](presentation/presentation.pdf)** — 24 slides structured for an academic presentation: problem, general and specific objectives, theoretical framework, method, results, discussion, and conclusions. Also the **[simulator guide](presentation/simulator_guide.pdf)** and the **[infographic](infographic/Infographic.pdf)**.
 - **Español** — the site and the simulator are bilingual (EN/ES); the Spanish view uses the notation of the Spanish version of the article (PM, IM, PN, VE, SM, CP). The Spanish article, its figures and the Spanish presentation and infographic are in [Ciberpoder-y-Poder-Maritimo](https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo).
 
 ## Repository contents
@@ -73,7 +79,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 .
 ├── index.html                           ← Project site (GitHub Pages)
 ├── simulator/
-│   └── simulator.html                   ← Interactive model simulator (revised model)
+│   └── simulator.html                   ← Interactive model simulator (bilingual EN/ES)
 ├── verification/
 │   ├── verify_model.py                  ← Numerical verification; regenerates Tables 4–7
 │   └── verification_output.txt          ← Reference output of the canonical run (300,000 draws)
@@ -87,29 +93,15 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 │   ├── equations/                       ← The 8 equation plates (PDF + PNG)
 │   └── schemes/                         ← Two-level architecture (Fig. 1) + bibliographic synthesis (Table 8)
 ├── presentation/
-│   ├── presentation.pdf                 ← 18 slides on the revised model
+│   ├── presentation.pdf                 ← 24 slides: problem, objectives, framework, method, results, discussion, conclusions
 │   └── simulator_guide.pdf              ← 3 slides: simulator architecture, its 31 controls, and use
 ├── infographic/
-│   └── Infographic.{pdf,png}            ← The revised model on one page
+│   └── Infographic.{pdf,png}            ← The model on one page
 ├── docs/                                ← Manuscript PDF (posted when the editorial process allows it)
-├── archive/2026-08_pre-revision/        ← Earlier presentation, infographic and submitted version (superseded)
+├── archive/                            ← Earlier versions of the materials, kept for the record
 ├── LICENSE
 └── README.md
 ```
-
-## What changed in the October 2026 revision
-
-| Topic | Submitted version | Revised version |
-|---|---|---|
-| α | Cyber-maturity index and exponent at once | **Weight of cyber dependence**; maturity is read on CP in five bands (Proposition 1) |
-| Concavity | Attributed to α < 1 | Holds for every α > 0: the normalized exponent is always below one, for every component |
-| Investment efficiency | "Cyber power is the most efficient investment vector" | **Removed**; replaced by the cost condition of Corollary 1 |
-| Colombia | MS = 0.59 (a percentage share), MP<sub>norm</sub> = 0.53, "same scale" as the reference index | MS = 0.24 (rank percentile), MP<sub>norm</sub> = 0.455; no common scale, no calibration, no validation claimed |
-| Verification | "Validation" | Verification, calibration and external validation distinguished (Sargent, 2011); uncertainty analysis with Sobol' indices; protocol for calibration and external validation; operationalization table |
-| Components | Cyber resilience (CR<sub>m</sub>); cyber diplomacy in CP and in political will; Σβ = 0.90 in the simulator | **Maritime recovery capacity (RC<sub>m</sub>)**; cyber diplomacy only in CP; explicit operational boundaries; Σβ = 1 |
-| Literature | Search not recorded | Documented search in OpenAlex and Scopus; existing composite measures discussed (all additive, none with cyber power) |
-
-The materials in `archive/` predate these changes and are kept for the record only.
 
 ## Citation
 
