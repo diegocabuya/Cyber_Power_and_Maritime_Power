@@ -319,6 +319,8 @@ let LANG='en';
 try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('pm_lang');LANG=((q||s||'en').toLowerCase().startsWith('es'))?'es':'en';}catch(e){}
 const T=k=>I18N[LANG][k]!==undefined?I18N[LANG][k]:I18N.en[k];
 const fmt=(s,o)=>s.replace(/\{(\w+)\}/g,(m,k)=>o[k]);
+// cifras mostradas: coma decimal en la vista en español (los valores de los controles siguen con punto)
+const F=(x,d)=>{const s=(+x).toFixed(d);return LANG==='es'?s.replace('.',','):s;};
 
 // ---------------------------------------------------------------- model
 const KEYS=['MI','NP','SW','MS','CP'];
@@ -394,7 +396,7 @@ function slider(k,c,val,dis,grp){
   const d=T('sl')[k];
   return `<div class="sr"><span class="sk" style="color:${c}">${SY(k)}</span><span class="sd" title="${d}">${d}</span>
     <input type="range" min=".01" max="1" step=".01" value="${val.toFixed(2)}" id="sl-${k}" ${dis?'disabled':''} oninput="onSl('${k}',this.value,${grp?`'${grp}'`:'null'})" style="accent-color:${c};--thumb:${c}">
-    <span class="sv" id="sv-${k}">${val.toFixed(2)}</span></div>`;
+    <span class="sv" id="sv-${k}">${F(val,2)}</span></div>`;
 }
 function buildSliders(){
   const c=document.getElementById('sliders');c.innerHTML='';
@@ -412,17 +414,17 @@ function buildSliders(){
 function onSl(k,v,grp){
   const x=parseFloat(v);
   if(grp){L2[grp][k]=x;}else{ST[k]=x;}
-  const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=x.toFixed(2);
+  const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=F(x,2);
   clrBtns();update();
 }
 function togL2(k,on){
   L2[k].on=on;document.getElementById('l2b-'+k).classList.toggle('open',on);
   const sl=document.getElementById('sl-'+k);sl.disabled=on;
-  if(!on){sl.value=ST[k].toFixed(2);document.getElementById('sv-'+k).textContent=ST[k].toFixed(2);}
+  if(!on){sl.value=ST[k].toFixed(2);document.getElementById('sv-'+k).textContent=F(ST[k],2);}
   clrBtns();update();
 }
 function syncSl(){
-  GR.forEach(g=>{g.top.forEach(k=>{const sl=document.getElementById('sl-'+k);if(sl){sl.value=ST[k].toFixed(2);sl.disabled=!!(g.sub&&L2[g.k].on);}const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=ST[k].toFixed(2);});
+  GR.forEach(g=>{g.top.forEach(k=>{const sl=document.getElementById('sl-'+k);if(sl){sl.value=ST[k].toFixed(2);sl.disabled=!!(g.sub&&L2[g.k].on);}const sv=document.getElementById('sv-'+k);if(sv)sv.textContent=F(ST[k],2);});
     if(g.sub){document.getElementById('l2-'+g.k).checked=L2[g.k].on;document.getElementById('l2b-'+g.k).classList.toggle('open',L2[g.k].on);}});
 }
 function clrBtns(){document.querySelectorAll('[id^="b-"]').forEach(e=>e.className='btn');}
@@ -444,11 +446,11 @@ function drawG(id,val,col){
   ctx.beginPath();ctx.arc(cx,cy,r,Math.PI,2*Math.PI);ctx.strokeStyle='#1c2230';ctx.lineWidth=6;ctx.stroke();
   const a=Math.PI+Math.max(0,Math.min(1,val))*Math.PI;
   ctx.beginPath();ctx.arc(cx,cy,r,Math.PI,a);ctx.strokeStyle=col;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
-  ctx.fillStyle='#e2e6f0';ctx.font='bold 11px monospace';ctx.textAlign='center';ctx.fillText(val.toFixed(2),cx,cy-3);
+  ctx.fillStyle='#e2e6f0';ctx.font='bold 11px monospace';ctx.textAlign='center';ctx.fillText(F(val,2),cx,cy-3);
 }
 
 function buildCharts(){
-  Chart.defaults.color='#8891a8';Chart.defaults.borderColor='#252c3c';
+  Chart.defaults.locale=LANG==='es'?'es-CO':'en-US';Chart.defaults.color='#8891a8';Chart.defaults.borderColor='#252c3c';
   const X=eff();
   rC=new Chart(document.getElementById('radar'),{type:'radar',
     data:{labels:KEYS,datasets:[{label:T('current'),data:KEYS.map(v=>X[v]),backgroundColor:'rgba(74,143,245,.12)',borderColor:'#4a8ff5',pointBackgroundColor:KEYS.map(v=>VC[v]),pointRadius:4,borderWidth:2}]},
@@ -456,19 +458,19 @@ function buildCharts(){
   });
   pmC=new Chart(document.getElementById('barpm'),{type:'bar',data:{labels:[],datasets:[]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:40}},
-      scales:{x:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},
+      scales:{x:{min:0,max:1,ticks:{stepSize:.2,callback:v=>F(v,1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},
         y:{grid:{display:false},ticks:{color:'#e2e6f0',font:{size:10,weight:'bold'}},border:{color:'#252c3c'}}},
-      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(3),font:{size:11,weight:'bold',family:'monospace'},color:ctx=>getLv(ctx.dataset.data[ctx.dataIndex]).c,offset:4},
-        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>(LANG==='es'?' PM_norm: ':' MP_norm: ')+c.parsed.x.toFixed(3)}}}},
+      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>F(v,3),font:{size:11,weight:'bold',family:'monospace'},color:ctx=>getLv(ctx.dataset.data[ctx.dataIndex]).c,offset:4},
+        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>(LANG==='es'?' PM_norm: ':' MP_norm: ')+F(c.parsed.x,3)}}}},
     plugins:[ChartDataLabels]});
   bC=new Chart(document.getElementById('bar'),{type:'bar',data:{labels:KEYS,datasets:[]},
     options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{min:0,max:1,ticks:{stepSize:.2,callback:v=>v.toFixed(1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},x:{grid:{display:false},ticks:{color:'#8891a8',font:{size:10}},border:{color:'#252c3c'}}},
-      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>v.toFixed(2),font:{size:8,family:'monospace'},color:'#8891a8',rotation:-90,offset:2},
-        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,titleColor:'#e2e6f0',bodyColor:'#8891a8',callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.y.toFixed(3)}}}},
+      scales:{y:{min:0,max:1,ticks:{stepSize:.2,callback:v=>F(v,1),color:'#4d566a',font:{size:9}},grid:{color:'#1a1e2a'},border:{color:'#252c3c'}},x:{grid:{display:false},ticks:{color:'#8891a8',font:{size:10}},border:{color:'#252c3c'}}},
+      plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',formatter:v=>F(v,2),font:{size:8,family:'monospace'},color:'#8891a8',rotation:-90,offset:2},
+        tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,titleColor:'#e2e6f0',bodyColor:'#8891a8',callbacks:{label:c=>' '+c.dataset.label+': '+F(c.parsed.y,3)}}}},
     plugins:[ChartDataLabels]});
   rCC=new Chart(document.getElementById('rcmp'),{type:'radar',data:{labels:KEYS,datasets:[]},
-    options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:1,ticks:{stepSize:.25,color:'#4d566a',backdropColor:'transparent',font:{size:9}},pointLabels:{color:'#8891a8',font:{size:11,weight:'bold'}},grid:{color:'#1c2230'},angleLines:{color:'#1c2230'}}},plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.r.toFixed(2)}}}}});
+    options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:1,ticks:{stepSize:.25,color:'#4d566a',backdropColor:'transparent',font:{size:9}},pointLabels:{color:'#8891a8',font:{size:11,weight:'bold'}},grid:{color:'#1c2230'},angleLines:{color:'#1c2230'}}},plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b24',borderColor:'#313a52',borderWidth:1,callbacks:{label:c=>' '+c.dataset.label+': '+F(c.parsed.r,2)}}}}});
 }
 
 function buildCmp(){
@@ -488,17 +490,17 @@ function updSens(X){
   const tb=document.getElementById('sens-body');const om=omegas(ST.alpha,ST.gamma),P=pm(X,ST.alpha,ST.gamma);
   const mrCP=om.CP*P/X.CP;
   tb.innerHTML=KEYS.map(k=>{
-    const x=X[k],x1=Math.min(1,1.2*x),d=(Math.pow(x1/x,om[k])-1)*100,mr=om[k]*P/x,be=k==='CP'?'—':(mr/mrCP).toFixed(2);
-    return `<tr><td style="font-weight:600;color:${VC[k]}">${SY(k)}</td><td class="mono">${x.toFixed(2)}</td><td class="mono">${om[k].toFixed(3)}</td><td class="mono" style="font-weight:700">+${d.toFixed(1)} %${x1<1.2*x-1e-9?` <span title="${T('capped')}" style="color:var(--text3)">⌈1⌉</span>`:''}</td><td class="mono">${mr.toFixed(3)}</td><td class="mono">${be}</td></tr>`;
+    const x=X[k],x1=Math.min(1,1.2*x),d=(Math.pow(x1/x,om[k])-1)*100,mr=om[k]*P/x,be=k==='CP'?'—':F((mr/mrCP),2);
+    return `<tr><td style="font-weight:600;color:${VC[k]}">${SY(k)}</td><td class="mono">${F(x,2)}</td><td class="mono">${F(om[k],3)}</td><td class="mono" style="font-weight:700">+${F(d,1)} %${x1<1.2*x-1e-9?` <span title="${T('capped')}" style="color:var(--text3)">⌈1⌉</span>`:''}</td><td class="mono">${F(mr,3)}</td><td class="mono">${be}</td></tr>`;
   }).join('');
 }
 function update(){
   const X=eff(),a=ST.alpha,g=ST.gamma,P=pm(X,a,g),lv=getLv(P),G=restG(X,g),w=a/(3+g+a);
-  const el=document.getElementById('pm-num');el.textContent=P.toFixed(3);el.style.color=lv.c;
+  const el=document.getElementById('pm-num');el.textContent=F(P,3);el.style.color=lv.c;
   const badge=document.getElementById('pm-badge');badge.textContent=lv.l;badge.style.background=lv.c+'20';badge.style.color=lv.c;badge.style.border='1px solid '+lv.c+'50';
   document.getElementById('pm-desc').textContent=lv.d;
   const sgn=Math.abs(X.CP-G)<5e-4?T('sgn_eq'):(X.CP>G?T('sgn_up'):T('sgn_dn'));
-  document.getElementById('pm-neff').innerHTML=fmt(T('neff'),{g:g.toFixed(2),a:a.toFixed(2),n:(3+g+a).toFixed(2),G:G.toFixed(3),w:w.toFixed(3),sgn:sgn,comp:KEYS.map(k=>SY(k)+' '+X[k].toFixed(2)+(L2[k]&&L2[k].on?'*':'')).join(' · '),band:band(X.CP)});
+  document.getElementById('pm-neff').innerHTML=fmt(T('neff'),{g:F(g,2),a:F(a,2),n:F((3+g+a),2),G:F(G,3),w:F(w,3),sgn:sgn,comp:KEYS.map(k=>SY(k)+' '+F(X[k],2)+(L2[k]&&L2[k].on?'*':'')).join(' · '),band:band(X.CP)});
   KEYS.forEach(k=>{drawG(k,X[k],VC[k]);const gv=document.getElementById('gv-'+k);if(gv)gv.innerHTML=k==='CP'?band(X.CP)+' · '+T('band_w'):(L2[k]&&L2[k].on?T('fromL2'):T('direct'));});
   if(rC){rC.data.datasets[0].label=T('current');rC.data.datasets[0].data=KEYS.map(k=>X[k]);rC.update();}
   updSens(X);updBar();
@@ -513,7 +515,7 @@ function updBar(){
     pmLabels.push(sn);pmVals.push(P);pmColors.push(s.c+'cc');
     bDS.push({label:sn,data:KEYS.map(k=>X[k]),backgroundColor:s.c+'bb',borderRadius:3,borderWidth:0});
     rDS.push({label:sn,data:KEYS.map(k=>X[k]),backgroundColor:s.c+'22',borderColor:s.c,pointBackgroundColor:s.c,pointRadius:4,borderWidth:2});
-    lPM.push(`<span class="li"><span class="lsq" style="background:${s.c}cc"></span>${sn}: <b style="color:${getLv(P).c}">${P.toFixed(3)}</b></span>`);
+    lPM.push(`<span class="li"><span class="lsq" style="background:${s.c}cc"></span>${sn}: <b style="color:${getLv(P).c}">${F(P,3)}</b></span>`);
     lB.push(`<span class="li"><span class="lsq" style="background:${s.c}bb"></span>${sn}</span>`);
     lR.push(`<span class="li"><span class="lsq" style="background:${s.c}"></span>${sn}</span>`);
   });
@@ -543,16 +545,16 @@ function showMC(){
   const out=document.getElementById('mc-out');
   if(!MCRES){out.innerHTML=`<div><div class="k">Monte Carlo</div><div class="v" style="font-size:10px;color:var(--text3)">${T('mc_wait')}</div></div>`;return;}
   const {N,d,q,lvl,low,top,X0,P0}=MCRES;
-  const fmtO=o=>Object.entries(o).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${SY(k)} ${(100*v/N).toFixed(1)} %`).join(' · ');
-  const fmtL=()=>lvl.map((v,i)=>[T('lv')[i],v]).filter(x=>x[1]>0).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${k} ${(100*v/N).toFixed(1)} %`).join(' · ');
+  const fmtO=o=>Object.entries(o).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${SY(k)} ${F((100*v/N),1)} %`).join(' · ');
+  const fmtL=()=>lvl.map((v,i)=>[T('lv')[i],v]).filter(x=>x[1]>0).sort((p,q)=>q[1]-p[1]).map(([k,v])=>`${k} ${F((100*v/N),1)} %`).join(' · ');
   const am=KEYS.reduce((s,k)=>s+X0[k],0)/5,gm=Math.exp(KEYS.reduce((s,k)=>s+Math.log(X0[k]),0)/5);
   out.innerHTML=
-    `<div><div class="k">${T('mc_med')}</div><div class="v">${q(.5).toFixed(3)}</div><div class="s">${T('mc_cur')} ${P0.toFixed(3)}</div></div>`+
-    `<div><div class="k">${T('mc_band')}</div><div class="v">[${q(.05).toFixed(3)}, ${q(.95).toFixed(3)}]</div><div class="s">${N.toLocaleString()} ${T('mc_draws')}, ± ${d.toFixed(2)}</div></div>`+
+    `<div><div class="k">${T('mc_med')}</div><div class="v">${F(q(.5),3)}</div><div class="s">${T('mc_cur')} ${F(P0,3)}</div></div>`+
+    `<div><div class="k">${T('mc_band')}</div><div class="v">[${F(q(.05),3)}${LANG==='es'?';':','} ${F(q(.95),3)}]</div><div class="s">${N.toLocaleString(LANG==='es'?'es-CO':'en-US')} ${T('mc_draws')}, ± ${F(d,2)}</div></div>`+
     `<div><div class="k">${T('mc_lvl')}</div><div class="v" style="font-size:9.5px">${fmtL()}</div></div>`+
     `<div><div class="k">${T('mc_low')}</div><div class="v" style="font-size:9.5px">${fmtO(low)}</div></div>`+
     `<div><div class="k">${T('mc_top')}</div><div class="v" style="font-size:9.5px">${fmtO(top)}</div></div>`+
-    `<div><div class="k">${T('mc_agg')}</div><div class="v" style="font-size:9.5px">${LANG==='es'?'PM_norm':'MP_norm'} ${P0.toFixed(3)} (${getLv(P0).l}) · ${T('mc_ar')} ${am.toFixed(3)} (${getLv(am).l}) · ${T('mc_geo')} ${gm.toFixed(3)} (${getLv(gm).l})</div></div>`;
+    `<div><div class="k">${T('mc_agg')}</div><div class="v" style="font-size:9.5px">${LANG==='es'?'PM_norm':'MP_norm'} ${F(P0,3)} (${getLv(P0).l}) · ${T('mc_ar')} ${F(am,3)} (${getLv(am).l}) · ${T('mc_geo')} ${F(gm,3)} (${getLv(gm).l})</div></div>`;
 }
 
 // ---------------------------------------------------------------- language
