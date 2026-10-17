@@ -107,7 +107,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 
 ## License
 
-Released under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license. You are free to share and adapt the material for any purpose, provided appropriate credit is given. See [`LICENSE`](LICENSE).
+The **research materials** (articles, figures, equation plates, infographic, presentations, and the authors' search queries and screening logs) are released under the [**Creative Commons Attribution 4.0 International (CC BY 4.0)**](https://creativecommons.org/licenses/by/4.0/) license, the same license under which IEEE Access publishes its articles: you are free to share and adapt them for any purpose, provided appropriate credit is given. The **code** (simulator, site, and verification and search scripts) is released under the [**MIT**](https://opensource.org/licenses/MIT) license. Third-party bibliographic records in `search/` are not covered: OpenAlex data are CC0, and the Scopus exports remain subject to Elsevier's terms of use. See [`LICENSE`](LICENSE).
 
 ---
 
