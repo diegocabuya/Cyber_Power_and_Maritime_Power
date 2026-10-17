@@ -32,7 +32,7 @@ power (11) and those on the measurement of cyber power (8) informed the Related 
 |---|---|
 | `OpenAlex_Q1..Q4.json` | Raw OpenAlex records per query (full API response, abstracts reconstructed from the inverted index) |
 | `OpenAlex_Q1..Q4.csv` | The same records, one row per work (id, DOI, year, type, title, venue, authors, abstract) |
-| `Scopus_Q1..Q4_2026-10-13.csv` | Scopus exports of the four queries (institutional access) |
+| `Scopus_Q1..Q4_2026-10-13.csv` | Scopus records of the four queries, as identifiers: EID, DOI, title, year, source, document type, and link. Scopus terms of use do not permit redistributing complete exports; the full records can be retrieved with institutional access by running the query strings below, or by EID |
 | `screening_openalex_2026-10-13.csv` | Screening decision per OpenAlex record (first pass) |
 | `screening_merged_2026-10-13.csv` | **Screening log of the 812 unique records**: key, source database(s), queries, year, title, decision, note |
 | `openalex_search.py` | Script that reproduces the OpenAlex queries (`python3 -I openalex_search.py`) |
