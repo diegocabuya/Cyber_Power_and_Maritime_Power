@@ -66,7 +66,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
   ```
 
   Reference output: [`verification/verification_output.txt`](verification/verification_output.txt).
-- **[🔎 Documented literature search](search/README.md)** — query strings, raw records (OpenAlex and Scopus, 13 October 2026, 2014–2026) and the screening log of the 812 unique records.
+- **[🔎 Documented literature search](search/README.md)** — query strings, the retrieved records (complete from OpenAlex, identifiers from Scopus; 13 October 2026, 2014–2026) and the screening log of the 812 unique records.
 - **[🌐 Project site](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)** — theoretical framework, equation plates, model architecture, and bibliographic synthesis.
 - **[🎞️ Presentation](presentation/presentation.pdf)** — 24 slides structured for an academic presentation: problem, general and specific objectives, theoretical framework, method, results, discussion, and conclusions. Also the **[simulator guide](presentation/simulator_guide.pdf)** and the **[infographic](infographic/Infographic.pdf)**.
 - **Español** — the site and the simulator are bilingual (EN/ES); the Spanish view uses the notation of the Spanish version of the article (PM, IM, PN, VE, SM, CP). The Spanish article, its figures and the Spanish presentation and infographic are in [Ciberpoder-y-Poder-Maritimo](https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo).
@@ -84,7 +84,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 ├── search/
 │   ├── README.md                        ← Queries, databases, criteria, counts
 │   ├── OpenAlex_Q1..Q4.{json,csv}       ← Raw OpenAlex records
-│   ├── Scopus_Q1..Q4_2026-10-13.csv     ← Raw Scopus records
+│   ├── Scopus_Q1..Q4_2026-10-13.csv     ← Scopus record identifiers
 │   ├── screening_merged_2026-10-13.csv  ← Screening log of the 812 unique records
 │   └── openalex_search.py               ← Reproduces the OpenAlex queries
 ├── figures/
@@ -107,7 +107,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 
 ## License
 
-The **research materials** (articles, figures, equation plates, infographic, presentations, and the authors' search queries and screening logs) are released under the [**Creative Commons Attribution 4.0 International (CC BY 4.0)**](https://creativecommons.org/licenses/by/4.0/) license, the same license under which IEEE Access publishes its articles: you are free to share and adapt them for any purpose, provided appropriate credit is given. The **code** (simulator, site, and verification and search scripts) is released under the [**MIT**](https://opensource.org/licenses/MIT) license. Third-party bibliographic records in `search/` are not covered: OpenAlex data are CC0, and the Scopus exports remain subject to Elsevier's terms of use. See [`LICENSE`](LICENSE).
+The **research materials** (articles, figures, equation plates, infographic, presentations, and the authors' search queries and screening logs) are released under the [**Creative Commons Attribution 4.0 International (CC BY 4.0)**](https://creativecommons.org/licenses/by/4.0/) license, the same license under which IEEE Access publishes its articles: you are free to share and adapt them for any purpose, provided appropriate credit is given. The **code** (simulator, site, and verification and search scripts) is released under the [**MIT**](https://opensource.org/licenses/MIT) license. Third-party bibliographic records in `search/` are not covered: OpenAlex data are CC0, and the Scopus records, published only as identifiers, remain subject to Elsevier's terms of use. See [`LICENSE`](LICENSE).
 
 ---
 
