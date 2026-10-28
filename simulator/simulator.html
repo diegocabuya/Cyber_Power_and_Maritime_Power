@@ -404,7 +404,7 @@ function buildSliders(){
   const c=document.getElementById('sliders');c.innerHTML='';
   GR.forEach(g=>{
     const [name,eq]=T('gr')[g.k];
-    let html=`<div class="cg"><div class="cgh"><div class="cgb" style="background:${g.c}20;border:1px solid ${g.c}45;color:${g.c}">${g.k==='PAR'?'⚙':g.k}</div><div><div class="cgn" style="color:${g.c}">${name}</div><div class="cge">${eq}</div></div></div>`;
+    let html=`<div class="cg"><div class="cgh"><div class="cgb" style="background:${g.c}20;border:1px solid ${g.c}45;color:${g.c}">${g.k==='PAR'?'⚙':SY(g.k)}</div><div><div class="cgn" style="color:${g.c}">${name}</div><div class="cge">${eq}</div></div></div>`;
     html+=`<div class="sg">${g.top.map(k=>slider(k,g.c,ST[k],!!(g.sub&&L2[g.k].on),null)).join('')}</div>`;
     if(g.sub){
       html+=`<div class="sgl"><input type="checkbox" id="l2-${g.k}" ${L2[g.k].on?'checked':''} onchange="togL2('${g.k}',this.checked)"><label for="l2-${g.k}">${T('sub')}</label></div>`;
