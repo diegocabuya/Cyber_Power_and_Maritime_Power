@@ -58,7 +58,7 @@ Only **MS** derives from an external source: Colombia's 75th rank among 99 state
 
 ## Start here
 
-- **[▶ Interactive simulator](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)** — Level-1 inputs and parameters, optional Level-2 disaggregation, elasticities, marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the Colombian reference case and the constructed profiles of the article.
+- **[▶ Interactive simulator](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)** — Level-1 inputs and parameters, optional Level-2 disaggregation, elasticities, marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the hypothetical Colombian scenario and the constructed profiles of the article.
 - **[🧪 Verification script](verification/verify_model.py)** — regenerates every number of the verification and illustrative-scenario sections (Tables 4–7, Proposition 1, Corollary 1). Standard library only:
 
   ```bash

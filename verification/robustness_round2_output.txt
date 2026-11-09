@@ -15,12 +15,12 @@ A. LEVEL 1 -- COLOMBIAN SCENARIO (alpha 0.55, gamma 0.70)
     share / sample maximum, 0.59/2.38              MS = 0.2479   MP_norm = 0.4576 (Moderate)
     last-ranked state (r = N): (N-r)/(N-1) = 0 ; adopted = 0.01; (N-r+1)/N = 0.0101
 
-  Proposition 1 with unequal core weights c (mean one), 200,000 draws:
-    identidad G^(1-w)CP^w: 2.2e-16   bounds: 0.0e+00   sign dMP/dalpha = sign(CP-G): 100.000 %   elasticity = omega_k: 5.9e-11
-    sum of omegas: 4.4e-16  (n_eff = 3 + gamma + alpha also with unequal c)
+  Proposition 1 with unequal core weights lambda (mean one), 200,000 draws:
+    identity G^(1-w)CP^w: 2.2e-16   bounds: 0.0e+00   sign dMP/dalpha = sign(CP-G): 100.000 %   elasticity = omega_k: 5.9e-11
+    sum of omegas: 4.4e-16  (n_eff = 3 + gamma + alpha also with unequal lambda)
     With normalized AHP weights omega_k (positive, adding up to 1) and omega_bar the mean of the three core weights:
-    c_k = omega_k/omega_bar, gamma = omega_MS/omega_bar, alpha = omega_CP/omega_bar  ->  all > 0 by construction;
-    example omega = [0.24, 0.22, 0.2, 0.2, 0.14]: c = [1.091, 1.0, 0.909], gamma = 0.909, alpha = 0.636, n_eff = 4.545
+    lambda_k = omega_k/omega_bar, gamma = omega_MS/omega_bar, alpha = omega_CP/omega_bar  ->  all > 0 by construction;
+    example omega = [0.24, 0.22, 0.2, 0.2, 0.14]: lambda = [1.091, 1.0, 0.909], gamma = 0.909, alpha = 0.636, n_eff = 4.545
 
 B. LEVEL 1 -- DISTRIBUTIONS AND DEPENDENCE (Colombian scenario; alpha, gamma ~ U[0.10, 1])
   components +-0.10
@@ -37,20 +37,21 @@ B. LEVEL 1 -- DISTRIBUTIONS AND DEPENDENCE (Colombian scenario; alpha, gamma ~ U
 C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; group Sobol' indices)
   sub-indicators +-0.10 around the value of their component
     MP_norm median 0.464  [P5 0.418, P95 0.511]   Low   0.8 %  Moderate  99.2 %
-    x_MI                                       S_i  0.008   S_T  0.017
-    x_NP                                       S_i  0.063   S_T  0.063
-    x_SW                                       S_i  0.079   S_T  0.123
-    x_MS                                       S_i  0.093   S_T  0.161
-    x_CP                                       S_i  0.039   S_T  0.069
-    w_i                                        S_i  0.001   S_T  0.008
-    mu                                         S_i -0.000   S_T  0.001
-    w_1-3                                      S_i -0.002   S_T  0.041
-    a_1-3                                      S_i -0.000   S_T  0.053
-    beta                                       S_i -0.001   S_T  0.022
-    delta                                      S_i  0.007   S_T  0.009
-    alpha                                      S_i  0.028   S_T  0.045
-    gamma                                      S_i  0.519   S_T  0.555
-    Level 2 (all internal parameters)          S_i  0.005   S_T  0.136
+    x_MI                                       S_i  0.008   S_T  0.017   CI95 +-0.000
+    x_NP                                       S_i  0.063   S_T  0.063   CI95 +-0.001
+    x_SW                                       S_i  0.079   S_T  0.123   CI95 +-0.002
+    x_MS                                       S_i  0.093   S_T  0.161   CI95 +-0.003
+    x_CP                                       S_i  0.039   S_T  0.069   CI95 +-0.001
+    w_i                                        S_i  0.001   S_T  0.008   CI95 +-0.000
+    mu                                         S_i -0.000   S_T  0.001   CI95 +-0.000
+    w_1-3                                      S_i -0.002   S_T  0.041   CI95 +-0.001
+    a_1-3                                      S_i -0.000   S_T  0.053   CI95 +-0.001
+    beta                                       S_i -0.001   S_T  0.022   CI95 +-0.000
+    delta                                      S_i  0.007   S_T  0.009   CI95 +-0.000
+    alpha                                      S_i  0.028   S_T  0.045   CI95 +-0.001
+    gamma                                      S_i  0.519   S_T  0.555   CI95 +-0.007
+    Level 2 (all internal parameters)          S_i  0.005   S_T  0.136   CI95 +-0.002
+    largest half-width of the 95% bootstrap CI of S_T: 0.007
     D. aggregation rules (same draws A):
       proposed       component means: MI 0.600  NP 0.548  SW 0.479  MS 0.236  CP 0.400   median MP 0.464
       NP product     means: MI 0.600  NP 0.169  SW 0.479  MS 0.236  CP 0.400   median MP 0.346   level differs  96.8 %   lowest component differs  86.8 %   NP lowest  86.8 %
@@ -59,20 +60,21 @@ C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; gro
       proposed: NP lowest 0.0 %
   sub-indicators +-0.20 around the value of their component
     MP_norm median 0.454  [P5 0.374, P95 0.525]   Low  13.0 %  Moderate  87.0 %
-    x_MI                                       S_i  0.012   S_T  0.024
-    x_NP                                       S_i  0.092   S_T  0.098
-    x_SW                                       S_i  0.124   S_T  0.190
-    x_MS                                       S_i  0.195   S_T  0.329
-    x_CP                                       S_i  0.060   S_T  0.106
-    w_i                                        S_i  0.000   S_T  0.011
-    mu                                         S_i -0.000   S_T  0.002
-    w_1-3                                      S_i  0.001   S_T  0.065
-    a_1-3                                      S_i -0.001   S_T  0.109
-    beta                                       S_i  0.002   S_T  0.035
-    delta                                      S_i  0.002   S_T  0.004
-    alpha                                      S_i  0.010   S_T  0.030
-    gamma                                      S_i  0.237   S_T  0.289
-    Level 2 (all internal parameters)          S_i  0.004   S_T  0.226
+    x_MI                                       S_i  0.012   S_T  0.024   CI95 +-0.000
+    x_NP                                       S_i  0.092   S_T  0.098   CI95 +-0.001
+    x_SW                                       S_i  0.124   S_T  0.190   CI95 +-0.003
+    x_MS                                       S_i  0.195   S_T  0.329   CI95 +-0.005
+    x_CP                                       S_i  0.060   S_T  0.106   CI95 +-0.002
+    w_i                                        S_i  0.000   S_T  0.011   CI95 +-0.000
+    mu                                         S_i -0.000   S_T  0.002   CI95 +-0.000
+    w_1-3                                      S_i  0.001   S_T  0.065   CI95 +-0.001
+    a_1-3                                      S_i -0.001   S_T  0.109   CI95 +-0.002
+    beta                                       S_i  0.002   S_T  0.035   CI95 +-0.001
+    delta                                      S_i  0.002   S_T  0.004   CI95 +-0.000
+    alpha                                      S_i  0.010   S_T  0.030   CI95 +-0.001
+    gamma                                      S_i  0.237   S_T  0.289   CI95 +-0.004
+    Level 2 (all internal parameters)          S_i  0.004   S_T  0.226   CI95 +-0.003
+    largest half-width of the 95% bootstrap CI of S_T: 0.005
     D. aggregation rules (same draws A):
       proposed       component means: MI 0.600  NP 0.542  SW 0.472  MS 0.223  CP 0.400   median MP 0.454
       NP product     means: MI 0.600  NP 0.169  SW 0.472  MS 0.223  CP 0.400   median MP 0.334   level differs  79.0 %   lowest component differs  68.5 %   NP lowest  68.5 %
@@ -81,20 +83,21 @@ C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; gro
       proposed: NP lowest 0.0 %
   sub-indicators uniform on [0.01, 1]
     MP_norm median 0.436  [P5 0.278, P95 0.600]   Critical   0.4 %  Low  35.7 %  Moderate  58.9 %  Significant   4.9 %
-    x_MI                                       S_i  0.020   S_T  0.046
-    x_NP                                       S_i  0.289   S_T  0.303
-    x_SW                                       S_i  0.272   S_T  0.416
-    x_MS                                       S_i  0.084   S_T  0.145
-    x_CP                                       S_i  0.057   S_T  0.096
-    w_i                                        S_i -0.001   S_T  0.022
-    mu                                         S_i  0.000   S_T  0.005
-    w_1-3                                      S_i -0.001   S_T  0.132
-    a_1-3                                      S_i  0.002   S_T  0.046
-    beta                                       S_i -0.000   S_T  0.032
-    delta                                      S_i  0.002   S_T  0.002
-    alpha                                      S_i  0.004   S_T  0.019
-    gamma                                      S_i  0.002   S_T  0.025
-    Level 2 (all internal parameters)          S_i  0.002   S_T  0.239
+    x_MI                                       S_i  0.020   S_T  0.046   CI95 +-0.001
+    x_NP                                       S_i  0.289   S_T  0.303   CI95 +-0.004
+    x_SW                                       S_i  0.272   S_T  0.416   CI95 +-0.006
+    x_MS                                       S_i  0.084   S_T  0.145   CI95 +-0.003
+    x_CP                                       S_i  0.057   S_T  0.096   CI95 +-0.002
+    w_i                                        S_i -0.001   S_T  0.022   CI95 +-0.000
+    mu                                         S_i  0.000   S_T  0.005   CI95 +-0.000
+    w_1-3                                      S_i -0.001   S_T  0.132   CI95 +-0.003
+    a_1-3                                      S_i  0.002   S_T  0.046   CI95 +-0.001
+    beta                                       S_i -0.000   S_T  0.032   CI95 +-0.001
+    delta                                      S_i  0.002   S_T  0.002   CI95 +-0.000
+    alpha                                      S_i  0.004   S_T  0.019   CI95 +-0.000
+    gamma                                      S_i  0.002   S_T  0.025   CI95 +-0.001
+    Level 2 (all internal parameters)          S_i  0.002   S_T  0.239   CI95 +-0.004
+    largest half-width of the 95% bootstrap CI of S_T: 0.006
     D. aggregation rules (same draws A):
       proposed       component means: MI 0.505  NP 0.432  SW 0.451  MS 0.450  CP 0.568   median MP 0.436
       NP product     means: MI 0.505  NP 0.131  SW 0.451  MS 0.450  CP 0.568   median MP 0.282   level differs  70.7 %   lowest component differs  53.7 %   NP lowest  80.8 %

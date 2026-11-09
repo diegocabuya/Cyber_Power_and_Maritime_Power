@@ -7,12 +7,12 @@ the second revision, including Table 8:
 
   A. Level 1, Colombian scenario: threshold of the Significant level with maritime security fixed at 0.24;
      alternative positive transformations of the maritime security rank; Proposition 1 with unequal core
-     weights c_k (mean one), including gamma and alpha above one.
+     weights lambda_k (mean one), including gamma and alpha above one.
   B. Level 1: distributions and dependence. The independent uniform sampling of Table 7 is repeated with
      triangular distributions and with an equicorrelated Gaussian copula (rho = 0.3 and 0.6).
   C. Level 2: uncertainty in the internal parameters (weights w_i, w_1-w_3, a_1-a_3, beta, mu, delta) and
      in the sub-indicators, with group Sobol' indices (Jansen's estimator for S_T; Saltelli et al. 2010
-     with the output centered for S_i), in three hypothetical designs: sub-indicators within +-0.10 or
+     with the output centered for S_i) and 95% bootstrap intervals, in three hypothetical designs: sub-indicators within +-0.10 or
      +-0.20 of the Level 1 value of their component, and sub-indicators uniform on [0.01, 1].
   D. Aggregation rules: on the same Level 2 draws, components and levels under the proposed rules (naval
      power normalized), the unnormalized naval-power product, all-geometric and all-arithmetic rules.
@@ -30,6 +30,7 @@ import numpy as np
 np.seterr(all="ignore")   # spurious macOS BLAS warnings in matmul (copula); the correlations were checked separately
 
 M_L1 = 200_000     # draws per Level 1 scenario (B)
+N_BOOT = 200        # bootstrap resamples of the Sobol' indices (C)
 M_L2 = 50_000      # Sobol' base rows per Level 2 design (C); 2 + 14 groups -> 800,000 evaluations
 REF = {"MI": 0.60, "NP": 0.55, "SW": 0.48, "MS": 0.24, "CP": 0.40}
 KEYS = ("MI", "NP", "SW", "MS", "CP")
@@ -39,7 +40,7 @@ CORTES = np.array([0.20, 0.40, 0.60, 0.80])   # half-open intervals (a, b]: (0,.
 
 
 def pm(MI, NP, SW, MS, CP, a, g, c=(1.0, 1.0, 1.0)):
-    """MP_norm with relative core weights c (mean one) and n_eff = 3 + g + a."""
+    """MP_norm with relative core weights lambda (mean one) and n_eff = 3 + g + a."""
     n = 3 + g + a
     s = c[0] * np.log(MI) + c[1] * np.log(NP) + c[2] * np.log(SW) + g * np.log(MS) + a * np.log(CP)
     return np.exp(s / n)
@@ -96,7 +97,7 @@ for nom, ms in TRANS:
     out(f"    {nom:<46} MS = {ms:.4f}   MP_norm = {y:.4f} ({NIVELES[int(nivel(np.array([y]))[0])]})")
 out(f"    last-ranked state (r = N): (N-r)/(N-1) = 0 ; adopted = {eps}; (N-r+1)/N = {1 / N_:.4f}")
 
-out("\n  Proposition 1 with unequal core weights c (mean one), 200,000 draws:")
+out("\n  Proposition 1 with unequal core weights lambda (mean one), 200,000 draws:")
 rng = np.random.default_rng(20261109)
 M = 200_000
 X = rng.uniform(0.01, 1.0, (5, M))
@@ -121,14 +122,14 @@ for k in range(5):
     Xd[k] *= 1 - 1e-5
     el = (np.log(pm(*Xu, a, g, c)) - np.log(pm(*Xd, a, g, c))) / (np.log(1 + 1e-5) - np.log(1 - 1e-5))
     el_err = max(el_err, float(np.max(np.abs(el - om[k]))))
-out(f"    identidad G^(1-w)CP^w: {err_id:.1e}   bounds: {err_cota:.1e}   sign dMP/dalpha = sign(CP-G): "
+out(f"    identity G^(1-w)CP^w: {err_id:.1e}   bounds: {err_cota:.1e}   sign dMP/dalpha = sign(CP-G): "
     f"{100 * signo_ok:.3f} %   elasticity = omega_k: {el_err:.1e}")
-out(f"    sum of omegas: {np.max(np.abs(om.sum(0) - 1)):.1e}  (n_eff = 3 + gamma + alpha also with unequal c)")
+out(f"    sum of omegas: {np.max(np.abs(om.sum(0) - 1)):.1e}  (n_eff = 3 + gamma + alpha also with unequal lambda)")
 out("    With normalized AHP weights omega_k (positive, adding up to 1) and omega_bar the mean of the three core weights:")
-out("    c_k = omega_k/omega_bar, gamma = omega_MS/omega_bar, alpha = omega_CP/omega_bar  ->  all > 0 by construction;")
+out("    lambda_k = omega_k/omega_bar, gamma = omega_MS/omega_bar, alpha = omega_CP/omega_bar  ->  all > 0 by construction;")
 ej = np.array([0.24, 0.22, 0.20, 0.20, 0.14])
 ob = ej[:3].mean()
-out(f"    example omega = {ej.tolist()}: c = {np.round(ej[:3] / ob, 3).tolist()}, gamma = {ej[3] / ob:.3f}, "
+out(f"    example omega = {ej.tolist()}: lambda = {np.round(ej[:3] / ob, 3).tolist()}, gamma = {ej[3] / ob:.3f}, "
     f"alpha = {ej[4] / ob:.3f}, n_eff = {3 + ej[3] / ob + ej[4] / ob:.3f}")
 
 # ---------------------------------------------------------------- B. Level 1: distributions and dependence
@@ -251,9 +252,17 @@ for diseno, d in (("balanced", 0.10), ("balanced", 0.20), ("dispersed", None)):
         fAB, _ = f(mezclar(A, B, grp))
         st = np.mean((fA - fAB) ** 2) / (2 * V)
         s1 = np.mean((fB - media) * (fAB - fA)) / V
-        filas.append((gname, s1, st))
-    for gname, s1, st in filas:
-        out(f"    {gname:<42} S_i {s1:6.3f}   S_T {st:6.3f}")
+        # bootstrap of S_T: the base rows are resampled, with no new model evaluations
+        rb = np.random.default_rng(7)
+        stb = []
+        for _ in range(N_BOOT):
+            i = rb.integers(0, M_L2, M_L2)
+            stb.append(np.mean((fA[i] - fAB[i]) ** 2) / (2 * np.concatenate([fA[i], fB[i]]).var()))
+        lo, hi = np.percentile(stb, [2.5, 97.5])
+        filas.append((gname, s1, st, (hi - lo) / 2))
+    for gname, s1, st, hw in filas:
+        out(f"    {gname:<42} S_i {s1:6.3f}   S_T {st:6.3f}   CI95 +-{hw:.3f}")
+    out(f"    largest half-width of the 95% bootstrap CI of S_T: {max(r[3] for r in filas):.3f}")
     resC[(diseno, d)] = dict(p50=p50, p5=p5, p95=p95, rep=reparto(y), filas=filas)
 
     # D. aggregation rules on the same draws

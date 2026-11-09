@@ -244,16 +244,16 @@
         <span class="badge"><span data-lang="en">INTERACTIVE</span><span data-lang="es">INTERACTIVO</span></span>
         <div class="ico" style="background:rgba(158,200,228,.2)">🎛️</div>
         <h3><span data-lang="en">Model simulator</span><span data-lang="es">Simulador del modelo</span></h3>
-        <p data-lang="en">Level-1 components and parameters, optional Level-2 disaggregation, elasticities and marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the Colombian reference case and the constructed profiles of the article. Bilingual (EN/ES).</p>
-        <p data-lang="es">Componentes y parámetros de Nivel 1, desagregación opcional de Nivel 2, elasticidades y retornos marginales, la condición de coste del Corolario 1, una banda de incertidumbre por Monte Carlo y gráficas de comparación. Precargado con el caso de referencia colombiano y los perfiles construidos del artículo. Bilingüe (EN/ES).</p>
+        <p data-lang="en">Level-1 components and parameters, optional Level-2 disaggregation, elasticities and marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the hypothetical Colombian scenario and the constructed profiles of the article. Bilingual (EN/ES).</p>
+        <p data-lang="es">Componentes y parámetros de Nivel 1, desagregación opcional de Nivel 2, elasticidades y retornos marginales, la condición de coste del Corolario 1, una banda de incertidumbre por Monte Carlo y gráficas de comparación. Precargado con el escenario hipotético colombiano y los perfiles construidos del artículo. Bilingüe (EN/ES).</p>
         <span class="go"><span data-lang="en">Open simulator</span><span data-lang="es">Abrir el simulador</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="verification/verify_model.py">
         <span class="badge">PYTHON</span>
         <div class="ico" style="background:var(--sw-bg)">🧪</div>
         <h3><span data-lang="en">Verification script</span><span data-lang="es">Script de verificación</span></h3>
-        <p data-lang="en">Regenerates every number of the verification and case-study sections: the verified properties, the sensitivity table, the constructed profiles, the uncertainty analysis with Sobol' indices, Proposition 1 and Corollary 1. Standard library only.</p>
-        <p data-lang="es">Regenera todas las cifras de las secciones de verificación y del caso de estudio: las propiedades verificadas, la tabla de sensibilidad, los perfiles construidos, el análisis de incertidumbre con índices de Sobol', la Proposición 1 y el Corolario 1. Solo biblioteca estándar de Python.</p>
+        <p data-lang="en">Regenerates every number of the verification and illustrative-scenario sections: the verified properties, the sensitivity table, the constructed profiles, the uncertainty analysis with Sobol' indices, Proposition 1 and Corollary 1. Standard library only.</p>
+        <p data-lang="es">Regenera todas las cifras de las secciones de verificación y del escenario ilustrativo: las propiedades verificadas, la tabla de sensibilidad, los perfiles construidos, el análisis de incertidumbre con índices de Sobol', la Proposición 1 y el Corolario 1. Solo biblioteca estándar de Python.</p>
         <span class="go"><span data-lang="en">View script</span><span data-lang="es">Ver el script</span> <span class="ar">→</span></span>
       </a>
       <a class="card fade" href="search/README.md">
@@ -333,7 +333,7 @@
     <div class="sec-head fade">
       <div class="kicker"><span data-lang="en">Open science</span><span data-lang="es">Ciencia abierta</span></div>
       <h2><span data-lang="en">Reproduce the results</span><span data-lang="es">Reproduce los resultados</span></h2>
-      <p><span data-lang="en">Every number in the verification and case-study sections of the manuscript can be regenerated from this repository.</span><span data-lang="es">Todas las cifras de las secciones de verificación y del caso de estudio del manuscrito pueden regenerarse desde este repositorio.</span></p>
+      <p><span data-lang="en">Every number in the verification and illustrative-scenario sections of the manuscript can be regenerated from this repository.</span><span data-lang="es">Todas las cifras de las secciones de verificación y del escenario ilustrativo del manuscrito pueden regenerarse desde este repositorio.</span></p>
     </div>
     <div class="repro fade">
       <p data-lang="en"><b>1. Verification script.</b> Runs the numerical checks of Proposition 1 on random draws, regenerates the sensitivity table, the constructed profiles, the break-even cost ratios of Corollary 1 and the uncertainty analysis with Sobol' indices. Python 3, standard library only (about one minute for the canonical run).</p>
@@ -341,7 +341,9 @@
       <pre>python3 verification/verify_model.py 300000   # <span data-lang="en">canonical run quoted in the article</span><span data-lang="es">corrida canónica citada en el artículo</span>
 python3 verification/verify_model.py          # <span data-lang="en">quicker check with 200,000 draws</span><span data-lang="es">comprobación rápida con 200.000 sorteos</span></pre>
       <p><span data-lang="en">The reference output is kept in <code>verification/verification_output.txt</code>.</span><span data-lang="es">La salida de referencia está en <code>verification/verification_output.txt</code>.</span></p>
-      <p><b data-lang="en">2. Reference values of the Colombian case</b><b data-lang="es">2. Valores de referencia del caso colombiano</b> <span data-lang="en">(all set directly at Level 1; only MS derives from an external source).</span><span data-lang="es">(todos fijados directamente en el Nivel 1; solo SM procede de una fuente externa).</span></p>
+      <p><span data-lang="en">The extended robustness analyses of Table 8 (distributions, dependence, Level 2 parameters, aggregation rules, and normalization) are regenerated by a second script, which requires numpy; reference output in <code>verification/robustness_round2_output.txt</code>.</span><span data-lang="es">Los análisis de robustez ampliados de la Tabla 8 (distribuciones, dependencia, parámetros del Nivel 2, reglas de agregación y normalización) los regenera un segundo script, que requiere numpy; salida de referencia en <code>verification/robustness_round2_output.txt</code>.</span></p>
+      <pre>python3 verification/robustness_round2.py</pre>
+      <p><b data-lang="en">2. Values of the hypothetical Colombian scenario</b><b data-lang="es">2. Valores del escenario hipotético colombiano</b> <span data-lang="en">(all set directly at Level 1; only MS derives from an external source).</span><span data-lang="es">(todos fijados directamente en el Nivel 1; solo SM procede de una fuente externa).</span></p>
       <table>
         <tr><th><span data-lang="en">Component</span><span data-lang="es">Componente</span></th><th><span data-lang="en">Value</span><span data-lang="es">Valor</span></th><th><span data-lang="en">Origin</span><span data-lang="es">Origen</span></th></tr>
         <tr><td class="mono"><span data-lang="en">MI</span><span data-lang="es">IM</span></td><td class="mono"><span data-lang="en">0.60</span><span data-lang="es">0,60</span></td><td><span data-lang="en">Illustrative choice of the authors</span><span data-lang="es">Elección ilustrativa de los autores</span></td></tr>
