@@ -16,6 +16,10 @@ the second revision, including Table 8:
      +-0.20 of the Level 1 value of their component, and sub-indicators uniform on [0.01, 1].
   D. Aggregation rules: on the same Level 2 draws, components and levels under the proposed rules (naval
      power normalized), the unnormalized naval-power product, all-geometric and all-arithmetic rules.
+  E. Normalization of the sub-indicators: on the same Level 2 draws, every sub-indicator is re-normalized
+     with its goalposts shifted by up to 5% or 10% of the distance between them, independently for each
+     sub-indicator or jointly (the same shift for all), and the share of draws whose level or lowest
+     component changes is reported.
 
 Fixed seeds; requires numpy. Reference output: robustness_round2_output.txt
 
@@ -232,7 +236,26 @@ def mezclar(A, B, grupos):
     return C
 
 
-resC, resD = {}, {}
+def desplazar_metas(S, s, modo, rng):
+    """Sub-indicators re-normalized with shifted goalposts: x' = (x - l)/(1 + u - l), bounded to [0.01, 1].
+
+    If x = (raw - L)/(U - L), moving the lower goalpost to L + l(U - L) and the upper one to U + u(U - L) gives this
+    affine transformation; l, u ~ U(-s, s) are fractions of the distance between goalposts. modo 'independent':
+    one pair (l, u) per sub-indicator and draw; 'joint': one pair per draw, common to all sub-indicators
+    (a systematically stricter or more lenient normalization)."""
+    T = dict(S)
+    M = S["mu"].shape[1]
+    if modo == "joint":
+        l, u = rng.uniform(-s, s, (1, M)), rng.uniform(-s, s, (1, M))
+    for comp in CENTRO:
+        x = S["x_" + comp]
+        if modo == "independent":
+            l, u = rng.uniform(-s, s, x.shape), rng.uniform(-s, s, x.shape)
+        T["x_" + comp] = np.clip((x - l) / (1 + u - l), 0.01, 1.0)
+    return T
+
+
+resC, resD, resE = {}, {}, {}
 for diseno, d in (("balanced", 0.10), ("balanced", 0.20), ("dispersed", None)):
     etiqueta = f"sub-indicators +-{d:.2f} around the value of their component" if d else "sub-indicators uniform on [0.01, 1]"
     rng = np.random.default_rng(20261111 + (int(100 * d) if d else 99))
@@ -285,6 +308,19 @@ for diseno, d in (("balanced", 0.10), ("balanced", 0.20), ("dispersed", None)):
     resD[(diseno, d, "proposed")] = dict(np_bajo=float(np.mean(bajoA == 1)), mnp=float(np.mean(cA[1])),
                                          med=float(np.median(yA)))
     out(f"      proposed: NP lowest {100 * resD[(diseno, d, 'proposed')]['np_bajo']:.1f} %")
+
+    # E. normalization goalposts of the sub-indicators on the same draws
+    out("    E. shifted normalization goalposts (same draws A):")
+    for s_meta in (0.05, 0.10):
+        for modo in ("independent", "joint"):
+            rg = np.random.default_rng(20261112 + int(1000 * s_meta) + (modo == "joint"))
+            yT, cT = f(desplazar_metas(A, s_meta, modo, rg))
+            cambio_nivel = np.mean(nivel(yT) != nivA)
+            cambio_bajo = np.mean(np.argmin(np.vstack(cT), axis=0) != bajoA)
+            dif = np.abs(yT - yA)
+            out(f"      goalposts +-{100 * s_meta:2.0f} %, {modo:<11} shift  level differs {100 * cambio_nivel:5.1f} %   "
+                f"lowest component differs {100 * cambio_bajo:5.1f} %   |dMP| median {np.median(dif):.3f}, P95 {np.percentile(dif, 95):.3f}")
+            resE[(diseno, d, s_meta, modo)] = dict(cambio_nivel=cambio_nivel, cambio_bajo=cambio_bajo)
 
 with open(__file__.replace("robustness_round2.py", "robustness_round2_output.txt"), "w", encoding="utf-8") as fh:
     fh.write("\n".join(salida) + "\n")

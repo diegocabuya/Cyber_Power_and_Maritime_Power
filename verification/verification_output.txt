@@ -77,7 +77,7 @@ MS OF COLOMBIA -- alternative normalization
   position percentile (99-75)/98: MS = 0.2449   MP = 0.4566
   by the sample maximum 0.59/2.38: MS = 0.2479   MP = 0.4576
 
-AGGREGATION AT THE REFERENCE VALUES: MP_norm 0.455 (Moderate)   arithmetic 0.454 (Moderate)   geometric 0.433 (Moderate)
+AGGREGATION AT THE SCENARIO VALUES: MP_norm 0.455 (Moderate)   arithmetic 0.454 (Moderate)   geometric 0.433 (Moderate)
 
 UNCERTAINTY AND GLOBAL SENSITIVITY -- Colombia, components +-0.10 (Table 7)
   200,000 evaluations   median 0.464   P5 0.406   P95 0.524   min 0.341   max 0.597

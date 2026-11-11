@@ -58,6 +58,11 @@ C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; gro
       all geometric  means: MI 0.597  NP 0.548  SW 0.479  MS 0.236  CP 0.398   median MP 0.464   level differs   0.1 %   lowest component differs   0.0 %   NP lowest   0.0 %
       all arithmetic means: MI 0.600  NP 0.550  SW 0.480  MS 0.240  CP 0.400   median MP 0.466   level differs   0.2 %   lowest component differs   0.0 %   NP lowest   0.0 %
       proposed: NP lowest 0.0 %
+    E. shifted normalization goalposts (same draws A):
+      goalposts +- 5 %, independent shift  level differs   1.0 %   lowest component differs   0.4 %   |dMP| median 0.005, P95 0.014
+      goalposts +- 5 %, joint       shift  level differs   3.7 %   lowest component differs   0.0 %   |dMP| median 0.016, P95 0.043
+      goalposts +-10 %, independent shift  level differs   3.2 %   lowest component differs   1.5 %   |dMP| median 0.010, P95 0.030
+      goalposts +-10 %, joint       shift  level differs  13.1 %   lowest component differs   0.1 %   |dMP| median 0.033, P95 0.086
   sub-indicators +-0.20 around the value of their component
     MP_norm median 0.454  [P5 0.374, P95 0.525]   Low  13.0 %  Moderate  87.0 %
     x_MI                                       S_i  0.012   S_T  0.024   CI95 +-0.000
@@ -81,6 +86,11 @@ C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; gro
       all geometric  means: MI 0.590  NP 0.542  SW 0.472  MS 0.223  CP 0.390   median MP 0.450   level differs   1.4 %   lowest component differs   1.4 %   NP lowest   0.0 %
       all arithmetic means: MI 0.600  NP 0.550  SW 0.480  MS 0.239  CP 0.400   median MP 0.462   level differs   4.1 %   lowest component differs   2.0 %   NP lowest   0.0 %
       proposed: NP lowest 0.0 %
+    E. shifted normalization goalposts (same draws A):
+      goalposts +- 5 %, independent shift  level differs   4.2 %   lowest component differs   3.0 %   |dMP| median 0.006, P95 0.021
+      goalposts +- 5 %, joint       shift  level differs   9.9 %   lowest component differs   0.4 %   |dMP| median 0.018, P95 0.048
+      goalposts +-10 %, independent shift  level differs   8.8 %   lowest component differs   6.0 %   |dMP| median 0.012, P95 0.045
+      goalposts +-10 %, joint       shift  level differs  19.6 %   lowest component differs   0.7 %   |dMP| median 0.036, P95 0.095
   sub-indicators uniform on [0.01, 1]
     MP_norm median 0.436  [P5 0.278, P95 0.600]   Critical   0.4 %  Low  35.7 %  Moderate  58.9 %  Significant   4.9 %
     x_MI                                       S_i  0.020   S_T  0.046   CI95 +-0.001
@@ -104,3 +114,8 @@ C. LEVEL 2 -- INTERNAL PARAMETERS AND SUB-INDICATORS (hypothetical scenario; gro
       all geometric  means: MI 0.401  NP 0.432  SW 0.451  MS 0.450  CP 0.507   median MP 0.401   level differs  17.2 %   lowest component differs  16.7 %   NP lowest  21.4 %
       all arithmetic means: MI 0.505  NP 0.505  SW 0.506  MS 0.504  CP 0.568   median MP 0.486   level differs  23.9 %   lowest component differs  20.1 %   NP lowest  19.9 %
       proposed: NP lowest 27.1 %
+    E. shifted normalization goalposts (same draws A):
+      goalposts +- 5 %, independent shift  level differs   6.2 %   lowest component differs   7.8 %   |dMP| median 0.009, P95 0.038
+      goalposts +- 5 %, joint       shift  level differs  13.1 %   lowest component differs   2.5 %   |dMP| median 0.023, P95 0.061
+      goalposts +-10 %, independent shift  level differs  11.6 %   lowest component differs  14.1 %   |dMP| median 0.017, P95 0.065
+      goalposts +-10 %, joint       shift  level differs  24.4 %   lowest component differs   4.4 %   |dMP| median 0.044, P95 0.110
