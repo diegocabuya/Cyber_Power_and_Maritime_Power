@@ -1,0 +1,125 @@
+<div align="center">
+
+# Cyber Power as a Structural Variable of Maritime Power
+
+### *A Normalized Multiplicative Model for Multidomain Assessment of Maritime Power*
+
+Project and supporting materials by **Diego E. Cabuya-Padilla**
+
+Naval Academy of Strategic Studies, Colombian Navy · Poseidón Research Group, Naval School “Admiral Padilla”
+
+*Companion materials of the article accepted for publication in IEEE Access, 2026*
+
+[![Simulator](https://img.shields.io/badge/▶_Simulator-interactive-185FA5?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)
+[![Site](https://img.shields.io/badge/🌐_Project-site-0D2A42?style=for-the-badge)](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)
+[![Verification](https://img.shields.io/badge/🧪_Verification-script-0F6E56?style=for-the-badge)](verification/verify_model.py)
+
+</div>
+
+---
+
+## Abstract
+
+The classical formulation of maritime power—the product of maritime interests and naval power—has become insufficient to represent digitalized maritime environments, whose navigation, communications, port, and surveillance functions depend on digital infrastructures. Starting from a theory of power in which naval power expresses military power at sea and maritime power adds economic, social, and political interests, this article argues that cyber power cuts across both components and that its reach, unlike naval power's, does not decay with distance, although its effectiveness still depends on access and infrastructure. It proposes an extended formulation that incorporates cyber power, strategic will, and maritime security as structural variables, in a normalized multiplicative structure in which the collapse of any dimension constrains the aggregate and whose output lies within (0, 1], enabling a five-level interpretation scale. The formulation is verified through its logical-mathematical properties, sensitivity analysis, and constructed profiles, and its robustness is tested against Level 2 parameters, aggregation rules, normalization, and dependence among components. Verification establishes internal consistency, not empirical accuracy; calibration and external validation are left to future work. In a hypothetical Colombian scenario informed by a single external ranking (maritime security), the index falls in the Moderate level, illustrating the model's decomposition, not a national diagnosis; a corollary states the relative-cost condition under which cyber power would be the most efficient investment vector. Colombia's national ocean policy does not mention cyberspace or cybersecurity. A National Maritime Power Index is proposed as a research agenda, supported by an open-access interactive simulator.
+
+## Theoretical framework
+
+Power is the ability to affect others to obtain the outcomes one wants (Nye, 2010). National power is exercised through four instruments—diplomatic, information, military, and economic (NATO, 2023). **Naval power** is the expression of military power at sea, whose functions Booth (1977) conceives as a trinity—military, diplomatic, and policing—unified by the use of the sea. **Maritime power** is broader: the capacity to create, develop, exploit, and defend a country's maritime interests (Colombian Ocean Commission, 2018), so it combines naval power with interests of an economic, social, and political nature. **Cyber power** obtains outcomes within and beyond cyberspace (Nye, 2010) and therefore cuts across both components; unlike naval power, whose effectiveness decays with distance (Booth's loss-of-power gradient), it acts with instantaneous global reach (NATO, 2025). What escapes the gradient is reach, not assured effect: location still matters as a resource in the cyber domain (Nye, 2010), and access to a target network and the effect achieved on it depend on infrastructure, preparation, and the target's defenses. This is why cyber power enters the model as a factor of the whole system.
+
+In Colombia, the National Ocean and Coastal Areas Policy (PNOEC), the state policy that frames the national and sectoral development plans, aims at a Medium Oceanic Power and associates that goal with position, political will, and maritime interests; the Naval Development Plan 2042 protects those interests through naval power. Neither the policy nor the documents that define the eighteen maritime interests mention cyberspace or cybersecurity.
+
+## The model
+
+**Level 1 — general normalized expression (Eqs. 1–3):**
+
+```
+MP_norm = [ (MI × NP) × SW × MS^γ × CP^α ]^(1/n_eff)        with  n_eff = 3 + γ + α
+```
+
+| Symbol | Variable | Role |
+|:------:|----------|------|
+| **MI** | Maritime Interests | The purpose that gives meaning to maritime power (Eq. 4: weighted sub-index) |
+| **NP** | Naval Power | The instrument: (Force × Position × MDA^μ)^(1/(2+μ)), a weighted geometric mean (Eq. 5) |
+| **SW** | Strategic Will | Multiplier of the whole system: political · institutional · social (Eq. 6) |
+| **MS** | Maritime Security | Condition of the environment — incidence of threats, not capabilities (Eq. 7); γ is its weight |
+| **CP** | Cyber Power | Structural variable: cybersecurity, strategic cyberdefense, recovery capacity, amplified by cyber diplomacy (Eq. 8); α is **the weight of cyber dependence**, not a measure of capability |
+
+The normalization is a weighted geometric mean with weights ω<sub>MI</sub> = ω<sub>NP</sub> = ω<sub>SW</sub> = 1/n<sub>eff</sub>, ω<sub>MS</sub> = γ/n<sub>eff</sub>, ω<sub>CP</sub> = α/n<sub>eff</sub>. **Proposition 1:** MP<sub>norm</sub> = G<sup>1−w</sup> · CP<sup>w</sup>, where G is the geometric mean of the rest of the system and w = α/n<sub>eff</sub>; hence raising CP always raises the index, whereas raising α raises it only if CP > G, and the index is strictly concave in every component for any α > 0. The multiplicative structure expresses the conceptual interdependence of the components, not causal relationships among them. **Corollary 1:** cyber power is the most efficient investment vector if and only if c<sub>k</sub>/c<sub>CP</sub> > (ω<sub>k</sub>/X<sub>k</sub>)/(ω<sub>CP</sub>/CP) for every other component k — a theoretical condition on relative unit costs, testable once costs are measured, not an established investment priority.
+
+Interpretation scale, in contiguous half-open intervals: **Critical** (0, 0.20], **Low** (0.20, 0.40], **Moderate** (0.40, 0.60], **Significant** (0.60, 0.80], **High** (0.80, 1]. The limits are conventions: the levels are aids to interpretation, not an empirically calibrated classification standard.
+
+## Illustrative Colombian scenario
+
+| | MI | NP | SW | MS | CP | α | γ | MP<sub>norm</sub> |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Value | 0.60 | 0.55 | 0.48 | **0.24** | 0.40 | 0.55 | 0.70 | **0.455** (Moderate) |
+
+Only **MS** derives from an external source: Colombia's 75th rank among 99 states in the maritime security index of Vargas-Suárez et al. (2021), converted into a position percentile bounded below by ε = 0.01, max{ε, (99 − 75)/98} ≈ 0.24; this ordinal transformation makes the input admissible to the formula but does not establish cardinal measurement validity. The other values and the parameters are assumed, all set directly at Level 1: the scenario illustrates the decomposition the model enables, not a diagnosis of Colombian maritime power. G = 0.464 > CP, so a larger α lowers the index (0.464 as α → 0, 0.450 at α = 1). Break-even cost ratios of Corollary 1: 1.21 (MI), 1.32 (NP), 1.52 (SW), 2.12 (MS). The result is robust to moderate (±0.10) but not to large (±0.20) uncertainty in the inputs, and less so under positive dependence among components; robustness to the Level 2 parameters, aggregation rules, and normalization (rank transformations and goalposts) is reported in Table 8 of the article and regenerated by `verification/robustness_analysis.py`.
+
+## Start here
+
+- **[▶ Interactive simulator](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/simulator/simulator.html)** — Level-1 inputs and parameters, optional Level-2 disaggregation, elasticities, marginal returns, the cost condition of Corollary 1, a Monte Carlo uncertainty band, and comparison charts. Preloaded with the hypothetical Colombian scenario and the constructed profiles of the article.
+- **[🧪 Verification script](verification/verify_model.py)** — regenerates every number of the verification and illustrative-scenario sections (Tables 4–7, Proposition 1, Corollary 1). Standard library only:
+
+  ```bash
+  python3 verification/verify_model.py 300000   # canonical run quoted in the article (~1 min)
+  ```
+
+  Reference output: [`verification/verification_output.txt`](verification/verification_output.txt).
+  The extended robustness analyses of Table 8 (distributions, dependence, Level 2 parameters, aggregation rules, normalization) are regenerated by [`verification/robustness_analysis.py`](verification/robustness_analysis.py) (requires numpy); reference output: [`verification/robustness_output.txt`](verification/robustness_output.txt).
+- **[🔎 Documented literature search](search/README.md)** — query strings, the retrieved records (complete from OpenAlex, identifiers from Scopus; 13 October 2026, 2014–2026) and the screening log of the 812 unique records.
+- **[🌐 Project site](https://diegocabuya.github.io/Cyber_Power_and_Maritime_Power/)** — theoretical framework, equation plates, model architecture, and bibliographic synthesis.
+- **[🎞️ Presentation](presentation/presentation.pdf)** — 24 slides structured for an academic presentation: problem, general and specific objectives, theoretical framework, method, results, discussion, and conclusions. Also the **[simulator guide](presentation/simulator_guide.pdf)** and the **[infographic](infographic/Infographic.pdf)**.
+- **Español** — the site and the simulator are bilingual (EN/ES); the Spanish view uses the notation of the Spanish version of the article (PM, IM, PN, VE, SM, CP). The Spanish article, its figures and the Spanish presentation and infographic are in [Ciberpoder-y-Poder-Maritimo](https://github.com/diegocabuya/Ciberpoder-y-Poder-Maritimo).
+
+## Repository contents
+
+```
+.
+├── index.html                             ← Project site (GitHub Pages)
+├── simulator/
+│   └── simulator.html                     ← Interactive model simulator (bilingual EN/ES)
+├── verification/
+│   ├── verify_model.py                    ← Numerical verification; regenerates Tables 4–7
+│   ├── verification_output.txt            ← Reference output of the canonical run (300,000 draws)
+│   ├── robustness_analysis.py             ← Extended robustness (Table 8): distributions, dependence, Level 2 parameters, aggregation rules, normalization
+│   └── robustness_output.txt              ← Reference output
+├── search/
+│   ├── README.md                          ← Queries, databases, criteria, counts
+│   ├── OpenAlex_Q1..Q4.{json,csv}         ← Raw OpenAlex records
+│   ├── Scopus_Q1..Q4_2026-10-13.csv       ← Scopus record identifiers
+│   ├── screening_openalex_2026-10-13.csv  ← Screening decision per OpenAlex record (first pass)
+│   ├── screening_merged_2026-10-13.csv    ← Screening log of the 812 unique records
+│   └── openalex_search.py                 ← Reproduces the OpenAlex queries
+├── figures/
+│   ├── equations/                         ← The 8 equation plates (PDF + PNG)
+│   └── schemes/                           ← Two-level architecture (Fig. 1) + bibliographic synthesis (Table 9)
+├── presentation/
+│   ├── presentation.pdf                   ← 24 slides: problem, objectives, framework, method, results, discussion, conclusions
+│   └── simulator_guide.pdf                ← 3 slides: simulator architecture, its 31 controls, and use
+├── infographic/
+│   └── Infographic.{pdf,png}              ← The model on one page
+├── docs/                                  ← Link to the published article (added when it is available in IEEE Xplore)
+├── LICENSE
+└── README.md
+```
+
+## Citation
+
+To cite these materials:
+
+> Cabuya-Padilla, D. E. (2026). *Cyber power and maritime power: Simulator, verification scripts, and supporting materials.* https://github.com/diegocabuya/Cyber_Power_and_Maritime_Power
+
+The article, *Cyber power as a structural variable of maritime power: A normalized multiplicative model for multidomain assessment of maritime power*, was accepted for publication in *IEEE Access* on November 24, 2026. Its reference and DOI will be linked here when it is available in IEEE Xplore.
+
+## License
+
+The **research materials** (articles, figures, equation plates, infographic, presentations, and the project's search queries and screening logs) are released under the [**Creative Commons Attribution 4.0 International (CC BY 4.0)**](https://creativecommons.org/licenses/by/4.0/) license, the same license under which IEEE Access publishes its articles: you are free to share and adapt them for any purpose, provided appropriate credit is given. The **code** (simulator, site, and verification and search scripts) is released under the [**MIT**](https://opensource.org/licenses/MIT) license. Third-party bibliographic records in `search/` are not covered: OpenAlex data are CC0, and the Scopus records, published only as identifiers, remain subject to Elsevier's terms of use. See [`LICENSE`](LICENSE).
+
+---
+
+<div align="center">
+
+**Naval Academy of Strategic Studies (ANEES)** · Bogota, Colombia · 2026
+
+</div>
